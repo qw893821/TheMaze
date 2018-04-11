@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour {
                 GameManager.gm.gs = GameStats.turn;
             }
         }
-        else { GameManager.gm.gs = GameStats.other; }
+        else if(GameManager.gm.gs!=GameStats.attack)
+        { GameManager.gm.gs = GameStats.other; }
         /*if (GameManager.gm.gs == GameStats.turn)
         {
             transform.Rotate(0,90,0);

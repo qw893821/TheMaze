@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class CharacterStats {
+public class CharacterStats:MonoBehaviour {
     int health;
-    bool inRange;
-    bool isDeas;
-	
+    public bool inRange;
+    public bool isDead;
+    public int attackPower;
+    public float attackRange;
+    public float attackSpeed;
 }
