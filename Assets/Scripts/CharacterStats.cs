@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterStats:MonoBehaviour {
-    int health;
+    protected int health;
     public bool inRange;
     public bool isDead;
     public int attackPower;

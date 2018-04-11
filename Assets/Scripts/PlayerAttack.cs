@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour {
     bool inRange;
     PlayerStats ps;
     public float timer;
+    public GameObject inRangeEnemy;
 	// Use this for initialization
 	void Start () {
         timer = 0;
@@ -24,6 +25,7 @@ public class PlayerAttack : MonoBehaviour {
         if (col.tag == "Character")
         {
             inRange = true;
+            inRangeEnemy = col.transform.gameObject;
         }
     }
 
@@ -41,12 +43,17 @@ public class PlayerAttack : MonoBehaviour {
         }
         if(GameManager.gm.gs == GameStats.attack)
         {
+            
             timer = timer + Time.deltaTime;
             if (timer >= ps.attackSpeed)
             {
-                Debug.Log("attack");
+                if (inRange)
+                {
+                    inRangeEnemy.GetComponent<EnemyStats>().currentHealth -= ps.attackPower;
+                }
                 timer = 0;
                 GameManager.gm.gs = GameStats.other;
+                Debug.Log("attack");
             }
         }
     }
