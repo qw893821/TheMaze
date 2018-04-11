@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Character")
         {
             inRange = true;
         }
