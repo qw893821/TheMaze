@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Movement();
+        //Movement();
         UpdateMesh();
         Debug.Log(agent.nextPosition);
     }
@@ -33,12 +33,19 @@ public class EnemyMovement : MonoBehaviour {
 
     void UpdateMesh()
     {
+        //fix the conflict between animation and navmesh
         if (GameManager.gm.gs != GameStats.other)
         {
             target=playerGO.transform.position;
             target.y = 1.2f;
             agent.destination = target;
-            agent.nextPosition = transform.position;
+            Vector3 agentPosFix;
+            agentPosFix = agent.nextPosition;
+            agentPosFix.y += 1.2f;
+            agent.nextPosition = agentPosFix;
+            transform.position = agentPosFix;
+            
+            
         }
     }
 }
