@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStats : CharacterStats{
     public int currentHealth;
@@ -34,6 +35,18 @@ public class EnemyStats : CharacterStats{
                 anim.SetBool("inCombat", false);
                 Destroy(this.gameObject, 3.0f);
             }
+            NavMeshAgent agent;
+            agent=GetComponent<NavMeshAgent>();
+            agent.enabled = false ;
+            Sink(0.2f);
         }
+    }
+    
+    void Sink(float speed)
+    {
+        Vector3 targetPos;
+        targetPos = transform.position;
+        targetPos.y -= speed;
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
 }

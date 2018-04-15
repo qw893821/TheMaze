@@ -24,12 +24,13 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Movement();
-        UpdateMesh();
+        //UpdateMesh();
         
     }
 
     private void LateUpdate()
     {
+        UpdateMesh();
         ChangeAnim();
     }
 
@@ -43,7 +44,7 @@ public class EnemyMovement : MonoBehaviour {
     void UpdateMesh()
     {
         //fix the conflict between animation and navmesh
-        if (GameManager.gm.gs != GameStats.other)
+        if (GameManager.gm.gs != GameStats.other&&agent.isActiveAndEnabled)
         {
             target=playerGO.transform.position;
             target.y = 1.2f;
