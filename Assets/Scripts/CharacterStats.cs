@@ -9,4 +9,6 @@ public class CharacterStats:MonoBehaviour {
     public int attackPower;
     public float attackRange;
     public float attackSpeed;
+
+    
 }

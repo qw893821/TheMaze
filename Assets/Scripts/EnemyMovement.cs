@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour {
     Vector3 target;
     NavMeshAgent agent;
     GameObject playerGO;
+    Animator anim;
+    EnemyStats es;
     float speed;
 	// Use this for initialization
 	void Start () {
@@ -15,13 +17,20 @@ public class EnemyMovement : MonoBehaviour {
         agent.updatePosition = false;
         //agent.updateRotation = false;
         speed=1.0f;
+        anim = GetComponent<Animator>();
+        es = GetComponent<EnemyStats>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Movement();
         UpdateMesh();
-        Debug.Log(agent.nextPosition);
+        
+    }
+
+    private void LateUpdate()
+    {
+        ChangeAnim();
     }
 
     void Movement()
@@ -47,5 +56,33 @@ public class EnemyMovement : MonoBehaviour {
             
             
         }
+    }
+
+    void ChangeAnim()
+    {
+        //https://answers.unity.com/questions/324589/how-can-i-tell-when-a-navmesh-has-reached-its-dest.html
+        //check the destination
+        if (!es.isDead)
+        {
+            if (!agent.pathPending)
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    if (!agent.hasPath)
+                    {
+                        return;
+                    }
+                    anim.SetBool("inCombat",true);
+                    anim.SetBool("walking",false);
+                }
+                else
+                {
+                    anim.SetBool("walking",true);
+                    anim.SetBool("inCombat", false);
+                }
+            }
+            
+        }
+        else { Debug.Log(es.isDead); }
     }
 }

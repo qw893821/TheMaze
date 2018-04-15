@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour {
             timer = timer + Time.deltaTime;
             if (timer >= ps.attackSpeed)
             {
-                if (inRange)
+                if (inRange&&inRangeEnemy)
                 {
                     inRangeEnemy.GetComponent<EnemyStats>().currentHealth -= ps.attackPower;
                 }
