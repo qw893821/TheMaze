@@ -49,4 +49,6 @@ public class EnemyStats : CharacterStats{
         targetPos.y -= speed;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
+
+    
 }

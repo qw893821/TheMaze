@@ -743,6 +743,7 @@ MonoBehaviour:
   attackPower: 0
   attackRange: 0
   attackSpeed: 0
+  staisifation: 30
   currentHealth: 0
   anim: {fileID: 0}
 --- !u!114 &1097681238
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   attackPower: 0
   attackRange: 0
   attackSpeed: 0
+  staisifation: 0
   box: {fileID: 1444822135}
   change: 0
 --- !u!1 &1512509096

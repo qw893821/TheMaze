@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Character
+  - Enemy
+  - Teammate
+  - Neutral
   layers:
   - Default
   - TransparentFX

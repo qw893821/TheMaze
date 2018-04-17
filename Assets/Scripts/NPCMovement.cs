@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour {
+public class NPCMovement : MonoBehaviour {
     Vector3 target;
     NavMeshAgent agent;
     GameObject playerGO;
     Animator anim;
     EnemyStats es;
     float speed;
+    bool targeted;
 	// Use this for initialization
 	void Start () {
         playerGO = GameObject.FindGameObjectWithTag("Player");
@@ -19,6 +20,7 @@ public class EnemyMovement : MonoBehaviour {
         speed=1.0f;
         anim = GetComponent<Animator>();
         es = GetComponent<EnemyStats>();
+        targeted = false;
     }
 	
 	// Update is called once per frame
@@ -43,11 +45,29 @@ public class EnemyMovement : MonoBehaviour {
     void UpdateMesh()
     {
         //fix the conflict between animation and navmesh
+
         if (GameManager.gm.gs != GameStats.other&&agent.isActiveAndEnabled&& !agent.pathPending)
         {
-            target=playerGO.transform.position;    
-            target.y = 1.2f;
-            agent.destination = target;
+
+            if (transform.tag == "Neutral")
+            {
+                if (!targeted)
+                {
+                    agent.destination = new Vector3(Random.Range(-10f, 10f), 1.2f, Random.Range(-10f, 10f));
+                    agent.stoppingDistance = 1f;
+                    targeted = true;
+                }
+            }
+            else
+            {
+                target = playerGO.transform.position;
+                target.y = 1.2f;
+                agent.destination = target;
+                if (transform.tag == "Teammember")
+                {
+                    agent.stoppingDistance = 3f;
+                }
+            }
             Vector3 agentPosFix;
             //agentPosFix = agent.nextPosition;
             //Debug.Log(agent.nextPosition);
@@ -73,6 +93,7 @@ public class EnemyMovement : MonoBehaviour {
                     {
                         return;
                     }
+                    targeted = false;
                     anim.SetBool("inCombat",true);
                     anim.SetBool("walking",false);
                 }
