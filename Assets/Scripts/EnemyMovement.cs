@@ -25,7 +25,6 @@ public class EnemyMovement : MonoBehaviour {
 	void Update () {
         //Movement();
         //UpdateMesh();
-        
     }
 
     private void LateUpdate()
@@ -44,17 +43,17 @@ public class EnemyMovement : MonoBehaviour {
     void UpdateMesh()
     {
         //fix the conflict between animation and navmesh
-        if (GameManager.gm.gs != GameStats.other&&agent.isActiveAndEnabled)
+        if (GameManager.gm.gs != GameStats.other&&agent.isActiveAndEnabled&& !agent.pathPending)
         {
-            target=playerGO.transform.position;
+            target=playerGO.transform.position;    
             target.y = 1.2f;
             agent.destination = target;
             Vector3 agentPosFix;
-            agentPosFix = agent.nextPosition;
+            //agentPosFix = agent.nextPosition;
+            agentPosFix = Repath(agent);
             agentPosFix.y += 1.2f;
             agent.nextPosition = agentPosFix;
             transform.position = agentPosFix;
-            
             
         }
     }
@@ -85,5 +84,48 @@ public class EnemyMovement : MonoBehaviour {
             
         }
         else { Debug.Log(es.isDead); }
+    }
+
+    Vector3 Repath(NavMeshAgent agent)
+    {
+        Vector3 target;
+        Vector3 dir;
+        float angle;
+        float length;
+        target = agent.nextPosition;
+        dir = target - transform.position;
+        length = dir.magnitude;
+        Debug.Log(dir.magnitude);
+        dir.y = dir.y + 1.2f;
+        //unity angle value will be 0-180
+        angle = Vector3.Angle(Vector3.forward, dir);
+
+        if (angle < 45)
+        {
+            //target = Vector3.forward * dir.magnitude;
+            target = Vector3.forward * length;
+        }
+        else if (angle > 135)
+        {
+            //target = Vector3.back * dir.magnitude;
+            target = Vector3.back * length;
+        }
+        else
+        {
+            float newAngle;
+            newAngle = Vector3.Angle(Vector3.right, dir);
+            if (newAngle < 45)
+            {
+                //target = Vector3.right * dir.magnitude;
+                target = Vector3.right * length;
+            }
+            else if (newAngle > 135)
+            {
+                //target = Vector3.left * dir.magnitude;
+                target = Vector3.left * length;
+            }
+        }
+        //target = target + transform.position;
+        return target;
     }
 }
