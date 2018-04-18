@@ -12,6 +12,7 @@ public class TeamManager:MonoBehaviour {
 
     public void AddMember(GameObject go)
     {
+        
         if (GOCheck(go))
         {
             team.Add(go);
@@ -20,7 +21,7 @@ public class TeamManager:MonoBehaviour {
 
     public bool GOCheck(GameObject go)
     {
-        if (go.tag=="Teammate")
+        if (go.tag=="Teammember")
         {
             return false;
         }

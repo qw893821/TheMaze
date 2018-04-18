@@ -8,7 +8,7 @@ public class NPCMovement : MonoBehaviour {
     NavMeshAgent agent;
     GameObject playerGO;
     Animator anim;
-    EnemyStats es;
+    NPCStats ns;
     float speed;
     bool targeted;
 	// Use this for initialization
@@ -19,7 +19,7 @@ public class NPCMovement : MonoBehaviour {
         //agent.updateRotation = false;
         speed=1.0f;
         anim = GetComponent<Animator>();
-        es = GetComponent<EnemyStats>();
+        ns = GetComponent<NPCStats>();
         targeted = false;
     }
 	
@@ -83,7 +83,7 @@ public class NPCMovement : MonoBehaviour {
     {
         //https://answers.unity.com/questions/324589/how-can-i-tell-when-a-navmesh-has-reached-its-dest.html
         //check the destination
-        if (!es.isDead)
+        if (!ns.isDead)
         {
             if (!agent.pathPending)
             {
@@ -105,7 +105,7 @@ public class NPCMovement : MonoBehaviour {
             }
             
         }
-        else { Debug.Log(es.isDead); }
+        else { Debug.Log(ns.isDead); }
     }
     //convert the navmeshagent direction to hori/vert only. meet player's moveing rule
     Vector3 Repath(NavMeshAgent agent)

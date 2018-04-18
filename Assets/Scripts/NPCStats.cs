@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyStats : CharacterStats{
+public class NPCStats : CharacterStats{
     public int currentHealth;
     public Animator anim;
     CapsuleCollider capCol;

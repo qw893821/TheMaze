@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour {
             {
                 if (inRange&&inRangeEnemy)
                 {
-                    inRangeEnemy.GetComponent<EnemyStats>().currentHealth -= ps.attackPower;
+                    inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                 }
                 timer = 0;
                 GameManager.gm.gs = GameStats.other;
