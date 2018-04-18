@@ -146,7 +146,6 @@ public class NPCMovement : MonoBehaviour {
             }
         }
         target = dir + transform.position;
-        Debug.Log(angle);
         return target;
     }
 }

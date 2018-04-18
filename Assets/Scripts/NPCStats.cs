@@ -2,19 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class NPCStats : CharacterStats{
     public int currentHealth;
     public Animator anim;
     CapsuleCollider capCol;
-	// Use this for initialization
-	void Start () {
+    public Button chatBtn1;
+    public Button chatBtn2;
+    public Button chatBtn3;
+    public GameObject canvGO;
+    public Canvas canv;
+    // Use this for initialization
+    void Start () {
         health = 10;
         currentHealth = health;
         anim = GetComponent<Animator>();
         isDead = false;
         capCol = GetComponent<CapsuleCollider>();
-	}
+        //chatBtn1 = transform.Find("Neutral").GetComponent<Button>();
+        //chatBtn2 = transform.Find("Aggressive").GetComponent<Button>();
+        //chatBtn3 = transform.Find("Friendness").GetComponent<Button>();
+        //canv = transform.Find("UICanv").GetComponent<Canvas>();
+        canv = canvGO.GetComponent<Canvas>();
+        canv.enabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {

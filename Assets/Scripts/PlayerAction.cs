@@ -28,6 +28,7 @@ public class PlayerAction : MonoBehaviour {
         {
             ChangeMode();
         }
+        Chat();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -46,7 +47,7 @@ public class PlayerAction : MonoBehaviour {
 
     void attack()
     {
-        if (playerMode == Mode.attack)
+        if (playerMode == Mode.attack && !GameManager.gm.overUI && inRange)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -65,12 +66,29 @@ public class PlayerAction : MonoBehaviour {
                     }
                     timer = 0;
                     GameManager.gm.gs = GameStats.other;
-                    Debug.Log("attack");
+                }
+            }
+        }
+        else if (!inRange)
+        {
+            Debug.Log("attack nothing");
+        }
+    }
+    public void Chat()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (playerMode == Mode.chat&&inRangeEnemy)
+            {
+                Canvas canv;
+                canv = inRangeEnemy.GetComponent<NPCStats>().canv;
+                if (!canv.enabled)
+                {
+                    canv.enabled = true;
                 }
             }
         }
     }
-    
     public void ChangeMode()
     {
         //if (Input.GetButtonDown("Fire2"))

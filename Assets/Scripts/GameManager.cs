@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
         get { return _instance; }
     }
     public GameStats gs;
+    public bool overUI;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour {
             Destroy(this);
         }
         gs = GameStats.other;
+        overUI = false ;
 	}
 	
 	// Update is called once per frame
