@@ -47,6 +47,8 @@ public class NPCStats : CharacterStats{
                 anim.SetBool("inCombat", false);
                 Destroy(this.gameObject, 3.0f);
             }
+            transform.tag = "Dead";
+            GameManager.gm.currentList.Remove(this.transform.gameObject);
             NavMeshAgent agent;
             agent=GetComponent<NavMeshAgent>();
             agent.enabled = false ;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class PlayerAction : MonoBehaviour {
     enum Mode
     {
@@ -34,12 +35,13 @@ public class PlayerAction : MonoBehaviour {
         {
             ChangeMode();
         }
-        Chat();
+        //Chat();
     }
     
     private void LateUpdate()
     {
-        attack();
+        //attack();
+        Action();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -68,12 +70,7 @@ public class PlayerAction : MonoBehaviour {
     {
         if (playerMode == Mode.attack && !GameManager.gm.overUI /*&& inRange*/)
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
                 GameManager.gm.gs = GameStats.attack;
-                Debug.Log("trigger");
-
-            }
             /*if (GameManager.gm.gs == GameStats.attack)
             {
 
@@ -89,39 +86,81 @@ public class PlayerAction : MonoBehaviour {
                 }
             }*/
         }
-        if (GameManager.gm.gs == GameStats.attack)
-        {
-
-            timer = timer + Time.deltaTime;
-            if (timer >= ps.attackSpeed)
-            {
-                if (inRange && inRangeEnemy)
-                {
-                    inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
-                }
-                timer = 0;
-                GameManager.gm.gs = GameStats.other;
-            }
-        }
+        
     }
     public void Chat()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            RaycastHit hit;
-            Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(camRay, out hit))
-            {
-                if (playerMode == Mode.chat && inRangeEnemy)
+        //RaycastHit hit;
+        //Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
+        //if (Physics.Raycast(camRay, out hit))
+        //{
+        GameObject targetGO;
+        targetGO = TargetPicker();
+        if (playerMode == Mode.chat && targetGO)
+        { 
+                //GameObject hitTarget;
+                //hitTarget = hit.transform.gameObject;
+                //if (GameManager.gm.currentList.Contains(hitTarget))
+                //{
+                Canvas canv;
+                canv = targetGO.GetComponent<NPCStats>().canv;
+            Debug.Log(targetGO);
+                if (!canv.enabled)
                 {
-                    Canvas canv;
-                    canv = inRangeEnemy.GetComponent<NPCStats>().canv;
-                    if (!canv.enabled)
-                    {
-                        canv.enabled = true;
-                    }
+                    canv.enabled = true;
                 }
-            }
+                    //}
+                }
+            //}
+    }
+    GameObject TargetPicker()
+    {
+        GameObject targetGO;
+        RaycastHit hit;
+        targetGO = null;
+        Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(camRay, out hit))
+        {
+            //if (playerMode == Mode.chat && inRangeEnemy)
+            //{
+                GameObject hitTarget;
+                hitTarget = hit.transform.gameObject;
+                if (GameManager.gm.currentList.Contains(hitTarget))
+                {
+                    targetGO = hitTarget;
+                }
+            //}
+        }
+        return targetGO;
+    }
+    public void Action()
+    {
+        if (Input.GetButtonDown("Fire1")&&!GameManager.gm.overUI)
+        {
+            attack();
+            Chat();
+        }
+        if (GameManager.gm.gs == GameStats.attack)
+        {
+            GameObject targetGO;
+            targetGO = TargetPicker();
+            Debug.Log(targetGO);
+            timer = timer + Time.deltaTime;
+                if (timer >= ps.attackSpeed)
+                {
+                //if (inRange && inRangeEnemy)
+                //{
+                
+                if (targetGO)
+                {
+                    Debug.Log("Attack");
+                    targetGO.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
+                    //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
+                    //}
+                }
+                    timer = 0;
+                    GameManager.gm.gs = GameStats.other;
+                }
         }
     }
     public void ChangeMode()
@@ -155,5 +194,6 @@ public class PlayerAction : MonoBehaviour {
             playerMode = Mode.chat;
         }
     }
+
 
 }
