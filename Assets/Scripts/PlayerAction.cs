@@ -47,7 +47,7 @@ public class PlayerAction : MonoBehaviour {
 
     void attack()
     {
-        if (playerMode == Mode.attack && !GameManager.gm.overUI && inRange)
+        if (playerMode == Mode.attack && !GameManager.gm.overUI /*&& inRange*/)
         {
             if (Input.GetButtonDown("Fire1"))
             {
