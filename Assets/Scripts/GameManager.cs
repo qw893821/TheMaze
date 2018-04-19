@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour {
     }
     public GameStats gs;
     public bool overUI;
+    public List<GameObject> currentList;
+    GameObject player;
+    PlayerAction pa;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -29,6 +32,9 @@ public class GameManager : MonoBehaviour {
         }
         gs = GameStats.other;
         overUI = false ;
+        player = GameObject.FindGameObjectWithTag("Player");
+        pa = player.GetComponent<PlayerAction>();
+        currentList = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -54,4 +60,6 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
+
+    
 }

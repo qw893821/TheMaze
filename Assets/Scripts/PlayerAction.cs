@@ -12,23 +12,34 @@ public class PlayerAction : MonoBehaviour {
     PlayerStats ps;
     public float timer;
     public GameObject inRangeEnemy;
+    RaycastHit hit;
+    //public List<GameObject> Enemylist;
     Mode playerMode;
+    public Camera camera;
+    
 	// Use this for initialization
 	void Start () {
         timer = 0;
         inRange = false;
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
+        
+        //Enemylist = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        attack();
+        //attack();
         if (Input.GetButtonDown("Fire2"))
         {
             ChangeMode();
         }
         Chat();
+    }
+    
+    private void LateUpdate()
+    {
+        attack();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -37,12 +48,20 @@ public class PlayerAction : MonoBehaviour {
         {
             inRange = true;
             inRangeEnemy = col.transform.gameObject;
+            //Enemylist.Add(inRangeEnemy);
+            //Enemylist.Add(col.gameObject);
+            GameManager.gm.currentList.Add(inRangeEnemy);
         }
     }
 
     private void OnTriggerExit(Collider col)
     {
-       // if()
+        if (col.tag == "Character")
+        {
+            inRange = false;
+            //Enemylist.Remove(col.gameObject);
+            GameManager.gm.currentList.Remove(col.gameObject);
+        }
     }
 
     void attack()
@@ -52,9 +71,10 @@ public class PlayerAction : MonoBehaviour {
             if (Input.GetButtonDown("Fire1"))
             {
                 GameManager.gm.gs = GameStats.attack;
+                Debug.Log("trigger");
 
             }
-            if (GameManager.gm.gs == GameStats.attack)
+            /*if (GameManager.gm.gs == GameStats.attack)
             {
 
                 timer = timer + Time.deltaTime;
@@ -67,24 +87,39 @@ public class PlayerAction : MonoBehaviour {
                     timer = 0;
                     GameManager.gm.gs = GameStats.other;
                 }
-            }
+            }*/
         }
-        else if (!inRange)
+        if (GameManager.gm.gs == GameStats.attack)
         {
-            Debug.Log("attack nothing");
+
+            timer = timer + Time.deltaTime;
+            if (timer >= ps.attackSpeed)
+            {
+                if (inRange && inRangeEnemy)
+                {
+                    inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
+                }
+                timer = 0;
+                GameManager.gm.gs = GameStats.other;
+            }
         }
     }
     public void Chat()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (playerMode == Mode.chat&&inRangeEnemy)
+            RaycastHit hit;
+            Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(camRay, out hit))
             {
-                Canvas canv;
-                canv = inRangeEnemy.GetComponent<NPCStats>().canv;
-                if (!canv.enabled)
+                if (playerMode == Mode.chat && inRangeEnemy)
                 {
-                    canv.enabled = true;
+                    Canvas canv;
+                    canv = inRangeEnemy.GetComponent<NPCStats>().canv;
+                    if (!canv.enabled)
+                    {
+                        canv.enabled = true;
+                    }
                 }
             }
         }
@@ -101,9 +136,24 @@ public class PlayerAction : MonoBehaviour {
             else if (playerMode == Mode.attack)
             {
                 playerMode = Mode.chat;
-            }
+        }
         //}
     }
 
-    
+    public void ModeAtk()
+    {
+        if (playerMode == Mode.chat)
+        {
+            playerMode = Mode.attack;
+        }
+    }
+
+    public void ModeChat()
+    {
+        if (playerMode == Mode.attack)
+        {
+            playerMode = Mode.chat;
+        }
+    }
+
 }
