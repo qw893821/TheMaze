@@ -195,5 +195,9 @@ public class PlayerAction : MonoBehaviour {
         }
     }
 
-
+    public void Test()
+    {
+        GameManager.gm.gs=GameStats.other;
+        Debug.Log(GameManager.gm.gs);
+    }
 }
