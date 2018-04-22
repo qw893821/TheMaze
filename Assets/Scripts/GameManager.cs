@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameStats
 {
@@ -20,6 +21,14 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> currentList;
     GameObject player;
     PlayerAction pa;
+    GameObject attackBtn;
+    public Image attackBtnImg;
+    public Sprite attOn;
+    public Sprite attOff;
+    GameObject chatBtn;
+    public Image chatBtnImg;
+    public Sprite chatOn;
+    public Sprite chatOff;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -35,6 +44,10 @@ public class GameManager : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         pa = player.GetComponent<PlayerAction>();
         currentList = new List<GameObject>();
+        attackBtn = GameObject.Find("Attack");
+        attackBtnImg = attackBtn.GetComponent<Image>();
+        chatBtn = GameObject.Find("Chat");
+        chatBtnImg = chatBtn.GetComponent<Image>();
 	}
 	
 	// Update is called once per frame

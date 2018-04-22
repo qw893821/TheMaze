@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerAction : MonoBehaviour {
     enum Mode
@@ -104,7 +105,6 @@ public class PlayerAction : MonoBehaviour {
                 //{
                 Canvas canv;
                 canv = targetGO.GetComponent<NPCStats>().canv;
-            Debug.Log(targetGO);
                 if (!canv.enabled)
                 {
                     canv.enabled = true;
@@ -128,6 +128,7 @@ public class PlayerAction : MonoBehaviour {
                 if (GameManager.gm.currentList.Contains(hitTarget))
                 {
                     targetGO = hitTarget;
+
                 }
             //}
         }
@@ -135,6 +136,7 @@ public class PlayerAction : MonoBehaviour {
     }
     public void Action()
     {
+        UISwitch();
         if (Input.GetButtonDown("Fire1")&&!GameManager.gm.overUI)
         {
             attack();
@@ -171,6 +173,7 @@ public class PlayerAction : MonoBehaviour {
             {
                 playerMode = Mode.attack;
                 
+                
             }
             else if (playerMode == Mode.attack)
             {
@@ -197,7 +200,30 @@ public class PlayerAction : MonoBehaviour {
 
     public void Test()
     {
+        GameObject targetGO;
+        //Debug.Log(TargetPicker());
+        //targetGO = TargetPicker().transform.parent.gameObject;
+        targetGO = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
+        Debug.Log(targetGO);
+
+        targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
+        TeamManager.tm.AddMember(targetGO);
         Debug.Log(GameManager.gm.gs);
+    }
+
+    void UISwitch()
+    {
+        switch (playerMode)
+        {
+            case Mode.attack:
+                GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOn;
+                GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOff;
+                break;
+            case Mode.chat:
+                GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOff;
+                GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOn;
+                break;
+        }
     }
 }

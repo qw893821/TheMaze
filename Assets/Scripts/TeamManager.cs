@@ -15,7 +15,10 @@ public class TeamManager:MonoBehaviour {
         
         if (GOCheck(go))
         {
-            team.Add(go);
+            if (go.GetComponent<NPCStats>().satisfaction == 100)
+            {
+                team.Add(go);
+            }
         }
     }
 
@@ -33,6 +36,7 @@ public class TeamManager:MonoBehaviour {
         if (team.Contains(go))
         {
             team.Remove(go);
+            team = new List<GameObject>();
         }
     }
 
