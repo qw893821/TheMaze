@@ -15,7 +15,7 @@ public class NPCStats : CharacterStats{
     public Canvas canv;
     // Use this for initialization
     void Start () {
-        health = 10;
+        health = 100
         currentHealth = health;
         anim = GetComponent<Animator>();
         isDead = false;

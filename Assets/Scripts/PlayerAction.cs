@@ -143,8 +143,15 @@ public class PlayerAction : MonoBehaviour {
                 
                 if (GameManager.gm.currentTargetGO)
                 {
-                    Debug.Log("Attack");
-                    GameManager.gm.currentTargetGO.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
+                    GameObject currentGO;
+                    NPCStats currentNPCs;
+                    currentGO = GameManager.gm.currentTargetGO;
+                    currentNPCs = currentGO.GetComponent<NPCStats>();
+                    if (currentNPCs.rs != Relationship.friend)
+                    {
+                        currentNPCs.currentHealth -= ps.attackPower;
+                        currentNPCs.rs = Relationship.friend;
+                    }
                     //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                     //}
                 }

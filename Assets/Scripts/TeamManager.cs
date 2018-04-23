@@ -24,9 +24,9 @@ public class TeamManager:MonoBehaviour {
 
     public bool GOCheck(GameObject go)
     {
-        CharacterStats.Relationship rs;
+        Relationship rs;
         rs = go.GetComponent<NPCStats>().rs;
-        if (rs== CharacterStats.Relationship.friend)
+        if (rs== Relationship.friend)
         {
             return false;
         }

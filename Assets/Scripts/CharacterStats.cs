@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Relationship
+{
+    opponent,
+    friend,
+    neutral
+}
 public class CharacterStats:MonoBehaviour {
     protected int health;
     public bool inRange;
@@ -11,12 +17,7 @@ public class CharacterStats:MonoBehaviour {
     public float attackSpeed;
     public int satisfaction;
     public Relationship rs;
-    public enum Relationship
-    {
-        opponent,
-        friend,
-        neutral
-    }
+    
 
     public virtual void ChangeRelation()
     {
