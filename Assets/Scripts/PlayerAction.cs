@@ -18,14 +18,12 @@ public class PlayerAction : MonoBehaviour {
     //public List<GameObject> Enemylist;
     Mode playerMode;
     public Camera camera;
-    
 	// Use this for initialization
 	void Start () {
         timer = 0;
         inRange = false;
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
-        
         //Enemylist = new List<GameObject>();
 	}
 	
@@ -91,27 +89,17 @@ public class PlayerAction : MonoBehaviour {
     }
     public void Chat()
     {
-        //RaycastHit hit;
-        //Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(camRay, out hit))
-        //{
-        GameObject targetGO;
-        targetGO = TargetPicker();
-        if (playerMode == Mode.chat && targetGO)
-        { 
-                //GameObject hitTarget;
-                //hitTarget = hit.transform.gameObject;
-                //if (GameManager.gm.currentList.Contains(hitTarget))
-                //{
-                Canvas canv;
-                canv = targetGO.GetComponent<NPCStats>().canv;
-                if (!canv.enabled)
-                {
-                    canv.enabled = true;
-                }
-                    //}
-                }
-            //}
+        
+        if (playerMode == Mode.chat && GameManager.gm.currentTargetGO)
+        {
+            Vector3 targetPos;
+            //targetPos= Camera.main.WorldToScreenPoint(targetGO.transform.position);
+            targetPos = Camera.main.WorldToScreenPoint(new Vector3(GameManager.gm.currentTargetGO.transform.position.x, GameManager.gm.currentTargetGO.transform.position.y+1.2f,GameManager.gm.currentTargetGO.transform.position.z));
+            GameManager.gm.chatUI.SetActive(true);
+            GameManager.gm.chatUI.transform.position = targetPos;
+            
+        }
+            
     }
     GameObject TargetPicker()
     {
@@ -121,16 +109,18 @@ public class PlayerAction : MonoBehaviour {
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit))
         {
-            //if (playerMode == Mode.chat && inRangeEnemy)
-            //{
+            if (hit.collider.tag == "Character")
+            {
+                //if (playerMode == Mode.chat && inRangeEnemy)
+                //{
                 GameObject hitTarget;
                 hitTarget = hit.transform.gameObject;
                 if (GameManager.gm.currentList.Contains(hitTarget))
                 {
                     targetGO = hitTarget;
-
                 }
-            //}
+                //}
+            }
         }
         return targetGO;
     }
@@ -141,22 +131,20 @@ public class PlayerAction : MonoBehaviour {
         {
             attack();
             Chat();
+            GameManager.gm.currentTargetGO = TargetPicker();
         }
         if (GameManager.gm.gs == GameStats.attack)
         {
-            GameObject targetGO;
-            targetGO = TargetPicker();
-            Debug.Log(targetGO);
             timer = timer + Time.deltaTime;
                 if (timer >= ps.attackSpeed)
                 {
                 //if (inRange && inRangeEnemy)
                 //{
                 
-                if (targetGO)
+                if (GameManager.gm.currentTargetGO)
                 {
                     Debug.Log("Attack");
-                    targetGO.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
+                    GameManager.gm.currentTargetGO.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                     //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                     //}
                 }
@@ -200,15 +188,15 @@ public class PlayerAction : MonoBehaviour {
 
     public void Test()
     {
-        GameObject targetGO;
+        //GameObject targetGO;
         //Debug.Log(TargetPicker());
         //targetGO = TargetPicker().transform.parent.gameObject;
-        targetGO = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
-        Debug.Log(targetGO);
+        //targetGO = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
+        //Debug.Log(targetGO);
 
-        targetGO.GetComponent<NPCStats>().satisfaction += 10;
+        //targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
-        TeamManager.tm.AddMember(targetGO);
+        //TeamManager.tm.AddMember(targetGO);
         Debug.Log(GameManager.gm.gs);
     }
 
