@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour {
     public GameObject chatUI;
     //current select target gameobject;
     public GameObject currentTargetGO;
+    //cursor texture
+    public Texture2D cursorBattle;
+    public Texture2D cursorChat;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         TimeController();
         ChatUIUpdate();
+        ChangeCursor();
     }
 
     void TimeController()
@@ -85,5 +89,12 @@ public class GameManager : MonoBehaviour {
         {
             chatUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gm.currentTargetGO.transform.position.x, gm.currentTargetGO.transform.position.y + 1.2f, gm.currentTargetGO.transform.position.z));
         }
+    }
+
+    void ChangeCursor()
+    {
+        Vector2 hotspot = Vector2.zero;
+        CursorMode cursorMode = CursorMode.Auto;
+        Cursor.SetCursor(cursorBattle,hotspot,cursorMode);
     }
 }

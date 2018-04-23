@@ -26,11 +26,13 @@ public class NPCStats : CharacterStats{
         //canv = transform.Find("UICanv").GetComponent<Canvas>();
         canv = canvGO.GetComponent<Canvas>();
         canv.enabled = false;
+        rs = Relationship.neutral;
     }
 	
 	// Update is called once per frame
 	void Update () {
         Die();
+        ChangeRelation();
 	}
 
     void Die()
@@ -64,5 +66,8 @@ public class NPCStats : CharacterStats{
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
 
-    
+    public override void ChangeRelation()
+    {
+        base.ChangeRelation();
+    }
 }

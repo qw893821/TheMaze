@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
                 GameManager.gm.gs = GameStats.turn;
             }
         }
-        else if(GameManager.gm.gs!=GameStats.attack)
+        else if(GameManager.gm.gs!=GameStats.attack )
         { GameManager.gm.gs = GameStats.other; }
         /*if (GameManager.gm.gs == GameStats.turn)
         {

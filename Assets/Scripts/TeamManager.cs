@@ -15,7 +15,7 @@ public class TeamManager:MonoBehaviour {
         
         if (GOCheck(go))
         {
-            if (go.GetComponent<NPCStats>().satisfaction == 100)
+            if (go.GetComponent<NPCStats>().satisfaction >= 100)
             {
                 team.Add(go);
             }
@@ -24,7 +24,9 @@ public class TeamManager:MonoBehaviour {
 
     public bool GOCheck(GameObject go)
     {
-        if (go.tag=="Teammember")
+        CharacterStats.Relationship rs;
+        rs = go.GetComponent<NPCStats>().rs;
+        if (rs== CharacterStats.Relationship.friend)
         {
             return false;
         }

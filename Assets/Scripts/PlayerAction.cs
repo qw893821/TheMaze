@@ -188,13 +188,13 @@ public class PlayerAction : MonoBehaviour {
 
     public void Test()
     {
-        //GameObject targetGO;
+        GameObject targetGO;
         //Debug.Log(TargetPicker());
         //targetGO = TargetPicker().transform.parent.gameObject;
         //targetGO = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
         //Debug.Log(targetGO);
-
-        //targetGO.GetComponent<NPCStats>().satisfaction += 10;
+        targetGO = GameManager.gm.currentTargetGO;
+        targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
         //TeamManager.tm.AddMember(targetGO);
         Debug.Log(GameManager.gm.gs);

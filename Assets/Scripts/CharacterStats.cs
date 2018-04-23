@@ -10,5 +10,19 @@ public class CharacterStats:MonoBehaviour {
     public float attackRange;
     public float attackSpeed;
     public int satisfaction;
-    
+    public Relationship rs;
+    public enum Relationship
+    {
+        opponent,
+        friend,
+        neutral
+    }
+
+    public virtual void ChangeRelation()
+    {
+        if (satisfaction >= 100)
+        {
+            rs = Relationship.friend;
+        }
+    }
 }
