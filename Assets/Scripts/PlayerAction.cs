@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum Mode
+{
+    attack,
+    chat
+}
 public class PlayerAction : MonoBehaviour {
-    enum Mode
-    {
-        attack,
-        chat
-    }
+    
     bool inRange;
     PlayerStats ps;
     public float timer;
     public GameObject inRangeEnemy;
     RaycastHit hit;
     //public List<GameObject> Enemylist;
-    Mode playerMode;
+    public Mode playerMode;
     public Camera camera;
 	// Use this for initialization
 	void Start () {
@@ -24,22 +25,18 @@ public class PlayerAction : MonoBehaviour {
         inRange = false;
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
-        //Enemylist = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        //attack();
+	void Update () { 
         if (Input.GetButtonDown("Fire2"))
         {
             ChangeMode();
         }
-        //Chat();
     }
     
     private void LateUpdate()
     {
-        //attack();
         Action();
     }
 
@@ -49,8 +46,6 @@ public class PlayerAction : MonoBehaviour {
         {
             inRange = true;
             inRangeEnemy = col.transform.gameObject;
-            //Enemylist.Add(inRangeEnemy);
-            //Enemylist.Add(col.gameObject);
             GameManager.gm.currentList.Add(inRangeEnemy);
         }
     }
@@ -60,7 +55,6 @@ public class PlayerAction : MonoBehaviour {
         if (col.tag == "Character")
         {
             inRange = false;
-            //Enemylist.Remove(col.gameObject);
             GameManager.gm.currentList.Remove(col.gameObject);
         }
     }
@@ -70,36 +64,18 @@ public class PlayerAction : MonoBehaviour {
         if (playerMode == Mode.attack && !GameManager.gm.overUI /*&& inRange*/)
         {
                 GameManager.gm.gs = GameStats.attack;
-            /*if (GameManager.gm.gs == GameStats.attack)
-            {
-
-                timer = timer + Time.deltaTime;
-                if (timer >= ps.attackSpeed)
-                {
-                    if (inRange && inRangeEnemy)
-                    {
-                        inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
-                    }
-                    timer = 0;
-                    GameManager.gm.gs = GameStats.other;
-                }
-            }*/
         }
         
     }
     public void Chat()
     {
-        
         if (playerMode == Mode.chat && GameManager.gm.currentTargetGO)
         {
             Vector3 targetPos;
-            //targetPos= Camera.main.WorldToScreenPoint(targetGO.transform.position);
             targetPos = Camera.main.WorldToScreenPoint(new Vector3(GameManager.gm.currentTargetGO.transform.position.x, GameManager.gm.currentTargetGO.transform.position.y+1.2f,GameManager.gm.currentTargetGO.transform.position.z));
             GameManager.gm.chatUI.SetActive(true);
             GameManager.gm.chatUI.transform.position = targetPos;
-            
-        }
-            
+        }       
     }
     GameObject TargetPicker()
     {
@@ -129,9 +105,9 @@ public class PlayerAction : MonoBehaviour {
         UISwitch();
         if (Input.GetButtonDown("Fire1")&&!GameManager.gm.overUI)
         {
+            GameManager.gm.currentTargetGO = TargetPicker();
             attack();
             Chat();
-            GameManager.gm.currentTargetGO = TargetPicker();
         }
         if (GameManager.gm.gs == GameStats.attack)
         {
@@ -150,7 +126,7 @@ public class PlayerAction : MonoBehaviour {
                     if (currentNPCs.rs != Relationship.friend)
                     {
                         currentNPCs.currentHealth -= ps.attackPower;
-                        currentNPCs.rs = Relationship.friend;
+                        currentNPCs.rs = Relationship.opponent;
                     }
                     //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                     //}
@@ -196,15 +172,9 @@ public class PlayerAction : MonoBehaviour {
     public void Test()
     {
         GameObject targetGO;
-        //Debug.Log(TargetPicker());
-        //targetGO = TargetPicker().transform.parent.gameObject;
-        //targetGO = EventSystem.current.currentSelectedGameObject.transform.root.gameObject;
-        //Debug.Log(targetGO);
         targetGO = GameManager.gm.currentTargetGO;
         targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
-        //TeamManager.tm.AddMember(targetGO);
-        Debug.Log(GameManager.gm.gs);
     }
 
     void UISwitch()

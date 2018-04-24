@@ -10,6 +10,7 @@ public enum GameStats
     turn,
     other
 }
+
 public class GameManager : MonoBehaviour {
     private static GameManager _instance;
     public static GameManager gm
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour {
     //cursor texture
     public Texture2D cursorBattle;
     public Texture2D cursorChat;
+    Mode currentMode;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour {
         chatBtn = GameObject.Find("Chat");
         chatBtnImg = chatBtn.GetComponent<Image>();
         chatUI.SetActive(false);
+        currentMode = pa.playerMode;
 	}
 	
 	// Update is called once per frame
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour {
         ChatUIUpdate();
         ChangeCursor();
     }
+    
 
     void TimeController()
     {
@@ -83,18 +87,42 @@ public class GameManager : MonoBehaviour {
     }
 
     //update chatUI pos
-    void ChatUIUpdate()
+    //call this in PlayerAction to make sure it was use after the Action()
+    public void ChatUIUpdate()
     {
-        if (chatUI.activeSelf)
+        if (currentTargetGO)
         {
-            chatUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gm.currentTargetGO.transform.position.x, gm.currentTargetGO.transform.position.y + 1.2f, gm.currentTargetGO.transform.position.z));
+            //anlge of player and target
+            float playerToTarget;
+            playerToTarget = Vector3.Angle(player.transform.forward, (currentTargetGO.transform.position - player.transform.position));
+            if (chatUI.activeSelf)
+            {
+                if (playerToTarget < 60)
+                {
+                    chatUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(gm.currentTargetGO.transform.position.x, gm.currentTargetGO.transform.position.y + 1.2f, gm.currentTargetGO.transform.position.z));
+                }
+                else { chatUI.SetActive(false); }
+            }
         }
     }
 
     void ChangeCursor()
     {
-        Vector2 hotspot = Vector2.zero;
-        CursorMode cursorMode = CursorMode.Auto;
-        Cursor.SetCursor(cursorBattle,hotspot,cursorMode);
+        if (currentMode != pa.playerMode)
+        {
+            if (pa.playerMode == Mode.attack)
+            {
+                Vector2 hotspot = Vector2.zero;
+                CursorMode cursorMode = CursorMode.Auto;
+                Cursor.SetCursor(cursorBattle, hotspot, cursorMode);
+            }
+            else if (pa.playerMode == Mode.chat)
+            {
+                Vector2 hotspot = Vector2.zero;
+                CursorMode cursorMode = CursorMode.Auto;
+                Cursor.SetCursor(cursorChat, hotspot, cursorMode);
+            }
+            currentMode = pa.playerMode;
+        }
     }
 }
