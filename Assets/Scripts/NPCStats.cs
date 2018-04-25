@@ -33,6 +33,7 @@ public class NPCStats : CharacterStats{
 	void Update () {
         Die();
         ChangeRelation();
+        ChangeTarget();
 	}
 
     void Die()

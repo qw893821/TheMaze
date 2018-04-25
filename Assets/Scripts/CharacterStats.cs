@@ -17,13 +17,26 @@ public class CharacterStats:MonoBehaviour {
     public float attackSpeed;
     public int satisfaction;
     public Relationship rs;
-    
+    public GameObject targetGO;
+
+    private void Start()
+    {
+        inRange = false;
+    }
 
     public virtual void ChangeRelation()
     {
         if (satisfaction >= 100)
         {
             rs = Relationship.friend;
+        }
+    }
+
+    public virtual void ChangeTarget()
+    {
+        if (!inRange&&!targetGO)
+        {
+            targetGO = GameManager.gm.targetList[Random.Range(0,GameManager.gm.targetList.Count)];
         }
     }
 }

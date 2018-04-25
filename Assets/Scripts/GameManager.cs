@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour {
     public Texture2D cursorBattle;
     public Texture2D cursorChat;
     Mode currentMode;
+
+    //Target Position list
+    public List<GameObject> targetList;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour {
         chatBtnImg = chatBtn.GetComponent<Image>();
         chatUI.SetActive(false);
         currentMode = pa.playerMode;
+        //targetList = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
