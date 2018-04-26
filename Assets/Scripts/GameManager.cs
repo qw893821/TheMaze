@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     public GameStats gs;
     public bool overUI;
     public List<GameObject> currentList;
-    GameObject player;
+    public GameObject player;
     PlayerAction pa;
     GameObject attackBtn;
     public Image attackBtnImg;
@@ -30,7 +30,10 @@ public class GameManager : MonoBehaviour {
     public Image chatBtnImg;
     public Sprite chatOn;
     public Sprite chatOff;
+    //game chat ui
     public GameObject chatUI;
+    //being target warning ui
+    public GameObject warningUI;
     //current select target gameobject;
     public GameObject currentTargetGO;
     //cursor texture
@@ -38,7 +41,9 @@ public class GameManager : MonoBehaviour {
     public Texture2D cursorChat;
     Mode currentMode;
 
-    //Target Position list
+    //NPCs currently target player
+    public List<GameObject> cTargetList;
+    //NPC Target Position list 
     public List<GameObject> targetList;
 	// Use this for initialization
 	void Start () {
@@ -55,6 +60,7 @@ public class GameManager : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         pa = player.GetComponent<PlayerAction>();
         currentList = new List<GameObject>();
+        cTargetList = new List<GameObject>();
         attackBtn = GameObject.Find("Attack");
         attackBtnImg = attackBtn.GetComponent<Image>();
         chatBtn = GameObject.Find("Chat");

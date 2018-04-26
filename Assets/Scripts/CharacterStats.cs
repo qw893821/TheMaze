@@ -18,7 +18,8 @@ public class CharacterStats:MonoBehaviour {
     public int satisfaction;
     public Relationship rs;
     public GameObject targetGO;
-
+    public List<GameObject> opponentList;
+    public List<GameObject> friendList;
     private void Start()
     {
         inRange = false;
@@ -37,6 +38,25 @@ public class CharacterStats:MonoBehaviour {
         if (!inRange&&!targetGO)
         {
             targetGO = GameManager.gm.targetList[Random.Range(0,GameManager.gm.targetList.Count)];
+        }
+    }
+
+   public virtual void FoV()
+    {
+        if (inRange)
+        {
+            if (targetGO.tag != "Player"||!targetGO)
+            {
+                Vector3 dir;
+                float angle;
+                dir = GameManager.gm.player.transform.position - transform.position;
+                angle = Vector3.Angle(dir, transform.forward);
+                Debug.Log(angle);
+                if (angle <= 45f)
+                {
+                    targetGO = GameManager.gm.player;
+                }
+            }
         }
     }
 }

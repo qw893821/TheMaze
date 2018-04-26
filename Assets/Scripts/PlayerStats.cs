@@ -27,4 +27,5 @@ public class PlayerStats: CharacterStats{
         box.size =new Vector3(attackRange, 1f, attackRange);
         change = false;
     }
+
 }

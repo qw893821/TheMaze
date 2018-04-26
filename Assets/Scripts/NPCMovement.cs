@@ -11,12 +11,14 @@ public class NPCMovement : MonoBehaviour {
     float speed;
     bool targeted;
     GameObject targetGO;
+    public GameObject targetingGO;
+
 	// Use this for initialization
 	void Start () {
         //targetGO = GameObject.FindGameObjectWithTag("Player");
         agent = transform.GetComponent<NavMeshAgent>();
         agent.updatePosition = false;
-        //agent.updateRotation = false;
+        agent.updateRotation = false;
         speed=1.0f;
         anim = GetComponent<Animator>();
         ns = GetComponent<NPCStats>();
@@ -75,8 +77,9 @@ public class NPCMovement : MonoBehaviour {
             agentPosFix = Repath(agent);
             agentPosFix.y = 1.2f;
             agent.nextPosition = agentPosFix;
+            //trun npc to the direction they want to go
+            transform.LookAt(agentPosFix);
             transform.position = agentPosFix;
-            
         }
     }
 

@@ -27,6 +27,8 @@ public class NPCStats : CharacterStats{
         canv = canvGO.GetComponent<Canvas>();
         canv.enabled = false;
         rs = Relationship.neutral;
+        opponentList = new List<GameObject>();
+        friendList = new List<GameObject>();
     }
 	
 	// Update is called once per frame
@@ -34,6 +36,7 @@ public class NPCStats : CharacterStats{
         Die();
         ChangeRelation();
         ChangeTarget();
+        FoV();
 	}
 
     void Die()
@@ -71,4 +74,19 @@ public class NPCStats : CharacterStats{
     {
         base.ChangeRelation();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            inRange = true;
+        }
+    }
+
+    public override void FoV()
+    {
+        base.FoV();
+        GameManager.gm.cTargetList.Add(transform.gameObject);
+    }
+
 }
