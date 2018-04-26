@@ -13,6 +13,8 @@ public class NPCStats : CharacterStats{
     public Button chatBtn3;
     public GameObject canvGO;
     public Canvas canv;
+    float timer;
+    float ignoreTime;
     // Use this for initialization
     void Start () {
         health = 100;
@@ -29,6 +31,9 @@ public class NPCStats : CharacterStats{
         rs = Relationship.neutral;
         opponentList = new List<GameObject>();
         friendList = new List<GameObject>();
+        ignoredList = new List<GameObject>();
+        ignoreTime = 5.0f;
+        ChangeTarget();
     }
 	
 	// Update is called once per frame
@@ -89,4 +94,25 @@ public class NPCStats : CharacterStats{
         GameManager.gm.cTargetList.Add(transform.gameObject);
     }
 
+    private float IgnoreTimer()
+    {
+        if (targetGO.tag != "Player")
+        {
+            return timer = 0;
+        }
+        return timer += Time.deltaTime;
+    }
+
+    public override void ChangeTarget()
+    {
+        base.ChangeTarget();
+        if (IgnoreTimer() >= ignoreTime)
+        {
+            ignoredList.Add(targetGO);
+            Debug.Log(prevTargetGO);
+            targetGO = prevTargetGO;
+            prevTargetGO = null;
+            timer = 0f;
+        }
+    }
 }

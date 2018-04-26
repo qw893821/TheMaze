@@ -858,7 +858,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Warning
 --- !u!222 &485061186
 CanvasRenderer:
   m_ObjectHideFlags: 0

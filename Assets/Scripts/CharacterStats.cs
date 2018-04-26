@@ -18,8 +18,10 @@ public class CharacterStats:MonoBehaviour {
     public int satisfaction;
     public Relationship rs;
     public GameObject targetGO;
+    protected GameObject prevTargetGO;
     public List<GameObject> opponentList;
     public List<GameObject> friendList;
+    public List<GameObject> ignoredList;
     private void Start()
     {
         inRange = false;
@@ -43,20 +45,24 @@ public class CharacterStats:MonoBehaviour {
 
    public virtual void FoV()
     {
-        if (inRange)
+        if (inRange && !ignoredList.Contains(targetGO))
         {
-            if (targetGO.tag != "Player"||!targetGO)
+            if (targetGO.tag != "Player"||!targetGO )
             {
                 Vector3 dir;
                 float angle;
                 dir = GameManager.gm.player.transform.position - transform.position;
                 angle = Vector3.Angle(dir, transform.forward);
-                Debug.Log(angle);
                 if (angle <= 45f)
                 {
+                    if (!prevTargetGO)
+                    {
+                        prevTargetGO = targetGO;
+                    }
                     targetGO = GameManager.gm.player;
                 }
             }
         }
+        else { Debug.Log("ignored"); }
     }
 }
