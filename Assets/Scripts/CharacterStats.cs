@@ -39,15 +39,24 @@ public class CharacterStats:MonoBehaviour {
     {
         if (!inRange&&!targetGO)
         {
-            targetGO = GameManager.gm.targetList[Random.Range(0,GameManager.gm.targetList.Count)];
+            if (!ignoredList.Contains(targetGO))
+            {
+                targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+            }
         }
     }
 
    public virtual void FoV()
     {
-        if (inRange && !ignoredList.Contains(targetGO))
+        if (inRange)
         {
-            if (targetGO.tag != "Player"||!targetGO )
+            if (ignoredList.Contains(targetGO))
+            {
+                Debug.Log("ignore" + targetGO.gameObject);
+                inRange = false;
+                return;
+            }
+            else if (targetGO.tag != "Player"||!targetGO )
             {
                 Vector3 dir;
                 float angle;
@@ -60,9 +69,9 @@ public class CharacterStats:MonoBehaviour {
                         prevTargetGO = targetGO;
                     }
                     targetGO = GameManager.gm.player;
+                    Debug.Log("target player");
                 }
             }
         }
-        else { Debug.Log("ignored"); }
     }
 }

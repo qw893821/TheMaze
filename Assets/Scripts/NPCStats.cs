@@ -42,6 +42,7 @@ public class NPCStats : CharacterStats{
         ChangeRelation();
         ChangeTarget();
         FoV();
+        Debug.Log(targetGO);
 	}
 
     void Die()
@@ -96,7 +97,7 @@ public class NPCStats : CharacterStats{
 
     private float IgnoreTimer()
     {
-        if (targetGO.tag != "Player")
+        if (ignoredList.Contains(targetGO))
         {
             return timer = 0;
         }
