@@ -52,11 +52,11 @@ public class CharacterStats:MonoBehaviour {
         {
             if (ignoredList.Contains(targetGO))
             {
-                Debug.Log("ignore" + targetGO.gameObject);
                 inRange = false;
                 return;
             }
-            else if (targetGO.tag != "Player"||!targetGO )
+            //else if (targetGO.tag != "Player"||!targetGO )
+            else if(!ignoredList.Contains(targetGO)||!targetGO)
             {
                 Vector3 dir;
                 float angle;
@@ -69,7 +69,6 @@ public class CharacterStats:MonoBehaviour {
                         prevTargetGO = targetGO;
                     }
                     targetGO = GameManager.gm.player;
-                    Debug.Log("target player");
                 }
             }
         }

@@ -42,7 +42,6 @@ public class NPCStats : CharacterStats{
         ChangeRelation();
         ChangeTarget();
         FoV();
-        Debug.Log(targetGO);
 	}
 
     void Die()
@@ -112,8 +111,9 @@ public class NPCStats : CharacterStats{
             ignoredList.Add(targetGO);
             Debug.Log(prevTargetGO);
             targetGO = prevTargetGO;
+            Debug.Log(targetGO);
             prevTargetGO = null;
-            timer = 0f;
+            timer = 0;
         }
     }
 }
