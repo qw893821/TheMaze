@@ -10,7 +10,6 @@ public enum Relationship
 }
 public class CharacterStats:MonoBehaviour {
     protected int health;
-    public bool inRange;
     public bool isDead;
     public int attackPower;
     public float attackRange;
@@ -22,9 +21,10 @@ public class CharacterStats:MonoBehaviour {
     public List<GameObject> opponentList;
     public List<GameObject> friendList;
     public List<GameObject> ignoredList;
+    protected List<GameObject> currentInRangeList;
     private void Start()
     {
-        inRange = false;
+        currentInRangeList = new List<GameObject>();
     }
 
     public virtual void ChangeRelation()
@@ -37,30 +37,31 @@ public class CharacterStats:MonoBehaviour {
 
     public virtual void ChangeTarget()
     {
-        if (!inRange&&!targetGO)
+        if ((currentInRangeList.Count==0)&&!targetGO)//when there is no character/player in range and currently no target
         {
-            if (!ignoredList.Contains(targetGO))
-            {
-                targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
-            }
+            targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+        }
+        else if (currentInRangeList.Count != 0)
+        {
+
         }
     }
 
-   public virtual void FoV()
+   /*public virtual void FoV(GameObject go)
     {
-        if (inRange)
-        {
-            if (ignoredList.Contains(targetGO))
+        //if (inRange)
+        //{
+            if (ignoredList.Contains(go))
             {
-                inRange = false;
+                //inRange = false;
                 return;
             }
             //else if (targetGO.tag != "Player"||!targetGO )
-            else if(!ignoredList.Contains(targetGO)||!targetGO)
+            else if(!ignoredList.Contains(go)||!targetGO)
             {
                 Vector3 dir;
                 float angle;
-                dir = GameManager.gm.player.transform.position - transform.position;
+                dir =go.transform.position - transform.position;
                 angle = Vector3.Angle(dir, transform.forward);
                 if (angle <= 45f)
                 {
@@ -68,9 +69,21 @@ public class CharacterStats:MonoBehaviour {
                     {
                         prevTargetGO = targetGO;
                     }
-                    targetGO = GameManager.gm.player;
+                    targetGO = go;
                 }
             }
+        //}
+    }*/
+
+    public virtual void FoV(GameObject go)
+    {
+        Vector3 dir;
+        float angle;
+        dir = go.transform.position - transform.position;
+        angle = Vector3.Angle(dir, transform.forward);
+        if (angle <= 45)
+        {
+            currentInRangeList.Add(go);
         }
     }
 }

@@ -32,8 +32,9 @@ public class NPCStats : CharacterStats{
         opponentList = new List<GameObject>();
         friendList = new List<GameObject>();
         ignoredList = new List<GameObject>();
+        currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f;
-        ChangeTarget();
+        //ChangeTarget();
     }
 	
 	// Update is called once per frame
@@ -41,9 +42,11 @@ public class NPCStats : CharacterStats{
         Die();
         ChangeRelation();
         ChangeTarget();
-        FoV();
-	}
-
+    }
+    private void LateUpdate()
+    {
+        
+    }
     void Die()
     {
         if (currentHealth <= 0)
@@ -84,14 +87,14 @@ public class NPCStats : CharacterStats{
     {
         if (other.tag == "Player")
         {
-            inRange = true;
+            //inRange = true;
+            FoV(other.transform.gameObject);
         }
     }
 
-    public override void FoV()
+    public override void FoV(GameObject go)
     {
-        base.FoV();
-        GameManager.gm.cTargetList.Add(transform.gameObject);
+        base.FoV(go);
     }
 
     private float IgnoreTimer()
@@ -106,7 +109,11 @@ public class NPCStats : CharacterStats{
     public override void ChangeTarget()
     {
         base.ChangeTarget();
-        if (IgnoreTimer() >= ignoreTime)
+        if (opponentList.Contains(targetGO))
+        {
+            return;
+        }
+        else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&rs!=Relationship.opponent)
         {
             ignoredList.Add(targetGO);
             Debug.Log(prevTargetGO);
@@ -115,5 +122,6 @@ public class NPCStats : CharacterStats{
             prevTargetGO = null;
             timer = 0;
         }
+        
     }
 }

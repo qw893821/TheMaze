@@ -127,6 +127,10 @@ public class PlayerAction : MonoBehaviour {
                     {
                         currentNPCs.currentHealth -= ps.attackPower;
                         currentNPCs.rs = Relationship.opponent;
+                        if (!currentNPCs.opponentList.Contains(transform.gameObject))
+                        {
+                            currentNPCs.opponentList.Add(transform.gameObject);
+                        }
                     }
                     //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
                     //}
