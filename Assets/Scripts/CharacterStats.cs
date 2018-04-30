@@ -42,9 +42,9 @@ public class CharacterStats:MonoBehaviour {
             if (!targetGO)
             {
                 targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
-                prevTargetGO = targetGO;
             }
-            else { return; }
+            else {
+                    return; }
             //return;
         }
         //when there are element in current list
@@ -65,7 +65,6 @@ public class CharacterStats:MonoBehaviour {
                 }
                 //when every ignoredList is not in the currentInRangeList,find a random one as target
             targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
-            prevTargetGO = targetGO;
            // }
             //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
         }

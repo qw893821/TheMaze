@@ -46,7 +46,6 @@ public class NPCStats : CharacterStats {
         Die();
         ChangeRelation();
         ChangeTarget();
-        Debug.Log(timer);
     }
     private void LateUpdate()
     {
