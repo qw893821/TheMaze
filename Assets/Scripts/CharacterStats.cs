@@ -37,13 +37,31 @@ public class CharacterStats:MonoBehaviour {
 
     public virtual void ChangeTarget()
     {
-        if ((currentInRangeList.Count==0)&&!targetGO)//when there is no character/player in range and currently no target
+        if ((currentInRangeList.Count==0)/*!targetGO*/)//when there is no character/player in range and currently no target
         {
             targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+            //return;
         }
+        //when there are element in current list
         else if (currentInRangeList.Count != 0)
         {
-
+            //when ignoredlist has element
+            //if (ignoredList.Count != 0)
+            //{
+                //go thought currentInRangeList and find one as target
+                for(int i=0; i < ignoredList.Count; i++)
+                {
+                    if (currentInRangeList.Contains(ignoredList[i]))
+                    {
+                        currentInRangeList.Remove(ignoredList[i]);
+                        ChangeTarget();
+                    }
+                    else { continue; }
+                }
+                //when every ignoredList is not in the currentInRangeList,find a random one as target
+            targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
+           // }
+            //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
         }
     }
 
