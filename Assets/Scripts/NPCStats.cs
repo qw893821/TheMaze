@@ -128,8 +128,7 @@ public class NPCStats : CharacterStats {
             targetGO = null;
             //prevTargetGO = null;
             timer = 0;
-        }
-        
-        
+        }   
     }
+
 }

@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour {
     //game chat ui
     public GameObject chatUI;
     //being target warning ui
-    public GameObject warningUI;
+    public GameObject warningUI1;
+    public GameObject warningUI2;
     //current select target gameobject;
     public GameObject currentTargetGO;
     //cursor texture
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour {
         chatBtnImg = chatBtn.GetComponent<Image>();
         chatUI.SetActive(false);
         currentMode = pa.playerMode;
+        warningUI1.SetActive(false);
+        warningUI2.SetActive(false);
         //targetList = new List<GameObject>();
 	}
 	
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour {
         TimeController();
         ChatUIUpdate();
         ChangeCursor();
+        Warning();
     }
     
 
@@ -133,6 +137,34 @@ public class GameManager : MonoBehaviour {
                 Cursor.SetCursor(cursorChat, hotspot, cursorMode);
             }
             currentMode = pa.playerMode;
+        }
+    }
+
+    public void Warning()
+    {
+        if (warningUI2.activeSelf || warningUI1.activeSelf)
+        {
+            if (cTargetList.Count == 0)
+            {
+                warningUI1.SetActive(false);
+                warningUI2.SetActive(false);
+            }
+        }
+        if (!warningUI1.activeSelf||!warningUI2.activeSelf)
+        {
+            foreach(GameObject go in cTargetList)
+            {
+                NPCStats ns;
+                ns = go.GetComponent<NPCStats>();
+                if (ns.targetGO==player)
+                {
+                    if (ns.opponentList.Contains(player))
+                    {
+                        warningUI1.SetActive(true);
+                    }
+                    else { warningUI1.SetActive(true); }
+                }
+            }
         }
     }
 }

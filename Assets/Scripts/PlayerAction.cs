@@ -44,9 +44,12 @@ public class PlayerAction : MonoBehaviour {
     {
         if (col.tag == "Character")
         {
-            inRange = true;
+            //inRange = true;
             inRangeEnemy = col.transform.gameObject;
-            GameManager.gm.currentList.Add(inRangeEnemy);
+            if (!GameManager.gm.currentList.Contains(inRangeEnemy))
+            {
+                GameManager.gm.currentList.Add(inRangeEnemy);
+            }
         }
     }
 
@@ -54,7 +57,7 @@ public class PlayerAction : MonoBehaviour {
     {
         if (col.tag == "Character")
         {
-            inRange = false;
+            //inRange = false;
             GameManager.gm.currentList.Remove(col.gameObject);
         }
     }
@@ -193,6 +196,73 @@ public class PlayerAction : MonoBehaviour {
                 GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOff;
                 GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOn;
                 break;
+        }
+    }
+    //warning button 1 use
+    public void FaceTowardChar()
+    {
+        foreach (GameObject go in GameManager.gm.cTargetList)
+        {
+            NPCStats ns;
+            ns = go.GetComponent<NPCStats>();
+            if (ns.rs == Relationship.neutral || ns.rs == Relationship.friend)
+            {
+                /*Vector3 dir;
+                float angle;
+                dir = go.transform.position - transform.position;
+                angle = Vector3.Angle(transform.forward, dir);
+                if (angle >= 135)
+                {
+                    transform.Rotate(0f,180f,0f);
+                }
+                else if (angle > 45 && angle < 135)
+                {
+                    float newAngle;
+                    newAngle = Vector3.Angle(transform.right, dir);
+                    if (newAngle >= 135)
+                    {
+                        transform.Rotate(0, -90f, 0);
+                    }
+                    else { transform.Rotate(0, 90f, 0); }
+                }
+                */
+                CheckDir(go);
+            }
+        }
+    }
+    //warning button2 use
+    public void FaceToWardOpponent()
+    {
+        foreach (GameObject go in GameManager.gm.cTargetList)
+        {
+            NPCStats ns;
+            ns = go.GetComponent<NPCStats>();
+            if (ns.rs == Relationship.neutral || ns.rs == Relationship.friend)
+            {
+                CheckDir(go);
+            }
+        }
+    }
+
+    void CheckDir(GameObject go)
+    {
+        Vector3 dir;
+        float angle;
+        dir = go.transform.position - transform.position;
+        angle = Vector3.Angle(transform.forward, dir);
+        if (angle >= 135)
+        {
+            transform.Rotate(0f, 180f, 0f);
+        }
+        else if (angle > 45 && angle < 135)
+        {
+            float newAngle;
+            newAngle = Vector3.Angle(transform.right, dir);
+            if (newAngle >= 135)
+            {
+                transform.Rotate(0, -90f, 0);
+            }
+            else { transform.Rotate(0, 90f, 0); }
         }
     }
 }

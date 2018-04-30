@@ -51,7 +51,6 @@ public class NPCMovement : MonoBehaviour {
 
         if (GameManager.gm.gs != GameStats.other&&agent.isActiveAndEnabled&& !agent.pathPending)
         {
-
             if (transform.tag == "Neutral")
             {
                 if (!targeted)

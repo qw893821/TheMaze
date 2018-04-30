@@ -116,8 +116,16 @@ public class CharacterStats:MonoBehaviour {
             if (angle <= 45)
             {
                 currentInRangeList.Add(go);
+                if (go.tag == "Player")
+                {
+                    if (!GameManager.gm.cTargetList.Contains(transform.gameObject))
+                    {
+                        GameManager.gm.cTargetList.Add(transform.gameObject);
+                    }
+                }
             }
         }
-        else { return; }
+        //else { return; }
+        
     }
 }
