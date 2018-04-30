@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class NPCStats : CharacterStats{
+public class NPCStats : CharacterStats {
     public int currentHealth;
     public Animator anim;
     CapsuleCollider capCol;
@@ -16,7 +16,7 @@ public class NPCStats : CharacterStats{
     float timer;
     float ignoreTime;
     // Use this for initialization
-    void Start () {
+    void Start() {
         health = 100;
         currentHealth = health;
         anim = GetComponent<Animator>();
@@ -33,19 +33,24 @@ public class NPCStats : CharacterStats{
         friendList = new List<GameObject>();
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
-        ignoreTime = 5.0f;
-        //ChangeTarget();
+        ignoreTime = 5.0f; 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update() {
         Die();
         ChangeRelation();
         ChangeTarget();
+        Debug.Log(timer);
     }
     private void LateUpdate()
     {
-        
+
     }
     void Die()
     {
@@ -54,7 +59,7 @@ public class NPCStats : CharacterStats{
             anim.SetTrigger("dead");
             //anim.Play("dying",-1);
             isDead = true;
-            capCol.enabled = false ;
+            capCol.enabled = false;
             if (isDead)
             {
                 anim.SetBool("walking", false);
@@ -64,12 +69,12 @@ public class NPCStats : CharacterStats{
             transform.tag = "Dead";
             GameManager.gm.currentList.Remove(this.transform.gameObject);
             NavMeshAgent agent;
-            agent=GetComponent<NavMeshAgent>();
-            agent.enabled = false ;
+            agent = GetComponent<NavMeshAgent>();
+            agent.enabled = false;
             Sink(0.2f);
         }
     }
-    
+
     void Sink(float speed)
     {
         Vector3 targetPos;
@@ -83,9 +88,10 @@ public class NPCStats : CharacterStats{
         base.ChangeRelation();
     }
 
+    //when a character enters the trigger, add character to a list
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player"||other.tag=="Character")
         {
             //inRange = true;
             FoV(other.transform.gameObject);
@@ -99,16 +105,18 @@ public class NPCStats : CharacterStats{
 
     private float IgnoreTimer()
     {
-        if (ignoredList.Contains(targetGO))
+        if (ignoredList.Contains(targetGO)||(targetGO.tag!="Character"&&targetGO.tag!="Player"))
         {
             return timer = 0;
         }
         return timer += Time.deltaTime;
+        
     }
 
     public override void ChangeTarget()
     {
         base.ChangeTarget();
+        
         if (opponentList.Contains(targetGO))
         {
             return;
@@ -116,12 +124,11 @@ public class NPCStats : CharacterStats{
         else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&rs!=Relationship.opponent)
         {
             ignoredList.Add(targetGO);
-            Debug.Log(prevTargetGO);
             targetGO = prevTargetGO;
-            Debug.Log(targetGO);
             prevTargetGO = null;
             timer = 0;
         }
+        
         
     }
 }

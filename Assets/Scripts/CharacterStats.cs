@@ -21,7 +21,7 @@ public class CharacterStats:MonoBehaviour {
     public List<GameObject> opponentList;
     public List<GameObject> friendList;
     public List<GameObject> ignoredList;
-    protected List<GameObject> currentInRangeList;
+    public List<GameObject> currentInRangeList;
     private void Start()
     {
         currentInRangeList = new List<GameObject>();
@@ -37,9 +37,14 @@ public class CharacterStats:MonoBehaviour {
 
     public virtual void ChangeTarget()
     {
-        if ((currentInRangeList.Count==0)/*!targetGO*/)//when there is no character/player in range and currently no target
+        if ((currentInRangeList.Count==0))//when there is no character/player in range and currently no target, "!targetGo" will cause some problem
         {
-            targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+            if (!targetGO)
+            {
+                targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+                prevTargetGO = targetGO;
+            }
+            else { return; }
             //return;
         }
         //when there are element in current list
@@ -60,6 +65,7 @@ public class CharacterStats:MonoBehaviour {
                 }
                 //when every ignoredList is not in the currentInRangeList,find a random one as target
             targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
+            prevTargetGO = targetGO;
            // }
             //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
         }
