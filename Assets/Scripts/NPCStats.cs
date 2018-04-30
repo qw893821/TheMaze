@@ -15,12 +15,17 @@ public class NPCStats : CharacterStats {
     public Canvas canv;
     float timer;
     float ignoreTime;
+    //properity of line
+    LineRenderer line;
+    int width;
     // Use this for initialization
     void Start() {
         health = 100;
         currentHealth = health;
         anim = GetComponent<Animator>();
         isDead = false;
+        line = transform.Find("TargetLine").GetComponent<LineRenderer>();
+        width = 1;
         capCol = GetComponent<CapsuleCollider>();
         //chatBtn1 = transform.Find("Neutral").GetComponent<Button>();
         //chatBtn2 = transform.Find("Aggressive").GetComponent<Button>();
@@ -34,6 +39,7 @@ public class NPCStats : CharacterStats {
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f; 
+
     }
 
     private void Awake()
@@ -46,6 +52,7 @@ public class NPCStats : CharacterStats {
         Die();
         ChangeRelation();
         ChangeTarget();
+        LineUpdate();
     }
     private void LateUpdate()
     {
@@ -131,4 +138,18 @@ public class NPCStats : CharacterStats {
         }   
     }
 
+    void LineUpdate()
+    {
+        if (targetGO)
+        {
+            if (targetGO.tag == "Character" || targetGO.tag == "Player")
+            {
+                line.enabled = true;
+                Vector3 target;
+                target = targetGO.transform.position - transform.position;
+                line.SetPosition(1, -target);
+            }
+            else { line.enabled = false; }
+        }
+    }
 }
