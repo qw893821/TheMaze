@@ -63,12 +63,15 @@ public class NPCMovement : MonoBehaviour {
             }
             else
             {
-                target = targetGO.transform.position;
-                target.y = 1.2f;
-                agent.destination = target;
-                if (transform.tag == "Teammember")
+                if (targetGO)
                 {
-                    agent.stoppingDistance = 3f;
+                    target = targetGO.transform.position;
+                    target.y = 1.2f;
+                    agent.destination = target;
+                    if (transform.tag == "Teammember")
+                    {
+                        agent.stoppingDistance = 3f;
+                    }
                 }
             }
             Vector3 agentPosFix;

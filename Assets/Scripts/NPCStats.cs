@@ -123,8 +123,10 @@ public class NPCStats : CharacterStats {
         else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&rs!=Relationship.opponent)
         {
             ignoredList.Add(targetGO);
-            targetGO = prevTargetGO;
-            prevTargetGO = null;
+            //ChangeTarget();
+            //for test use. hard to find a place hold prevTargetoGO, use null to avoid err
+            targetGO = null;
+            //prevTargetGO = null;
             timer = 0;
         }
         

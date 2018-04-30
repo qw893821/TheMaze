@@ -44,7 +44,8 @@ public class CharacterStats:MonoBehaviour {
                 targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
             }
             else {
-                    return; }
+                    return;
+            }
             //return;
         }
         //when there are element in current list
@@ -59,12 +60,18 @@ public class CharacterStats:MonoBehaviour {
                     if (currentInRangeList.Contains(ignoredList[i]))
                     {
                         currentInRangeList.Remove(ignoredList[i]);
+                    Debug.Log(currentInRangeList.Count);
                         ChangeTarget();
                     }
                     else { continue; }
                 }
-                //when every ignoredList is not in the currentInRangeList,find a random one as target
-            targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
+            //when every ignoredList is not in the currentInRangeList,find a random one as target
+            //prevTargetGO = targetGO;
+            if (currentInRangeList.Count != 0)//weird err
+            {
+                targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
+            }
+            
            // }
             //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
         }
@@ -100,13 +107,17 @@ public class CharacterStats:MonoBehaviour {
 
     public virtual void FoV(GameObject go)
     {
-        Vector3 dir;
-        float angle;
-        dir = go.transform.position - transform.position;
-        angle = Vector3.Angle(dir, transform.forward);
-        if (angle <= 45)
+        if (!currentInRangeList.Contains(go))
         {
-            currentInRangeList.Add(go);
+            Vector3 dir;
+            float angle;
+            dir = go.transform.position - transform.position;
+            angle = Vector3.Angle(dir, transform.forward);
+            if (angle <= 45)
+            {
+                currentInRangeList.Add(go);
+            }
         }
+        else { return; }
     }
 }
