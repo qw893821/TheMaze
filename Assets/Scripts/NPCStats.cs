@@ -126,13 +126,17 @@ public class NPCStats : CharacterStats {
     public override void ChangeTarget()
     {
         base.ChangeTarget();
-        
-        if (opponentList.Contains(targetGO))
+        float distance;
+        distance = Vector3.Distance(transform.position, targetGO.transform.position);
+        if (opponentList.Contains(targetGO)&&distance<=attackRange)
         {
             Attack(targetGO);
+            Debug.Log("attack");
+            anim.SetBool("inRange", true);
         }
         else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&!opponentList.Contains(targetGO))
         {
+            anim.SetBool("inRange", false);
             ignoredList.Add(targetGO);
             //ChangeTarget();
             //for test use. hard to find a place hold prevTargetoGO, use null to avoid err
