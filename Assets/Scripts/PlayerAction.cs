@@ -84,10 +84,13 @@ public class PlayerAction : MonoBehaviour {
     {
         GameObject targetGO;
         RaycastHit hit;
+        int layerMask = (1 << 9)|(1<<12);
+        layerMask = ~layerMask;
         targetGO = null;
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(camRay, out hit))
+        if (Physics.Raycast(camRay, out hit,5f,layerMask))
         {
+            Debug.Log(hit.transform.gameObject);
             if (hit.collider.tag == "Character")
             {
                 //if (playerMode == Mode.chat && inRangeEnemy)

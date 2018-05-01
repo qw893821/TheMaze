@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 651530164}
   - component: {fileID: 651530163}
   - component: {fileID: 651530162}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: FoW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6339,6 +6339,22 @@ Prefab:
         type: 2}
       propertyPath: m_Size.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1417439513735276, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118596245296542, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362843947323246, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674209093362898, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
