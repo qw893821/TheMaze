@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class NPCStats : CharacterStats {
     public int currentHealth;
-    public Animator anim;
+    Animator anim;
     CapsuleCollider capCol;
     public Button chatBtn1;
     public Button chatBtn2;
@@ -131,7 +131,6 @@ public class NPCStats : CharacterStats {
         if (opponentList.Contains(targetGO)&&distance<=attackRange)
         {
             Attack(targetGO);
-            Debug.Log("attack");
             anim.SetBool("inRange", true);
         }
         else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&!opponentList.Contains(targetGO))

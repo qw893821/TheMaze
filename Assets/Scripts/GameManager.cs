@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour {
     //being target warning ui
     public GameObject warningUI1;
     public GameObject warningUI2;
+    //text ui animation
+    public Animator textUIAnim;
     //current select target gameobject;
     public GameObject currentTargetGO;
     //cursor texture
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour {
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
+        textUIAnim = GameObject.Find("TextBox").GetComponent<Animator>();
         //targetList = new List<GameObject>();
 	}
 	
@@ -166,5 +169,15 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void OpenText()
+    {
+        textUIAnim.SetTrigger("open");
+
+    }
+    public void CloseText()
+    {
+        textUIAnim.SetTrigger("close");
     }
 }
