@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats: CharacterStats{
     public BoxCollider box;
+    public int currentHealth;
     //change is true when team member changes
     public bool change;
 	// Use this for initialization
@@ -12,6 +13,7 @@ public class PlayerStats: CharacterStats{
         attackPower = 10;
         attackRange = 1.5f;
         attackSpeed = 1f;
+        currentHealth = health;
 	}
 	
 	// Update is called once per frame

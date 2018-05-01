@@ -13,6 +13,7 @@ public class NPCStats : CharacterStats {
     public Button chatBtn3;
     public GameObject canvGO;
     public Canvas canv;
+    //character following timer
     float timer;
     float ignoreTime;
     //properity of line
@@ -26,6 +27,9 @@ public class NPCStats : CharacterStats {
         isDead = false;
         line = transform.Find("TargetLine").GetComponent<LineRenderer>();
         width = 1;
+        attackRange = 3f;
+        attackPower = 10;
+        attackSpeed = 1f;
         capCol = GetComponent<CapsuleCollider>();
         //chatBtn1 = transform.Find("Neutral").GetComponent<Button>();
         //chatBtn2 = transform.Find("Aggressive").GetComponent<Button>();
@@ -34,7 +38,7 @@ public class NPCStats : CharacterStats {
         canv = canvGO.GetComponent<Canvas>();
         canv.enabled = false;
         rs = Relationship.neutral;
-        opponentList = new List<GameObject>();
+        //opponentList = new List<GameObject>();
         friendList = new List<GameObject>();
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
@@ -125,9 +129,9 @@ public class NPCStats : CharacterStats {
         
         if (opponentList.Contains(targetGO))
         {
-            return;
+            Attack(targetGO);
         }
-        else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&rs!=Relationship.opponent)
+        else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&!opponentList.Contains(targetGO))
         {
             ignoredList.Add(targetGO);
             //ChangeTarget();
@@ -150,6 +154,42 @@ public class NPCStats : CharacterStats {
                 line.SetPosition(1, -target);
             }
             else { line.enabled = false; }
+        }
+    }
+
+    void AttackOpponent(GameObject go)
+    {
+        NPCStats ns;
+        ns = go.GetComponent<NPCStats>();
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackSpeed)
+        {
+            ns.currentHealth -= attackPower;
+            attackTimer = 0;
+        }
+    }
+
+    void AttackPlayer(GameObject go)
+    {
+        PlayerStats ps;
+        ps=go.GetComponent<PlayerStats>();
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackSpeed)
+        {
+            ps.currentHealth -= attackPower;
+            attackTimer = 0;
+        }
+    }
+
+    void Attack(GameObject go)
+    {
+        if (go.tag == "Character")
+        {
+            AttackOpponent(go);
+        }
+        else if (go.tag == "Player")
+        {
+            AttackPlayer(go);
         }
     }
 }

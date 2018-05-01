@@ -14,6 +14,7 @@ public class CharacterStats:MonoBehaviour {
     public int attackPower;
     public float attackRange;
     public float attackSpeed;
+    public float attackTimer;
     public int satisfaction;
     public Relationship rs;
     public GameObject targetGO;
@@ -22,6 +23,7 @@ public class CharacterStats:MonoBehaviour {
     public List<GameObject> friendList;
     public List<GameObject> ignoredList;
     public List<GameObject> currentInRangeList;
+
     private void Start()
     {
         currentInRangeList = new List<GameObject>();
@@ -51,6 +53,7 @@ public class CharacterStats:MonoBehaviour {
         //when there are element in current list
         else if (currentInRangeList.Count != 0)
         {
+            
             //when ignoredlist has element
             //if (ignoredList.Count != 0)
             //{
@@ -60,11 +63,18 @@ public class CharacterStats:MonoBehaviour {
                     if (currentInRangeList.Contains(ignoredList[i]))
                     {
                         currentInRangeList.Remove(ignoredList[i]);
-                    Debug.Log(currentInRangeList.Count);
                         ChangeTarget();
                     }
                     else { continue; }
                 }
+                for(int i = 0; i < currentInRangeList.Count; i++)
+            {
+                if (opponentList.Contains(currentInRangeList[i]))
+                {
+                    targetGO = currentInRangeList[i];
+                    return;
+                }
+            }
             //when every ignoredList is not in the currentInRangeList,find a random one as target
             //prevTargetGO = targetGO;
             if (currentInRangeList.Count != 0)//weird err
@@ -74,6 +84,7 @@ public class CharacterStats:MonoBehaviour {
             
            // }
             //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
+            
         }
     }
 
@@ -128,4 +139,6 @@ public class CharacterStats:MonoBehaviour {
         //else { return; }
         
     }
+
+    
 }
