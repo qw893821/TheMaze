@@ -3000,8 +3000,7 @@ MonoBehaviour:
   satisfaction: 0
   rs: 2
   targetGO: {fileID: 0}
-  opponentList:
-  - {fileID: 0}
+  opponentList: []
   friendList: []
   ignoredList: []
   currentInRangeList: []

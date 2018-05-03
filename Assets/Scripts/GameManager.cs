@@ -11,6 +11,11 @@ public enum GameStats
     other
 }
 
+public enum Personality
+{
+
+}
+
 public class GameManager : MonoBehaviour {
     private static GameManager _instance;
     public static GameManager gm
@@ -37,6 +42,9 @@ public class GameManager : MonoBehaviour {
     public GameObject warningUI2;
     //text ui animation
     public Animator textUIAnim;
+    //text ui content
+    public Text text;
+    public string textContent;
     //current select target gameobject;
     public GameObject currentTargetGO;
     //cursor texture
@@ -181,5 +189,16 @@ public class GameManager : MonoBehaviour {
     {
         textUIAnim.SetBool("open", false);
         textUIAnim.SetBool("close", true);
+    }
+
+    public void TextTest()
+    {
+        textContent = text.text;
+        text.text = textContent + "\n" + "test";
+    }
+
+    public string PersonalityMatch()
+    {
+        return "test";
     }
 }

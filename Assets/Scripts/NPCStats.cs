@@ -101,12 +101,10 @@ public class NPCStats : CharacterStats {
     //when a character enters the trigger, add character to a list
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("fired");
         if (other.tag == "Player" || other.tag == "Character")
         {
             //inRange = true;
             FoV(other.transform.gameObject);
-            Debug.Log("enter");
         }
     }
 
