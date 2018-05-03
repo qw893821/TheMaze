@@ -173,11 +173,13 @@ public class GameManager : MonoBehaviour {
 
     public void OpenText()
     {
-        textUIAnim.SetTrigger("open");
+        textUIAnim.SetBool("open",true);
+        textUIAnim.SetBool("close", false);
 
     }
     public void CloseText()
     {
-        textUIAnim.SetTrigger("close");
+        textUIAnim.SetBool("open", false);
+        textUIAnim.SetBool("close", true);
     }
 }
