@@ -42,13 +42,13 @@ public class NPCStats : CharacterStats {
         friendList = new List<GameObject>();
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
-        ignoreTime = 5.0f; 
+        ignoreTime = 5.0f;
 
     }
 
     private void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -101,10 +101,12 @@ public class NPCStats : CharacterStats {
     //when a character enters the trigger, add character to a list
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player"||other.tag=="Character")
+        Debug.Log("fired");
+        if (other.tag == "Player" || other.tag == "Character")
         {
             //inRange = true;
             FoV(other.transform.gameObject);
+            Debug.Log("enter");
         }
     }
 
@@ -115,12 +117,12 @@ public class NPCStats : CharacterStats {
 
     private float IgnoreTimer()
     {
-        if (ignoredList.Contains(targetGO)||(targetGO.tag!="Character"&&targetGO.tag!="Player"))
+        if (ignoredList.Contains(targetGO) || (targetGO.tag != "Character" && targetGO.tag != "Player"))
         {
             return timer = 0;
         }
         return timer += Time.deltaTime;
-        
+
     }
 
     public override void ChangeTarget()
@@ -128,12 +130,12 @@ public class NPCStats : CharacterStats {
         base.ChangeTarget();
         float distance;
         distance = Vector3.Distance(transform.position, targetGO.transform.position);
-        if (opponentList.Contains(targetGO)&&distance<=attackRange)
+        if (opponentList.Contains(targetGO) && distance <= attackRange)
         {
             Attack(targetGO);
             anim.SetBool("inRange", true);
         }
-        else if (IgnoreTimer() >= ignoreTime&&(targetGO.tag=="Character"||targetGO.tag=="Player")&&!opponentList.Contains(targetGO))
+        else if (IgnoreTimer() >= ignoreTime && (targetGO.tag == "Character" || targetGO.tag == "Player") && !opponentList.Contains(targetGO))
         {
             anim.SetBool("inRange", false);
             ignoredList.Add(targetGO);
@@ -142,7 +144,7 @@ public class NPCStats : CharacterStats {
             targetGO = null;
             //prevTargetGO = null;
             timer = 0;
-        }   
+        }
     }
 
     void LineUpdate()
@@ -169,18 +171,36 @@ public class NPCStats : CharacterStats {
         {
             ns.currentHealth -= attackPower;
             attackTimer = 0;
+            //add this gameobject to the target's list
+            if (!ns.opponentList.Contains(transform.gameObject))
+            {
+                if (ns.opponentList.Contains(transform.gameObject))
+                {
+                    ns.opponentList.Remove(transform.gameObject);
+                }
+                ns.opponentList.Add(transform.gameObject);
+            }
         }
     }
 
     void AttackPlayer(GameObject go)
     {
         PlayerStats ps;
-        ps=go.GetComponent<PlayerStats>();
+        ps = go.GetComponent<PlayerStats>();
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackSpeed)
         {
             ps.currentHealth -= attackPower;
             attackTimer = 0;
+            //there is no need for manipulate player opponentList. but do this for further use.
+            if (!ps.opponentList.Contains(transform.gameObject))
+            {
+                if (ps.opponentList.Contains(transform.gameObject))
+                {
+                    ps.opponentList.Remove(transform.gameObject);
+                }
+                ps.opponentList.Add(transform.gameObject);
+            }
         }
     }
 
