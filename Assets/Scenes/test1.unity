@@ -944,7 +944,7 @@ MonoBehaviour:
   attOn: {fileID: 21300000, guid: 152cc4a34625eb94795d81f742783ae7, type: 3}
   attOff: {fileID: 21300000, guid: 34a63770c4db5c84daeaf6e4b94523a6, type: 3}
   chatBtnImg: {fileID: 0}
-  chatOn: {fileID: 21300000, guid: 3a968b2cea4f09945964c7980bca6c1e, type: 3}
+  chatOn: {fileID: 21300000, guid: 66a12c9e8ad7f2e438e797bf26f9b3eb, type: 3}
   chatOff: {fileID: 21300000, guid: 3c09f05951cfb3349b72e66947ead658, type: 3}
   chatUI: {fileID: 680679639}
   warningUI1: {fileID: 1580867956}
