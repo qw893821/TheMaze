@@ -13,7 +13,9 @@ public enum GameStats
 
 public enum Personality
 {
-
+    typeA,
+    typeB,
+    typeC
 }
 
 public class GameManager : MonoBehaviour {

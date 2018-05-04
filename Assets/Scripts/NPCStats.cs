@@ -19,6 +19,7 @@ public class NPCStats : CharacterStats {
     //properity of line
     LineRenderer line;
     int width;
+    public Personality ps;
     // Use this for initialization
     void Start() {
         health = 100;
@@ -43,7 +44,7 @@ public class NPCStats : CharacterStats {
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f;
-
+        leader = null;
     }
 
     private void Awake()
@@ -135,13 +136,22 @@ public class NPCStats : CharacterStats {
         }
         else if (IgnoreTimer() >= ignoreTime && (targetGO.tag == "Character" || targetGO.tag == "Player") && !opponentList.Contains(targetGO))
         {
-            anim.SetBool("inRange", false);
-            ignoredList.Add(targetGO);
-            //ChangeTarget();
-            //for test use. hard to find a place hold prevTargetoGO, use null to avoid err
-            targetGO = null;
-            //prevTargetGO = null;
-            timer = 0;
+            if (NPCMatch())
+            {
+                Debug.Log("match");
+                timer = 0;
+                targetGO = null;
+            }
+            else if (!NPCMatch())
+            {
+                anim.SetBool("inRange", false);
+                ignoredList.Add(targetGO);
+                //ChangeTarget();
+                //for test use. hard to find a place hold prevTargetoGO, use null to avoid err
+                targetGO = null;
+                //prevTargetGO = null;
+                timer = 0;
+            }
         }
     }
 
@@ -212,5 +222,49 @@ public class NPCStats : CharacterStats {
         {
             AttackPlayer(go);
         }
+    }
+
+    bool NPCMatch()
+    {
+        int randomValue;
+        randomValue=Random.Range(0,100);
+        //positive match. add to friend list
+        if (randomValue < Value(targetGO))
+        {
+            if (!friendList.Contains(targetGO))
+            {
+                friendList.Add(targetGO);
+            }
+            return true;
+        }
+        else {
+            Debug.Log("fail match");
+            randomValue = Random.Range(0,100);
+            //this is a negtive match. add to opponentList
+            if (randomValue < 50)
+            {
+                if (!opponentList.Contains(targetGO))
+                {
+                    opponentList.Add(targetGO);
+                }
+                return true;
+            }
+            return false;
+        }
+    }
+
+    int Value(GameObject go)
+    {
+        Personality targetPS;
+        targetPS = go.GetComponent<NPCStats>().ps;
+        if (ps == targetPS)
+        {
+            return 80;
+        }
+        else if ((int)ps == ((int)targetPS + 1))
+        {
+            return 50;
+        }
+        else { return 20; }
     }
 }

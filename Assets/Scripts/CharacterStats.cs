@@ -18,6 +18,7 @@ public class CharacterStats:MonoBehaviour {
     public int satisfaction;
     public Relationship rs;
     public GameObject targetGO;
+    public GameObject leader;
     protected GameObject prevTargetGO;
     public List<GameObject> opponentList;
     public List<GameObject> friendList;
