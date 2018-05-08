@@ -138,7 +138,6 @@ public class NPCStats : CharacterStats {
         {
             if (NPCMatch())
             {
-                Debug.Log("match");
                 timer = 0;
                 targetGO = null;
             }

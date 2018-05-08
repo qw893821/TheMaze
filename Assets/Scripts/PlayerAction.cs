@@ -70,6 +70,8 @@ public class PlayerAction : MonoBehaviour {
         }
         
     }
+    
+    //show chat ui
     public void Chat()
     {
         if (playerMode == Mode.chat && GameManager.gm.currentTargetGO)
@@ -80,6 +82,8 @@ public class PlayerAction : MonoBehaviour {
             GameManager.gm.chatUI.transform.position = targetPos;
         }       
     }
+
+    //pick a target
     GameObject TargetPicker()
     {
         GameObject targetGO;
@@ -105,6 +109,8 @@ public class PlayerAction : MonoBehaviour {
         }
         return targetGO;
     }
+
+    //actions which effect time. currently move and attack could effect time
     public void Action()
     {
         UISwitch();
@@ -145,6 +151,7 @@ public class PlayerAction : MonoBehaviour {
                 }
         }
     }
+    //switch between chat/attack mode using right click
     public void ChangeMode()
     {
         //if (Input.GetButtonDown("Fire2"))
@@ -162,6 +169,7 @@ public class PlayerAction : MonoBehaviour {
         //}
     }
 
+    //switch mode using button
     public void ModeAtk()
     {
         if (playerMode == Mode.chat)
@@ -169,7 +177,7 @@ public class PlayerAction : MonoBehaviour {
             playerMode = Mode.attack;
         }
     }
-
+    //switch mode using button
     public void ModeChat()
     {
         if (playerMode == Mode.attack)
@@ -185,7 +193,7 @@ public class PlayerAction : MonoBehaviour {
         targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
     }
-
+    //Mode Button image change
     void UISwitch()
     {
         switch (playerMode)
@@ -246,6 +254,7 @@ public class PlayerAction : MonoBehaviour {
         }
     }
 
+    //check direction of gameobject
     void CheckDir(GameObject go)
     {
         Vector3 dir;

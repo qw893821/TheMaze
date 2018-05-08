@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
+    //change current curose type based on player action mode
     void ChangeCursor()
     {
         if (currentMode != pa.playerMode)
@@ -155,6 +155,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+    //warning player, when some NPC is targeting player.
     public void Warning()
     {
         if (warningUI2.activeSelf || warningUI1.activeSelf)
