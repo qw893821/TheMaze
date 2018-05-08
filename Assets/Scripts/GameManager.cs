@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> targetList;
     //NPC emotion sprite list
     public List<Sprite> emojiList;
+    //emoji UI sprite
+    public Image emojiImg;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -79,12 +81,14 @@ public class GameManager : MonoBehaviour {
         attackBtn = GameObject.Find("Attack");
         attackBtnImg = attackBtn.GetComponent<Image>();
         chatBtn = GameObject.Find("Chat");
+        emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
         chatBtnImg = chatBtn.GetComponent<Image>();
         chatUI.SetActive(false);
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
         textUIAnim = GameObject.Find("TextBox").GetComponent<Animator>();
+        
         //targetList = new List<GameObject>();
 	}
 	
@@ -206,5 +210,31 @@ public class GameManager : MonoBehaviour {
     public string PersonalityMatch()
     {
         return "test";
+    }
+
+    //update emoji show on the UI
+    public void UpdateEmoji(int sat)
+    {
+        if (sat >= 70)
+        {
+            emojiImg.sprite = emojiList[2];
+        }
+        else if (sat >= 60 && sat < 70)
+        {
+            emojiImg.sprite = emojiList[2];
+        }
+        else if (sat <= 40 && sat >= 30)
+        {
+            emojiImg.sprite = emojiList[1];
+        }
+        else if (sat < 30&&sat>=20)
+        {
+            emojiImg.sprite = emojiList[3];
+        }
+        else if (sat <= 10)
+        {
+            emojiImg.sprite = emojiList[4];
+        }
+        else { emojiImg.sprite = emojiList[0]; }
     }
 }

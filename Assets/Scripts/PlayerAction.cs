@@ -192,7 +192,11 @@ public class PlayerAction : MonoBehaviour {
         targetGO = GameManager.gm.currentTargetGO;
         targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction);
     }
+
+    
+    
     //Mode Button image change
     void UISwitch()
     {
