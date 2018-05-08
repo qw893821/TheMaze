@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour {
     public List<Sprite> emojiList;
     //emoji UI sprite
     public Image emojiImg;
+    //flash screen color
+    public 
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -236,5 +238,10 @@ public class GameManager : MonoBehaviour {
             emojiImg.sprite = emojiList[4];
         }
         else { emojiImg.sprite = emojiList[0]; }
+    }
+
+    public void PlayFlashScreen()
+    {
+
     }
 }

@@ -20,6 +20,10 @@ public class NPCStats : CharacterStats {
     LineRenderer line;
     int width;
     public Personality ps;
+    //flash screen color
+    public Image img;
+    Color flashColor;
+    float flashSpeed;
     // Use this for initialization
     void Start() {
         health = 100;
@@ -45,6 +49,9 @@ public class NPCStats : CharacterStats {
         currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f;
         leader = null;
+        flashColor = new Color(1.0f,0f,0f,0.0f);
+        flashSpeed = 10f;
+        img = GameObject.Find("ScreenFlash").GetComponent<Image>();
     }
 
     private void Awake()
@@ -178,6 +185,7 @@ public class NPCStats : CharacterStats {
         {
             ns.currentHealth -= attackPower;
             attackTimer = 0;
+            
             //add this gameobject to the target's list
             if (!ns.opponentList.Contains(transform.gameObject))
             {
@@ -187,7 +195,9 @@ public class NPCStats : CharacterStats {
                 }
                 ns.opponentList.Add(transform.gameObject);
             }
+            
         }
+        
     }
 
     void AttackPlayer(GameObject go)
@@ -207,8 +217,13 @@ public class NPCStats : CharacterStats {
                     ps.opponentList.Remove(transform.gameObject);
                 }
                 ps.opponentList.Add(transform.gameObject);
+
             }
+            flashColor = new Color(1.0f, 0f, 0f, 0.5f);
         }
+        flashColor = Color.Lerp(flashColor, Color.clear, flashSpeed * Time.deltaTime);
+        img.color = flashColor;
+
     }
 
     void Attack(GameObject go)

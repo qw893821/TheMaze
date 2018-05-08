@@ -185,13 +185,27 @@ public class PlayerAction : MonoBehaviour {
             playerMode = Mode.chat;
         }
     }
-
+    //test chat mode button green
     public void Test()
     {
         GameObject targetGO;
         targetGO = GameManager.gm.currentTargetGO;
         targetGO.GetComponent<NPCStats>().satisfaction += 10;
         GameManager.gm.gs=GameStats.other;
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction);
+    }
+    //test chat mode button red
+    public void ButtonTestB()
+    {
+        GameObject targetGO;
+        NPCStats ns;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        if (ns.ps == Personality.typeA)
+        {
+            targetGO.GetComponent<NPCStats>().satisfaction -= 10;
+        }
+        GameManager.gm.gs = GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction);
     }
 
