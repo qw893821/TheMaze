@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> cTargetList;
     //NPC Target Position list 
     public List<GameObject> targetList;
+    //NPC emotion sprite list
+    public List<Sprite> emojiList;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
