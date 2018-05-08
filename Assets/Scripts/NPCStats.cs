@@ -178,52 +178,58 @@ public class NPCStats : CharacterStats {
 
     void AttackOpponent(GameObject go)
     {
-        NPCStats ns;
-        ns = go.GetComponent<NPCStats>();
-        attackTimer += Time.deltaTime;
-        if (attackTimer >= attackSpeed)
+        if (!isDead)
         {
-            ns.currentHealth -= attackPower;
-            attackTimer = 0;
-            
-            //add this gameobject to the target's list
-            if (!ns.opponentList.Contains(transform.gameObject))
+            NPCStats ns;
+            ns = go.GetComponent<NPCStats>();
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackSpeed)
             {
-                if (ns.opponentList.Contains(transform.gameObject))
+                ns.currentHealth -= attackPower;
+                attackTimer = 0;
+
+                //add this gameobject to the target's list
+                if (!ns.opponentList.Contains(transform.gameObject))
                 {
-                    ns.opponentList.Remove(transform.gameObject);
+                    if (ns.opponentList.Contains(transform.gameObject))
+                    {
+                        ns.opponentList.Remove(transform.gameObject);
+                    }
+                    ns.opponentList.Add(transform.gameObject);
                 }
-                ns.opponentList.Add(transform.gameObject);
+
             }
-            
         }
         
     }
 
     void AttackPlayer(GameObject go)
     {
-        PlayerStats ps;
-        ps = go.GetComponent<PlayerStats>();
-        attackTimer += Time.deltaTime;
-        if (attackTimer >= attackSpeed)
-        {
-            ps.currentHealth -= attackPower;
-            attackTimer = 0;
-            //there is no need for manipulate player opponentList. but do this for further use.
-            if (!ps.opponentList.Contains(transform.gameObject))
+        if (!isDead) { 
+            PlayerStats ps;
+            ps = go.GetComponent<PlayerStats>();
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackSpeed)
             {
-                if (ps.opponentList.Contains(transform.gameObject))
+                ps.currentHealth -= attackPower;
+                attackTimer = 0;
+                //there is no need for manipulate player opponentList. but do this for further use.
+                if (!ps.opponentList.Contains(transform.gameObject))
                 {
-                    ps.opponentList.Remove(transform.gameObject);
-                }
-                ps.opponentList.Add(transform.gameObject);
+                    if (ps.opponentList.Contains(transform.gameObject))
+                    {
+                        ps.opponentList.Remove(transform.gameObject);
+                    }
+                    ps.opponentList.Add(transform.gameObject);
 
+                }
+                flashColor = new Color(1.0f, 0f, 0f, 0.5f);
             }
-            flashColor = new Color(1.0f, 0f, 0f, 0.5f);
         }
         flashColor = Color.Lerp(flashColor, Color.clear, flashSpeed * Time.deltaTime);
         img.color = flashColor;
 
+        
     }
 
     void Attack(GameObject go)
