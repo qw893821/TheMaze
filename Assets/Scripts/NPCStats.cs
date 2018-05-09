@@ -85,6 +85,7 @@ public class NPCStats : CharacterStats {
                 Destroy(this.gameObject, 3.0f);
             }
             transform.tag = "Dead";
+            GameManager.gm.cTargetList.Remove(this.transform.gameObject);
             GameManager.gm.currentList.Remove(this.transform.gameObject);
             NavMeshAgent agent;
             agent = GetComponent<NavMeshAgent>();
