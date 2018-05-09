@@ -28,6 +28,8 @@ public class NPCStats : CharacterStats {
     void Start() {
         health = 100;
         currentHealth = health;
+        resource = 100;
+        rDecreaseRate = 1;
         anim = GetComponent<Animator>();
         isDead = false;
         line = transform.Find("TargetLine").GetComponent<LineRenderer>();
@@ -64,6 +66,7 @@ public class NPCStats : CharacterStats {
         Die();
         ChangeRelation();
         ChangeTarget();
+        ResourceReduce();
         LineUpdate();
     }
     private void LateUpdate()
@@ -273,7 +276,7 @@ public class NPCStats : CharacterStats {
             return false;
         }
     }
-
+    //get a value based on character's personality, when the same personality, character are easy to match when close
     int Value(GameObject go)
     {
         Personality targetPS;
@@ -282,10 +285,15 @@ public class NPCStats : CharacterStats {
         {
             return 80;
         }
-        else if ((int)ps == ((int)targetPS + 1))
+        else if (Mathf.Abs((int)ps -(int)targetPS)== 1)
         {
             return 50;
         }
         else { return 20; }
+    }
+
+    void ResourceReduce()
+    {
+        resource -= rDecreaseRate * Time.deltaTime;
     }
 }

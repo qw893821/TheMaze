@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
-        textUIAnim = GameObject.Find("TextBox").GetComponent<Animator>();
+        textUIAnim = GameObject.Find("InforBox").GetComponent<Animator>();
         //eList = new EmojiManager();
         //targetList = new List<GameObject>();
 	}
