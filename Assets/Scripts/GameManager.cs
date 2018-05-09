@@ -59,11 +59,11 @@ public class GameManager : MonoBehaviour {
     //NPC Target Position list 
     public List<GameObject> targetList;
     //NPC emotion sprite list
-    public List<Sprite> emojiList;
+    //public List<Sprite> emojiList;
+    public EmojiManager eList;
     //emoji UI sprite
     public Image emojiImg;
     //flash screen color
-    public 
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
         textUIAnim = GameObject.Find("TextBox").GetComponent<Animator>();
-        
+        //eList = new EmojiManager();
         //targetList = new List<GameObject>();
 	}
 	
@@ -215,29 +215,57 @@ public class GameManager : MonoBehaviour {
     }
 
     //update emoji show on the UI
-    public void UpdateEmoji(int sat)
+    public void UpdateEmoji(int sat,int hp)
     {
-        if (sat >= 70)
-        {
-            emojiImg.sprite = emojiList[2];
-        }
-        else if (sat >= 60 && sat < 70)
-        {
-            emojiImg.sprite = emojiList[2];
-        }
-        else if (sat <= 40 && sat >= 30)
-        {
-            emojiImg.sprite = emojiList[1];
-        }
-        else if (sat < 30&&sat>=20)
-        {
-            emojiImg.sprite = emojiList[3];
-        }
-        else if (sat <= 10)
+        if (hp >= 50) { 
+            if (sat >= 70)
+            {
+                emojiImg.sprite = eList.emojiHappy[0];
+            }
+            else if (sat >= 60 && sat < 70)
+            {
+                emojiImg.sprite = eList.emojiHappy[0];
+            }
+            else if (sat <= 40 && sat >= 30)
+            {
+                emojiImg.sprite = eList.emojiConfusing[0];
+            }
+            else if (sat < 30&&sat>=20)
+            {
+                emojiImg.sprite = eList.emojiAngry[0];
+            }
+        /*else if (sat <= 10)
         {
             emojiImg.sprite = emojiList[4];
-        }
-        else { emojiImg.sprite = emojiList[0]; }
+        }*/
+            else { emojiImg.sprite = eList.emojiNeutral[0]; }
+        
+            }
+        else if (hp < 50)
+        {
+            if (sat >= 70)
+            {
+                emojiImg.sprite = eList.emojiHappy[1];
+            }
+            else if (sat >= 60 && sat < 70)
+            {
+                emojiImg.sprite = eList.emojiHappy[1];
+            }
+            else if (sat <= 40 && sat >= 30)
+            {
+                emojiImg.sprite = eList.emojiConfusing[1];
+            }
+            else if (sat < 30 && sat >= 20)
+            {
+                emojiImg.sprite = eList.emojiAngry[1];
+            }
+            /*else if (sat <= 10)
+            {
+                emojiImg.sprite = emojiList[4];
+            }*/
+            else { emojiImg.sprite = eList.emojiNeutral[1]; }
+
+        }   
     }
 
     public void PlayFlashScreen()

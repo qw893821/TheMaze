@@ -1125,12 +1125,19 @@ MonoBehaviour:
   - {fileID: 213111565}
   - {fileID: 1200226231}
   - {fileID: 515824823}
-  emojiList:
-  - {fileID: 21300000, guid: c1b9f0e2a974ac24ba4dfe36993b8af4, type: 3}
-  - {fileID: 21300000, guid: 517e058f85add2349acdd9604a0bb49c, type: 3}
-  - {fileID: 21300000, guid: 8440e5652bd3e0247a5b9754feab04da, type: 3}
-  - {fileID: 21300000, guid: e89a68f6a3767cd41983f69cb35ba1ec, type: 3}
-  - {fileID: 21300000, guid: 6b619ed578bcf954e937d14f17d22f53, type: 3}
+  eList:
+    emojiNeutral:
+    - {fileID: 21300000, guid: 53803994eefb2a0459043877b65ae584, type: 3}
+    - {fileID: 21300000, guid: 8d2177adbbb782242ad8676ddd4a8574, type: 3}
+    emojiHappy:
+    - {fileID: 21300000, guid: 1aaa726b9a09f1042a9ba1b1dfc3217a, type: 3}
+    - {fileID: 21300000, guid: 9061e98e13db87244bcf59e0fd41e43f, type: 3}
+    emojiAngry:
+    - {fileID: 21300000, guid: 282bb2cb54c7f6b4a90e195b276ef7c9, type: 3}
+    - {fileID: 21300000, guid: cfbbb20d8200de44a95eba915ef29e6f, type: 3}
+    emojiConfusing:
+    - {fileID: 21300000, guid: f1515110902ab6343a871de78e259976, type: 3}
+    - {fileID: 21300000, guid: 69560f2fc1bbce04992a5881739b4c34, type: 3}
   emojiImg: {fileID: 0}
 --- !u!4 &432124645
 Transform:
@@ -1435,7 +1442,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3291,7 +3298,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c1b9f0e2a974ac24ba4dfe36993b8af4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53803994eefb2a0459043877b65ae584, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
