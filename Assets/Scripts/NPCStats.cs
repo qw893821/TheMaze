@@ -145,6 +145,7 @@ public class NPCStats : CharacterStats {
             Attack(targetGO);
             anim.SetBool("inRange", true);
         }
+        //will fail to match because playre do not have ps properity
         else if (IgnoreTimer() >= ignoreTime && (targetGO.tag == "Character" || targetGO.tag == "Player") && !opponentList.Contains(targetGO))
         {
             if (NPCMatch())

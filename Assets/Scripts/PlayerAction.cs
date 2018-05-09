@@ -194,6 +194,7 @@ public class PlayerAction : MonoBehaviour {
         GameManager.gm.gs=GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
     }
+
     //test chat mode button red
     public void ButtonTestB()
     {

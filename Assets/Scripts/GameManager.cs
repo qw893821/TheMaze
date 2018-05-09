@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour {
         ChatUIUpdate();
         ChangeCursor();
         Warning();
+        TextTest();
     }
     
 
@@ -191,22 +192,28 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    //change the scale to make the emoji disappera. disable it may cause other reference issue
     public void OpenText()
     {
         textUIAnim.SetBool("open",true);
         textUIAnim.SetBool("close", false);
-
+        emojiImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
     public void CloseText()
     {
         textUIAnim.SetBool("open", false);
         textUIAnim.SetBool("close", true);
+        emojiImg.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void TextTest()
     {
-        textContent = text.text;
-        text.text = textContent + "\n" + "test";
+        if (currentTargetGO) {
+            text.text = currentTargetGO.name;
+            textContent = text.text;
+            text.text = textContent + "\n" + "test";
+        }
+        
     }
 
     public string PersonalityMatch()
@@ -264,7 +271,6 @@ public class GameManager : MonoBehaviour {
                 emojiImg.sprite = emojiList[4];
             }*/
             else { emojiImg.sprite = eList.emojiNeutral[1]; }
-
         }   
     }
 
