@@ -249,6 +249,33 @@ public class PlayerAction : MonoBehaviour {
         Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
         EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
     }
+
+    public void ButtonTrade()
+    {
+        NPCStats ns;
+        GameObject targetGO;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        if (ns.satisfaction > 50)
+        {
+            Transform parentTrans;
+            parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
+            EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
+            Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
+            EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
+        }
+        else
+        {
+            if (!ns.ignoredList.Contains(transform.gameObject))
+            {
+                ns.ignoredList.Add(transform.gameObject);
+            }
+            if (ns.targetGO==transform.gameObject)
+            {
+                ns.targetGO = null;
+            }
+        }
+    }
     //Mode Button image change
     void UISwitch()
     {
