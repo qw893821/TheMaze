@@ -67,11 +67,11 @@ public class NPCStats : CharacterStats {
         ChangeRelation();
         ChangeTarget();
         ResourceReduce();
-        LineUpdate();
+        //LineUpdate();
     }
     private void LateUpdate()
     {
-
+        LineUpdate();
     }
     void Die()
     {

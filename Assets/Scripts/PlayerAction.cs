@@ -203,7 +203,7 @@ public class PlayerAction : MonoBehaviour {
         }
         else if (ns.ps == Personality.typeB)
         {
-            ns.satisfaction -= 10;
+            ns.satisfaction += 10;
         }
         GameManager.gm.gs=GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
@@ -258,6 +258,8 @@ public class PlayerAction : MonoBehaviour {
         ns = targetGO.GetComponent<NPCStats>();
         if (ns.satisfaction > 50)
         {
+            //test use
+            //actual code should show trade ui
             Transform parentTrans;
             parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
             EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
@@ -266,15 +268,29 @@ public class PlayerAction : MonoBehaviour {
         }
         else
         {
-            if (!ns.ignoredList.Contains(transform.gameObject))
-            {
-                ns.ignoredList.Add(transform.gameObject);
+            switch (ns.ps){
+                case Personality.typeC:
+                    if (!ns.ignoredList.Contains(transform.gameObject))
+                    {
+                        ns.ignoredList.Add(transform.gameObject);
+                    }
+                    if (ns.targetGO == transform.gameObject)
+                    {
+                        ns.targetGO = null;
+                    }
+                    break;
+                case Personality.typeA:
+                    ns.satisfaction -= 10;
+                    break;
+                case Personality.typeB:
+                    //show trade ui
+                    break;
+                    
+
             }
-            if (ns.targetGO==transform.gameObject)
-            {
-                ns.targetGO = null;
-            }
+            
         }
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
     }
     //Mode Button image change
     void UISwitch()
