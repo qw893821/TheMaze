@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1034157174336266}
+  m_IsPrefabParent: 1
+--- !u!1 &1034157174336266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4402363762343416}
+  - component: {fileID: 114640523268471692}
+  - component: {fileID: 114149116015939062}
+  m_Layer: 2
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4402363762343416
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034157174336266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114149116015939062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034157174336266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9522ff587b518d64d98eba45c2225dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: []
+--- !u!114 &114640523268471692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034157174336266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156121a8934a3a14b9b72503db7d6143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gs: 3
+  overUI: 0
+  currentList: []
+  player: {fileID: 0}
+  attackBtnImg: {fileID: 0}
+  attOn: {fileID: 21300000, guid: 152cc4a34625eb94795d81f742783ae7, type: 3}
+  attOff: {fileID: 21300000, guid: 34a63770c4db5c84daeaf6e4b94523a6, type: 3}
+  chatBtnImg: {fileID: 0}
+  chatOn: {fileID: 21300000, guid: 66a12c9e8ad7f2e438e797bf26f9b3eb, type: 3}
+  chatOff: {fileID: 21300000, guid: 3c09f05951cfb3349b72e66947ead658, type: 3}
+  chatUI: {fileID: 0}
+  warningUI1: {fileID: 0}
+  warningUI2: {fileID: 0}
+  textUIAnim: {fileID: 0}
+  text: {fileID: 0}
+  textContent: 
+  currentTargetGO: {fileID: 0}
+  cursorBattle: {fileID: 2800000, guid: 9a62368a1fdaadb43948bd1382dc24ec, type: 3}
+  cursorChat: {fileID: 2800000, guid: 9360018e23343a34688481b8308b61c3, type: 3}
+  cTargetList: []
+  targetList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  eList:
+    emojiNeutral:
+    - {fileID: 21300000, guid: 53803994eefb2a0459043877b65ae584, type: 3}
+    - {fileID: 21300000, guid: 8d2177adbbb782242ad8676ddd4a8574, type: 3}
+    emojiHappy:
+    - {fileID: 21300000, guid: 282bb2cb54c7f6b4a90e195b276ef7c9, type: 3}
+    - {fileID: 21300000, guid: cfbbb20d8200de44a95eba915ef29e6f, type: 3}
+    emojiAngry:
+    - {fileID: 21300000, guid: f1515110902ab6343a871de78e259976, type: 3}
+    - {fileID: 21300000, guid: 69560f2fc1bbce04992a5881739b4c34, type: 3}
+    emojiConfusing:
+    - {fileID: 21300000, guid: 1aaa726b9a09f1042a9ba1b1dfc3217a, type: 3}
+    - {fileID: 21300000, guid: 9061e98e13db87244bcf59e0fd41e43f, type: 3}
+  emojiImg: {fileID: 0}
+  btns:
+  - {fileID: 1768308410020296, guid: c537beeac66f4ef428a90202f371528e, type: 2}
+  - {fileID: 1912830492640680, guid: cdc75a93111ff164283b2834c8d090f7, type: 2}
+  - {fileID: 1754246420346816, guid: b0980a1a6bb7cac4183e1f7909c30c24, type: 2}

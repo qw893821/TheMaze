@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviour {
     public EmojiManager eList;
     //emoji UI sprite
     public Image emojiImg;
-    //flash screen color
+
+    //some button to test
+    public List<GameObject> btns;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -213,7 +215,6 @@ public class GameManager : MonoBehaviour {
             textContent = text.text;
             text.text = textContent + "\n" + "test";
         }
-        
     }
 
     public string PersonalityMatch()

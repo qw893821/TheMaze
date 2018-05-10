@@ -185,18 +185,9 @@ public class PlayerAction : MonoBehaviour {
             playerMode = Mode.chat;
         }
     }
-    //test chat mode button green
-    public void Test()
-    {
-        GameObject targetGO;
-        targetGO = GameManager.gm.currentTargetGO;
-        targetGO.GetComponent<NPCStats>().satisfaction += 10;
-        GameManager.gm.gs=GameStats.other;
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
-    }
 
     //test chat mode button red
-    public void ButtonTestB()
+    public void ButtonAggressive()
     {
         GameObject targetGO;
         NPCStats ns;
@@ -204,14 +195,60 @@ public class PlayerAction : MonoBehaviour {
         ns = targetGO.GetComponent<NPCStats>();
         if (ns.ps == Personality.typeA)
         {
-            targetGO.GetComponent<NPCStats>().satisfaction -= 10;
+            ns.satisfaction -= 10;
+        }
+        else if (ns.ps == Personality.typeC)
+        {
+            ns.opponentList.Add(transform.gameObject);
+        }
+        else if (ns.ps == Personality.typeB)
+        {
+            ns.satisfaction -= 10;
+        }
+        GameManager.gm.gs=GameStats.other;
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        //next lines are for test use
+        Transform parentTrans;
+        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
+        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
+        Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
+        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
+    }
+
+    //test chat mode button green
+    public void ButtonFriendness()
+    {
+        GameObject targetGO;
+        NPCStats ns;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        if (ns.ps == Personality.typeA)
+        {
+            ns.satisfaction += 10;
+        }
+        else if (ns.ps == Personality.typeC)
+        {
+            ns.satisfaction -= 10;
         }
         GameManager.gm.gs = GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        //next lines are for test use
+        Transform parentTrans;
+        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
+        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
+        Instantiate(GameManager.gm.btns[Random.Range(0,3)], parentTrans);
+        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
     }
-
     
-    
+    public void ButtonNeutral()
+    {
+        //next lines are for test use
+        Transform parentTrans;
+        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
+        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
+        Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
+        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
+    }
     //Mode Button image change
     void UISwitch()
     {
