@@ -24,6 +24,12 @@ public class NPCStats : CharacterStats {
     public Image img;
     Color flashColor;
     float flashSpeed;
+
+    //NPCs selection button related properity
+    List<string> selectionList;
+    List<string> cSelectionList;//current list
+    public List<string> wSelectionList;//selection in waitlist
+    public List<string> list { get { return cSelectionList; } }
     // Use this for initialization
     void Start() {
         health = 100;
@@ -54,6 +60,11 @@ public class NPCStats : CharacterStats {
         flashColor = new Color(1.0f,0f,0f,0.0f);
         flashSpeed = 10f;
         img = GameObject.Find("ScreenFlash").GetComponent<Image>();
+        selectionList = new List<string>() { "Aggressive", "Friendness","Neutral","Trade","Test1","Test2" };
+        wSelectionList = new List<string>();
+        cSelectionList = new List<string>();
+        InstSelectionList();
+
     }
 
     private void Awake()
@@ -205,7 +216,6 @@ public class NPCStats : CharacterStats {
 
             }
         }
-        
     }
 
     void AttackPlayer(GameObject go)
@@ -280,21 +290,43 @@ public class NPCStats : CharacterStats {
     //get a value based on character's personality, when the same personality, character are easy to match when close
     int Value(GameObject go)
     {
-        Personality targetPS;
-        targetPS = go.GetComponent<NPCStats>().ps;
-        if (ps == targetPS)
-        {
-            return 80;
-        }
-        else if (Mathf.Abs((int)ps -(int)targetPS)== 1)
-        {
-            return 50;
-        }
-        else { return 20; }
+            Personality targetPS;
+            targetPS = go.GetComponent<NPCStats>().ps;
+            if (ps == targetPS)
+            {
+                return 80;
+            }
+            else if (Mathf.Abs((int)ps - (int)targetPS) == 1)
+            {
+                return 50;
+            }
+            else { return 20; }
     }
 
     void ResourceReduce()
     {
         resource -= rDecreaseRate * Time.deltaTime;
+    }
+
+    void InstSelectionList()
+    {
+        //pick three element from array
+        for(int i = 0; i < 3; i++)
+        {
+            int num;
+            num = Random.Range(0, selectionList.Count);
+            cSelectionList.Add(selectionList[num]);
+            selectionList.RemoveAt(num);
+        }
+        wSelectionList = selectionList;
+    }
+
+    public void Shuffle(int i)
+    {
+        Debug.Log(i);
+        int num;
+        num = Random.Range(0, wSelectionList.Count - 1);
+        cSelectionList[i] = wSelectionList[num];
+        wSelectionList.RemoveAt(num);
     }
 }

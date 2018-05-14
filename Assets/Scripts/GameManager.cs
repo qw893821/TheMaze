@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour {
 
     //some button to test
     public List<GameObject> btns;
+    List<string> cList;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour {
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
         textUIAnim = GameObject.Find("InforBox").GetComponent<Animator>();
+        cList = new List<string>();
         //eList = new EmojiManager();
         //targetList = new List<GameObject>();
 	}
@@ -275,8 +277,17 @@ public class GameManager : MonoBehaviour {
         }   
     }
 
-    public void PlayFlashScreen()
+    public void InstBTN()
     {
-
+        NPCStats ns;
+        ns = currentTargetGO.GetComponent<NPCStats>();
+        cList = ns.list;
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject go;
+            go = GameObject.Find(cList[i]);
+            go.transform.parent = GameObject.Find("ButtonSlot"+(i).ToString()).transform;
+            go.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
     }
 }

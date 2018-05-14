@@ -24,7 +24,6 @@ public class CharacterStats:MonoBehaviour {
     public List<GameObject> friendList;
     public List<GameObject> ignoredList;
     public List<GameObject> currentInRangeList;
-
     //resource realted date
     public float resource;
     protected float rDecreaseRate;
