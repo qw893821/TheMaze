@@ -321,7 +321,7 @@ public class NPCStats : CharacterStats {
         wSelectionList = selectionList;
     }
 
-    public void Shuffle(int i,GameObject go)
+    public string Shuffle(int i,GameObject go)
     {
         Debug.Log(i);
         int num;
@@ -329,6 +329,7 @@ public class NPCStats : CharacterStats {
         cSelectionList[i] = wSelectionList[num];
         wSelectionList.RemoveAt(num);
         wSelectionList.Add(go.name);
+        return cSelectionList[i];
     }
 
 }

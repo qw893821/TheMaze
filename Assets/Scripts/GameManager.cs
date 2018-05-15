@@ -316,19 +316,22 @@ public class GameManager : MonoBehaviour {
         //should change the recttransform position to make it work properly
         currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         //currentGO.SetActive(false);
-        List<GameObject> gos = new List<GameObject>();
+        /*List<GameObject> gos = new List<GameObject>();
         //three btn in the waiting list
         for (int i = 0; i < 3; i++)
         {
             gos.Add(GameObject.Find("WaitingButtons").transform.GetChild(i).gameObject);
         }
+        */
+        
         GameObject newBtn;
-        newBtn = gos[Random.Range(0, 2)].transform.gameObject;
+        //newBtn = gos[Random.Range(0, 2)].transform.gameObject;
+        newBtn = GameObject.Find(ns.Shuffle(num, currentGO));
         newBtn.SetActive(true);
         newBtn.transform.parent = parentTrans;
         newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         //shuffle do not work will. the wlist is not updated
-        ns.Shuffle(num,currentGO);
+        //ns.Shuffle(num,currentGO);
     }
 
     void MapCameraFollow()
