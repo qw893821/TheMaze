@@ -290,4 +290,32 @@ public class GameManager : MonoBehaviour {
             go.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
     }
+
+    public void BtnShuffle()
+    {
+        NPCStats ns;
+        ns = currentTargetGO.GetComponent<NPCStats>();
+        GameObject currentGO;
+        Transform parentTrans;
+        int num;
+        currentGO = EventSystem.current.currentSelectedGameObject;
+        parentTrans = currentGO.transform.parent;
+        char[] c = parentTrans.name.ToCharArray();
+        //should convert char value to a numeric value to make it work
+        num = (int)char.GetNumericValue(c[c.Length - 1]);
+        currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+        currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        //currentGO.SetActive(false);
+        List<GameObject> gos = new List<GameObject>();
+        for (int i = 0; i < 3; i++)
+        {
+            gos.Add(GameObject.Find("WaitingButtons").transform.GetChild(i).gameObject);
+        }
+        GameObject newBtn;
+        newBtn = gos[Random.Range(0, 2)].transform.gameObject;
+        newBtn.SetActive(true);
+        newBtn.transform.parent = parentTrans;
+        newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        ns.Shuffle(num);
+    }
 }

@@ -213,16 +213,30 @@ public class PlayerAction : MonoBehaviour {
         GameManager.gm.gs=GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         //next lines are for test use
-        Transform parentTrans;
+        /*Transform parentTrans;
+        GameObject currentGO;
         int num;
-        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
+        currentGO = EventSystem.current.currentSelectedGameObject;
+        parentTrans = currentGO.transform.parent;
         char[] c = parentTrans.name.ToCharArray();
         //should convert char value to a numeric value to make it work
         num =(int)char.GetNumericValue(c[c.Length - 1]);
-        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
-        Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
-        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
+        currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+        currentGO.transform.GetComponent<RectTransform>().anchoredPosition=Vector3.zero;
+        //currentGO.SetActive(false);
+        List<GameObject> gos = new List<GameObject>();
+        for (int i = 0; i < 3; i++)
+        {
+            gos.Add(GameObject.Find("WaitingButtons").transform.GetChild(i).gameObject);
+        }
+        GameObject newBtn;
+        newBtn = gos[Random.Range(0, 2)].transform.gameObject;
+        newBtn.SetActive(true);
+        newBtn.transform.parent = parentTrans;
+        newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         ns.Shuffle(num);
+        */
+        GameManager.gm.BtnShuffle();
     }
 
     //test chat mode button green
@@ -243,33 +257,13 @@ public class PlayerAction : MonoBehaviour {
         GameManager.gm.gs = GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         //next lines are for test use
-        Transform parentTrans;
-        int num;
-        char[] c = new char[3];
-        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
-        c = parentTrans.name.ToCharArray();
-        num = (int)c[c.Length - 1];
-        Debug.Log(num);
-        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
-        Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
-        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
-        ns.Shuffle(num);
+        GameManager.gm.BtnShuffle();
     }
     
     //test of button white
     public void ButtonNeutral()
     {
-        //next lines are for test use
-        Transform parentTrans;
-        int num;
-        char[] c = new char[3];
-        parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
-        c = parentTrans.name.ToCharArray();
-        num = (int)c[c.Length - 1];
-        EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
-        Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
-        EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
-        //ns.Shuffle(num);
+        GameManager.gm.BtnShuffle();
     }
     //test of button yellow
     public void ButtonTrade()
@@ -281,17 +275,8 @@ public class PlayerAction : MonoBehaviour {
         if (ns.satisfaction > 50)
         {
             //test use
-            //actual code should show trade ui
-            Transform parentTrans;
-            int num;
-            char[] c = new char[3];
-            parentTrans = EventSystem.current.currentSelectedGameObject.transform.parent;
-            c = parentTrans.name.ToCharArray();
-            num = (int)c[c.Length - 1];
-            EventSystem.current.currentSelectedGameObject.transform.parent = GameObject.Find("WaitingButtons").transform;
-            Instantiate(GameManager.gm.btns[Random.Range(0, 3)], parentTrans);
-            EventSystem.current.currentSelectedGameObject.transform.position = Vector3.zero;
-            ns.Shuffle(num);
+            //actual code should show trade uis
+            GameManager.gm.BtnShuffle();
         }
         else
         {
@@ -316,6 +301,7 @@ public class PlayerAction : MonoBehaviour {
             
         }
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        
     }
     //Mode Button image change
     void UISwitch()
@@ -363,6 +349,7 @@ public class PlayerAction : MonoBehaviour {
                 CheckDir(go);
             }
         }
+
     }
     //warning button2 use
     public void FaceToWardOpponent()
