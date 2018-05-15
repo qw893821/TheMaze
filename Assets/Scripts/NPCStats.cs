@@ -321,12 +321,14 @@ public class NPCStats : CharacterStats {
         wSelectionList = selectionList;
     }
 
-    public void Shuffle(int i)
+    public void Shuffle(int i,GameObject go)
     {
         Debug.Log(i);
         int num;
         num = Random.Range(0, wSelectionList.Count - 1);
         cSelectionList[i] = wSelectionList[num];
         wSelectionList.RemoveAt(num);
+        wSelectionList.Add(go.name);
     }
+
 }

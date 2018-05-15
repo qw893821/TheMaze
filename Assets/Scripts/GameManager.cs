@@ -291,6 +291,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+    //this function shif btn ui
     public void BtnShuffle()
     {
         NPCStats ns;
@@ -304,9 +306,11 @@ public class GameManager : MonoBehaviour {
         //should convert char value to a numeric value to make it work
         num = (int)char.GetNumericValue(c[c.Length - 1]);
         currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+        //should change the recttransform position to make it work properly
         currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         //currentGO.SetActive(false);
         List<GameObject> gos = new List<GameObject>();
+        //three btn in the waiting list
         for (int i = 0; i < 3; i++)
         {
             gos.Add(GameObject.Find("WaitingButtons").transform.GetChild(i).gameObject);
@@ -316,6 +320,7 @@ public class GameManager : MonoBehaviour {
         newBtn.SetActive(true);
         newBtn.transform.parent = parentTrans;
         newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        ns.Shuffle(num);
+        //shuffle do not work will. the wlist is not updated
+        ns.Shuffle(num,currentGO);
     }
 }
