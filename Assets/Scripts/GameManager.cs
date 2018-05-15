@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour {
     //emoji UI sprite
     public Image emojiImg;
 
+    //map camera
+    GameObject cameraGO;
+    Vector3 cameraOffSet;
     //some button to test
     public List<GameObject> btns;
     List<string> cList;
@@ -96,6 +99,9 @@ public class GameManager : MonoBehaviour {
         cList = new List<string>();
         //eList = new EmojiManager();
         //targetList = new List<GameObject>();
+        cameraGO = GameObject.Find("MapCamera");
+        cameraOffSet = cameraGO.transform.position - player.transform.position;
+        
 	}
 	
 	// Update is called once per frame
@@ -105,6 +111,7 @@ public class GameManager : MonoBehaviour {
         ChangeCursor();
         Warning();
         TextTest();
+        MapCameraFollow();
     }
     
 
@@ -322,5 +329,10 @@ public class GameManager : MonoBehaviour {
         newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         //shuffle do not work will. the wlist is not updated
         ns.Shuffle(num,currentGO);
+    }
+
+    void MapCameraFollow()
+    {
+        cameraGO.transform.position = cameraOffSet + player.transform.position; 
     }
 }
