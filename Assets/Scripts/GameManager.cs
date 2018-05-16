@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
     public Sprite chatOff;
     //game chat ui
     public GameObject chatUI;
+    GameObject waitBTNGO;
     //being target warning ui
     public GameObject warningUI1;
     public GameObject warningUI2;
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour {
         chatBtn = GameObject.Find("Chat");
         emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
         chatBtnImg = chatBtn.GetComponent<Image>();
+        waitBTNGO = GameObject.Find("WaitingButtons");
+        waitBTNGO.SetActive(false);
         chatUI.SetActive(false);
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
@@ -286,6 +289,7 @@ public class GameManager : MonoBehaviour {
 
     public void InstBTN()
     {
+        waitBTNGO.SetActive(true);
         NPCStats ns;
         ns = currentTargetGO.GetComponent<NPCStats>();
         cList = ns.list;
@@ -296,12 +300,14 @@ public class GameManager : MonoBehaviour {
             go.transform.parent = GameObject.Find("ButtonSlot"+(i).ToString()).transform;
             go.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
+        waitBTNGO.SetActive(false);
     }
 
 
     //this function shif btn ui
     public void BtnShuffle()
     {
+        waitBTNGO.SetActive(true);
         NPCStats ns;
         ns = currentTargetGO.GetComponent<NPCStats>();
         GameObject currentGO;
@@ -312,9 +318,11 @@ public class GameManager : MonoBehaviour {
         char[] c = parentTrans.name.ToCharArray();
         //should convert char value to a numeric value to make it work
         num = (int)char.GetNumericValue(c[c.Length - 1]);
-        currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+        //currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+        currentGO.transform.parent = waitBTNGO.transform;
         //should change the recttransform position to make it work properly
         currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        
         //currentGO.SetActive(false);
         /*List<GameObject> gos = new List<GameObject>();
         //three btn in the waiting list
@@ -328,6 +336,8 @@ public class GameManager : MonoBehaviour {
         //newBtn = gos[Random.Range(0, 2)].transform.gameObject;
         newBtn = GameObject.Find(ns.Shuffle(num, currentGO));
         newBtn.SetActive(true);
+        //disable the waiting button ui
+        waitBTNGO.SetActive(false);
         newBtn.transform.parent = parentTrans;
         newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         //shuffle do not work will. the wlist is not updated
