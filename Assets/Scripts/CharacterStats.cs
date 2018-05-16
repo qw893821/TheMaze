@@ -91,33 +91,7 @@ public class CharacterStats:MonoBehaviour {
         }
     }
 
-   /*public virtual void FoV(GameObject go)
-    {
-        //if (inRange)
-        //{
-            if (ignoredList.Contains(go))
-            {
-                //inRange = false;
-                return;
-            }
-            //else if (targetGO.tag != "Player"||!targetGO )
-            else if(!ignoredList.Contains(go)||!targetGO)
-            {
-                Vector3 dir;
-                float angle;
-                dir =go.transform.position - transform.position;
-                angle = Vector3.Angle(dir, transform.forward);
-                if (angle <= 45f)
-                {
-                    if (!prevTargetGO)
-                    {
-                        prevTargetGO = targetGO;
-                    }
-                    targetGO = go;
-                }
-            }
-        //}
-    }*/
+   
 
     public virtual void FoV(GameObject go)
     {

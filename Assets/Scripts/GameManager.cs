@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> currentList;
     public GameObject player;
     PlayerAction pa;
+    //action ui
     GameObject attackBtn;
     public Image attackBtnImg;
     public Sprite attOn;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour {
     public Image chatBtnImg;
     public Sprite chatOn;
     public Sprite chatOff;
+    GameObject farmBtn;
     //game chat ui
     public GameObject chatUI;
     GameObject waitBTNGO;
@@ -90,8 +92,11 @@ public class GameManager : MonoBehaviour {
         attackBtn = GameObject.Find("Attack");
         attackBtnImg = attackBtn.GetComponent<Image>();
         chatBtn = GameObject.Find("Chat");
-        emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
         chatBtnImg = chatBtn.GetComponent<Image>();
+        farmBtn = GameObject.Find("Farm");
+        farmBtn.GetComponent<Button>().interactable = false; 
+        emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
+        
         waitBTNGO = GameObject.Find("WaitingButtons");
         waitBTNGO.SetActive(false);
         chatUI.SetActive(false);
@@ -340,12 +345,20 @@ public class GameManager : MonoBehaviour {
         waitBTNGO.SetActive(false);
         newBtn.transform.parent = parentTrans;
         newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        //shuffle do not work will. the wlist is not updated
-        //ns.Shuffle(num,currentGO);
     }
 
     void MapCameraFollow()
     {
         cameraGO.transform.position = cameraOffSet + player.transform.position; 
+    }
+
+    public void EnableFarm()
+    {
+        farmBtn.GetComponent<Button>().interactable = true;
+    }
+
+    public void DisableFarm()
+    {
+        farmBtn.GetComponent<Button>().interactable = false;
     }
 }

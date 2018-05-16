@@ -44,10 +44,6 @@ public class NPCStats : CharacterStats {
         attackPower = 10;
         attackSpeed = 1f;
         capCol = GetComponent<CapsuleCollider>();
-        //chatBtn1 = transform.Find("Neutral").GetComponent<Button>();
-        //chatBtn2 = transform.Find("Aggressive").GetComponent<Button>();
-        //chatBtn3 = transform.Find("Friendness").GetComponent<Button>();
-        //canv = transform.Find("UICanv").GetComponent<Canvas>();
         canv = canvGO.GetComponent<Canvas>();
         canv.enabled = false;
         rs = Relationship.neutral;

@@ -9,6 +9,7 @@ TagManager:
   - Teammate
   - Neutral
   - Dead
+  - PlayerSample
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Character
   - FoW
   - Player
-  - 
+  - Resources
   - 
   - 
   - 
