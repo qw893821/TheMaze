@@ -8,6 +8,7 @@ public enum GameStats
     walking,
     attack,
     turn,
+    farming,
     other
 }
 
@@ -55,6 +56,10 @@ public class GameManager : MonoBehaviour {
     //cursor texture
     public Texture2D cursorBattle;
     public Texture2D cursorChat;
+
+    public Texture2D cursorFarm1;
+    public Texture2D cursorFarm2;
+
     Mode currentMode;
 
     //NPCs currently target player
@@ -135,6 +140,9 @@ public class GameManager : MonoBehaviour {
             case GameStats.walking:
                 Time.timeScale = 1;
                 break;
+            case GameStats.farming:
+                Time.timeScale = 1f;
+                break;
             default:
                 Time.timeScale = 0;
                 break;
@@ -176,6 +184,12 @@ public class GameManager : MonoBehaviour {
                 Vector2 hotspot = Vector2.zero;
                 CursorMode cursorMode = CursorMode.Auto;
                 Cursor.SetCursor(cursorChat, hotspot, cursorMode);
+            }
+            else if (pa.playerMode == Mode.farm)
+            {
+                Vector2 hotspot = Vector2.zero;
+                CursorMode cursorMode = CursorMode.Auto;
+                Cursor.SetCursor(cursorFarm1, hotspot, cursorMode);
             }
             currentMode = pa.playerMode;
         }

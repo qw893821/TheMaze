@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public enum Mode
 {
     attack,
-    chat
+    chat,
+    farm
 }
 public class PlayerAction : MonoBehaviour {
     
@@ -63,7 +64,7 @@ public class PlayerAction : MonoBehaviour {
             GameManager.gm.currentList.Remove(col.gameObject);
         }
     }
-
+    //consume time
     void attack()
     {
         if (playerMode == Mode.attack && !GameManager.gm.overUI /*&& inRange*/)
@@ -73,7 +74,7 @@ public class PlayerAction : MonoBehaviour {
         
     }
     
-    //show chat ui
+    //show chat ui, not consume time
     public void Chat()
     {
         if (playerMode == Mode.chat && GameManager.gm.currentTargetGO)
@@ -87,6 +88,16 @@ public class PlayerAction : MonoBehaviour {
             GameManager.gm.InstBTN();
         }       
     }
+    //consume time
+    public void Farm()
+    {
+        if (playerMode == Mode.farm /*&& GameManager.gm.currentTargetGO*/)
+        {
+            GameManager.gm.gs = GameStats.farming;
+        }
+    }
+
+    
 
     //pick a target
     GameObject TargetPicker()
@@ -124,8 +135,9 @@ public class PlayerAction : MonoBehaviour {
             GameManager.gm.currentTargetGO = TargetPicker();
             attack();
             Chat();
+            Farm();
         }
-        if (GameManager.gm.gs == GameStats.attack)
+        if (GameManager.gm.gs == GameStats.attack&& GameManager.gm.gs != GameStats.farming)
         {
             timer = timer + Time.deltaTime;
                 if (timer >= ps.attackSpeed)
@@ -155,6 +167,18 @@ public class PlayerAction : MonoBehaviour {
                     GameManager.gm.gs = GameStats.other;
                 }
         }
+        else if (GameManager.gm.gs == GameStats.farming&& GameManager.gm.gs != GameStats.attack )
+        {
+            timer =timer+ Time.deltaTime;
+            
+            if (timer>=0.5f)
+            {
+                Debug.Log("farm");
+                //do farming
+                timer = 0;
+                GameManager.gm.gs = GameStats.other;
+            }
+        }
     }
     //switch between chat/attack mode using right click
     public void ChangeMode()
@@ -177,19 +201,25 @@ public class PlayerAction : MonoBehaviour {
     //switch mode using button
     public void ModeAtk()
     {
-        if (playerMode == Mode.chat)
-        {
+        //if (playerMode == Mode.chat)
+        //{
             playerMode = Mode.attack;
-        }
+        //}
     }
     //switch mode using button
     public void ModeChat()
     {
-        if (playerMode == Mode.attack)
-        {
+        //if (playerMode == Mode.attack)
+        //{
             playerMode = Mode.chat;
-        }
+        //}
     }
+    //switch mode to farm
+    public void ModeFarm()
+    {
+        playerMode = Mode.farm;
+    }
+
 
     //test chat mode button red
     public void ButtonAggressive()
