@@ -3284,8 +3284,6 @@ MonoBehaviour:
   chatBtn1: {fileID: 0}
   chatBtn2: {fileID: 0}
   chatBtn3: {fileID: 0}
-  canvGO: {fileID: 0}
-  canv: {fileID: 0}
   ps: 0
   img: {fileID: 0}
   wSelectionList: []
@@ -7967,8 +7965,6 @@ MonoBehaviour:
   chatBtn1: {fileID: 0}
   chatBtn2: {fileID: 0}
   chatBtn3: {fileID: 0}
-  canvGO: {fileID: 0}
-  canv: {fileID: 0}
   ps: 0
   img: {fileID: 0}
   wSelectionList: []

@@ -11,8 +11,6 @@ public class NPCStats : CharacterStats {
     public Button chatBtn1;
     public Button chatBtn2;
     public Button chatBtn3;
-    public GameObject canvGO;
-    public Canvas canv;
     //character following timer
     float timer;
     float ignoreTime;
@@ -44,8 +42,9 @@ public class NPCStats : CharacterStats {
         attackPower = 10;
         attackSpeed = 1f;
         capCol = GetComponent<CapsuleCollider>();
-        canv = canvGO.GetComponent<Canvas>();
-        canv.enabled = false;
+        //not local button, canv no longer useful
+        //canv = canvGO.GetComponent<Canvas>();
+        //canv.enabled = false;
         rs = Relationship.neutral;
         //opponentList = new List<GameObject>();
         friendList = new List<GameObject>();
@@ -315,6 +314,7 @@ public class NPCStats : CharacterStats {
             selectionList.RemoveAt(num);
         }
         wSelectionList = selectionList;
+        Debug.Log(cSelectionList[2]);
     }
 
     public string Shuffle(int i,GameObject go)
