@@ -7,6 +7,7 @@ public class PlayerStats: CharacterStats{
     public int currentHealth;
     //change is true when team member changes
     public bool change;
+
 	// Use this for initialization
 	void Start () {
         change = false;
@@ -14,6 +15,8 @@ public class PlayerStats: CharacterStats{
         attackRange = 1.5f;
         attackSpeed = 1f;
         currentHealth = health;
+        resource = 100;
+        rDecreaseRate = 1f;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +25,7 @@ public class PlayerStats: CharacterStats{
         {
             ChangeRange();
         }
+        ResourceReduce();
 	}
 
     void ChangeRange()

@@ -117,5 +117,8 @@ public class CharacterStats:MonoBehaviour {
         
     }
 
-    
+    public virtual void ResourceReduce()
+    {
+        resource -= rDecreaseRate * Time.deltaTime;
+    }
 }

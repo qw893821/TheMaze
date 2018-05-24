@@ -131,6 +131,11 @@ public class NPCStats : CharacterStats {
         base.FoV(go);
     }
 
+    public override void ResourceReduce()
+    {
+        base.ResourceReduce();
+    }
+
     private float IgnoreTimer()
     {
         if (ignoredList.Contains(targetGO) || (targetGO.tag != "Character" && targetGO.tag != "Player"))
@@ -298,10 +303,7 @@ public class NPCStats : CharacterStats {
             else { return 20; }
     }
 
-    void ResourceReduce()
-    {
-        resource -= rDecreaseRate * Time.deltaTime;
-    }
+    
 
     void InstSelectionList()
     {

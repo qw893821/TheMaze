@@ -12,7 +12,10 @@ public class ChatButtonAnim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (GameManager.gm.player.GetComponent<PlayerAction>().playerMode != Mode.chat)
+        {
+            transform.gameObject.SetActive(false);
+        }
 	}
     private void OnEnable()
     {
