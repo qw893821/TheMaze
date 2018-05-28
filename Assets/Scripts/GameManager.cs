@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour {
         //targetList = new List<GameObject>();
         cameraGO = GameObject.Find("MapCamera");
         cameraOffSet = cameraGO.transform.position - player.transform.position;
-        
 	}
 	
 	// Update is called once per frame
@@ -363,7 +362,7 @@ public class GameManager : MonoBehaviour {
 
     void MapCameraFollow()
     {
-        cameraGO.transform.position = cameraOffSet + player.transform.position; 
+        cameraGO.transform.position = player.transform.position+cameraOffSet; 
     }
 
     public void EnableFarm()
