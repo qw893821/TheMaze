@@ -53,36 +53,22 @@
 			{
 				
 				v2f o;
-				float dis1,dis2,dis3,dis4;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				
 				float3 worldPos=mul(unity_ObjectToWorld,v.vertex).xyz;
-				dis1=length(_Position1.x-worldPos.x);
-				if(_Position1.x<worldPos.x){
-					if(dis1<_ViewRange){
-						o.vertex.x-=dis1+0.5f;
-					}
+				if(worldPos.z>_Position1.z&&worldPos.x<_Position1.x){
+					o.vertex.xyz=_Position1.xyz;
 				}
-				dis2=length(_Position2.x-worldPos.x);
-				if(_Position2.x>worldPos.x){
-					if(dis2<_ViewRange){
-						o.vertex.x+=dis2+0.5f;
-					}
+				if(worldPos.z>_Position2.z&&worldPos.x>_Position2.x){
+					o.vertex.xyz=_Position2.xyz;
 				}
-				dis3=length(_Position3.z-worldPos.z);
-				if(_Position3.z<worldPos.z){
-					if(dis3<_ViewRange){
-						o.vertex.z=o.vertex.z-dis3;
-					}
+				if(worldPos.z<_Position3.z&&worldPos.x>_Position3.x){
+					o.vertex.xyz=_Position3.xyz;
 				}
-				dis4=length(_Position4.z-worldPos.z);
-				if(_Position4.z>worldPos.z){
-					if(dis4<_ViewRange){
-						o.vertex.z-=dis4;
-					}
+				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
+					o.vertex.xyz=_Position4.xyz;
 				}
-				
 				//else{o.vertex.x-=dis;}
 				
 				//UNITY_TRANSFER_FOG(o,o.vertex);
