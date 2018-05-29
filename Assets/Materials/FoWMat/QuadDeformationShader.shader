@@ -13,17 +13,15 @@
 	}
 	SubShader
 	{
+		Lighting Off
 		Tags { "RenderType"="Opaque" }
-		LOD 100
+		LOD 150
 
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
-			
 			#include "UnityCG.cginc"
 
 			struct appdata
@@ -35,19 +33,17 @@
 			struct v2f
 			{
 				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 			float _Distance;
-			float3 _Position1;
-			float3 _Position2;
-			float3 _Position3;
-			float3 _Position4;
+			float4 _Position1;
+			float4 _Position2;
+			float4 _Position3;
+			float4 _Position4;
 			float4 _Color;
-			float _ViewRange;
 			
 			v2f vert (appdata v)
 			{
@@ -56,20 +52,46 @@
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				
-				float3 worldPos=mul(unity_ObjectToWorld,v.vertex).xyz;
-				if(worldPos.z>_Position1.z&&worldPos.x<_Position1.x){
-					o.vertex.xyz=_Position1.xyz;
-				}
-				if(worldPos.z>_Position2.z&&worldPos.x>_Position2.x){
-					o.vertex.xyz=_Position2.xyz;
-				}
-				if(worldPos.z<_Position3.z&&worldPos.x>_Position3.x){
-					o.vertex.xyz=_Position3.xyz;
+				float4 worldPos=mul(unity_ObjectToWorld,v.vertex).xyzw;
+				if(worldPos.x<_Position1.x&&worldPos.z>_Position1.z){
+					float offSetX,offSetZ;
+					offSetX=_Position1.x-worldPos.x;
+					offSetZ=_Position1.z-worldPos.z;
+					o.vertex.x-=offSetX;
+					o.vertex.z-=offSetZ;
+					
+					
 				}
 				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
-					o.vertex.xyz=_Position4.xyz;
+					//o.vertex.x=_Position4.x;
+					//o.vertex.z=_Position4.z;
+					float offSetX,offSetZ;
+					offSetX=_Position4.x-worldPos.x;
+					offSetZ=_Position4.z-worldPos.z;
+					o.vertex.x+=offSetX;
+					o.vertex.z+=offSetZ;
 				}
-				//else{o.vertex.x-=dis;}
+				
+				if(worldPos.x>_Position2.x&&worldPos.z>_Position2.z){
+					//o.vertex.x=_Position2.x;
+					//o.vertex.z=_Position2.z;
+					float offSetX,offSetZ;
+					offSetX=_Position2.x-worldPos.x;
+					offSetZ=_Position2.z-worldPos.z;
+					o.vertex.x-=offSetX;
+					o.vertex.z-=offSetZ;					
+				}
+				if(worldPos.x>_Position3.x&&worldPos.z<_Position3.z){
+					//o.vertex.x=_Position3.x;
+					//o.vertex.z=_Position3.z;
+					float offSetX,offSetZ;
+					offSetX=_Position3.x-worldPos.x;
+					offSetZ=_Position3.z-worldPos.z;
+					o.vertex.x-=offSetX;
+					o.vertex.z-=offSetZ;
+				}
+				
+				
 				
 				//UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
@@ -84,6 +106,8 @@
 				col=col*_Color;
 				return col;
 			}
+			
+			
 			ENDCG
 		}
 	}
