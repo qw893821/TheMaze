@@ -14,7 +14,7 @@
 	SubShader
 	{
 		Lighting Off
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Transparency" }
 		LOD 150
 
 		Pass
@@ -49,48 +49,54 @@
 			{
 				
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				
-				float4 worldPos=mul(unity_ObjectToWorld,v.vertex).xyzw;
+				//o.vertex = UnityObjectToClipPos(v.vertex);
+				//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				//o.uv=v.uv;
+				float3 worldPos=mul(unity_ObjectToWorld,v.vertex).xyz;
 				if(worldPos.x<_Position1.x&&worldPos.z>_Position1.z){
-					float offSetX,offSetZ;
-					offSetX=_Position1.x-worldPos.x;
-					offSetZ=_Position1.z-worldPos.z;
-					o.vertex.x-=offSetX;
-					o.vertex.z-=offSetZ;
-					
-					
+					/*float offSetX,offSetZ;
+					offSetX=length(_Position1.x-worldPos.x);
+					offSetZ=length(_Position1.z-worldPos.z);
+					o.vertex.x+=0.01f;
+					o.vertex.z-=0.01f;
+					*/
+					v.vertex=_Position1;
 				}
 				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
 					//o.vertex.x=_Position4.x;
 					//o.vertex.z=_Position4.z;
-					float offSetX,offSetZ;
-					offSetX=_Position4.x-worldPos.x;
-					offSetZ=_Position4.z-worldPos.z;
-					o.vertex.x+=offSetX;
-					o.vertex.z+=offSetZ;
+					/*float offSetX,offSetZ;
+					offSetX=length(_Position4.x-worldPos.x);
+					offSetZ=length(_Position4.z-worldPos.z);
+					v.vertex.x+=offSetX;
+					v.vertex.z+=offSetZ;*/
+					v.vertex=_Position4;
 				}
 				
 				if(worldPos.x>_Position2.x&&worldPos.z>_Position2.z){
 					//o.vertex.x=_Position2.x;
 					//o.vertex.z=_Position2.z;
-					float offSetX,offSetZ;
-					offSetX=_Position2.x-worldPos.x;
-					offSetZ=_Position2.z-worldPos.z;
-					o.vertex.x-=offSetX;
-					o.vertex.z-=offSetZ;					
+					/*float offSetX,offSetZ;
+					offSetX=length(_Position2.x-worldPos.x);
+					offSetZ=length(_Position2.z-worldPos.z);
+					v.vertex.x-=offSetX;
+					v.vertex.z-=offSetZ;
+					*/
+					v.vertex=_Position2;
 				}
 				if(worldPos.x>_Position3.x&&worldPos.z<_Position3.z){
 					//o.vertex.x=_Position3.x;
 					//o.vertex.z=_Position3.z;
-					float offSetX,offSetZ;
-					offSetX=_Position3.x-worldPos.x;
-					offSetZ=_Position3.z-worldPos.z;
-					o.vertex.x-=offSetX;
-					o.vertex.z-=offSetZ;
+					/*float offSetX,offSetZ;
+					offSetX=length(_Position3.x-worldPos.x);
+					offSetZ=length(_Position3.z-worldPos.z);
+					v.vertex.x-=offSetX;
+					v.vertex.z+=offSetZ;
+					*/
+					v.vertex=_Position3;
 				}
-				
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				
 				
 				//UNITY_TRANSFER_FOG(o,o.vertex);
