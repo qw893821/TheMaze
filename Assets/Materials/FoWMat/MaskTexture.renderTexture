@@ -5,21 +5,21 @@ RenderTexture:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: FoWTexture
+  m_Name: MaskTexture
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
-  m_Width: 1920
-  m_Height: 1080
+  m_Width: 256
+  m_Height: 256
   m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 0
   m_MipMap: 0
   m_GenerateMips: 1
   m_SRGB: 0
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 2
     m_Aniso: 0
     m_MipBias: 0
     m_WrapU: 1
