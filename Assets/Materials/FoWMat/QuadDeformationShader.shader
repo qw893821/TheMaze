@@ -61,7 +61,6 @@
 					o.vertex.z-=0.01f;
 					*/
 					v.vertex=_Position1;
-
 				}
 				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
 					//o.vertex.x=_Position4.x;
