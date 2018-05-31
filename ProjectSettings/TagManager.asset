@@ -10,6 +10,7 @@ TagManager:
   - Neutral
   - Dead
   - PlayerSample
+  - Wall
   layers:
   - Default
   - TransparentFX

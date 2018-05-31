@@ -53,6 +53,7 @@
 				//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				//o.uv=v.uv;
 				float3 worldPos=mul(unity_ObjectToWorld,v.vertex).xyz;
+				
 				if(worldPos.x<_Position1.x&&worldPos.z>_Position1.z){
 					/*float offSetX,offSetZ;
 					offSetX=length(_Position1.x-worldPos.x);
@@ -60,7 +61,8 @@
 					o.vertex.x+=0.01f;
 					o.vertex.z-=0.01f;
 					*/
-					v.vertex=_Position1;
+					v.vertex.x=_Position1.x+1;
+					v.vertex.z=_Position1.z;
 				}
 				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
 					//o.vertex.x=_Position4.x;
@@ -70,7 +72,8 @@
 					offSetZ=length(_Position4.z-worldPos.z);
 					v.vertex.x+=offSetX;
 					v.vertex.z+=offSetZ;*/
-					v.vertex=_Position4;
+					v.vertex.x=_Position4.x;
+					v.vertex.z=-_Position4.z;
 				}
 				
 				if(worldPos.x>_Position2.x&&worldPos.z>_Position2.z){
@@ -82,7 +85,8 @@
 					v.vertex.x-=offSetX;
 					v.vertex.z-=offSetZ;
 					*/
-					v.vertex=_Position2;
+					v.vertex.x=_Position2.x;
+					v.vertex.z=_Position2.z;
 				}
 				if(worldPos.x>_Position3.x&&worldPos.z<_Position3.z){
 					//o.vertex.x=_Position3.x;
@@ -93,12 +97,11 @@
 					v.vertex.x-=offSetX;
 					v.vertex.z+=offSetZ;
 					*/
-					v.vertex=_Position3;
+					v.vertex.x=_Position3.x;
+					v.vertex.z=-_Position3.z-5;
 				}
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				
-				
 				//UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
