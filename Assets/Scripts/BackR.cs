@@ -5,8 +5,10 @@ using UnityEngine;
 public class BackR : MonoBehaviour {
     FoWMask fm;
     bool isContacting;
-	// Use this for initialization
-	void Start () {
+    ContactPoint lastContact;
+    string nextName;
+    // Use this for initialization
+    void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
         fm.posBR = transform.position;
         isContacting = false;
@@ -25,9 +27,14 @@ public class BackR : MonoBehaviour {
         if (collision.gameObject.tag == "Wall" )
         {
             ContactPoint contact = collision.contacts[0];
-            SetPoint(contact.point);
             Debug.Log(contact.point);
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        lastContact = collision.contacts[0];
+        Debug.Log(lastContact);
     }
 
     private void OnTriggerExit(Collider collision)
@@ -35,13 +42,9 @@ public class BackR : MonoBehaviour {
         if(collision.tag == "Wall" && isContacting)
         {
             isContacting = false;
-            GameManager.gm.PastToNext(this.transform.gameObject);
+            nextName = GameManager.gm.PastToNext(this.transform.gameObject);
+            fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
         }
     }
 
-    public void SetPoint(Vector3 point)
-    {
-        isContacting = true;
-        fm.posBR = point;
-    }
 }

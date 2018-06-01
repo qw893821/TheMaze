@@ -5,7 +5,8 @@ using UnityEngine;
 public class BackL : MonoBehaviour {
     public FoWMask fm;
     bool isContacting;
-    public GameObject nextGO;
+    string nextName;
+    ContactPoint lastContact;
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
@@ -30,13 +31,18 @@ public class BackL : MonoBehaviour {
             fm.posBL =contact.point;
         }
     }
-
+    private void OnCollisionStay(Collision collision)
+    {
+        lastContact = collision.contacts[0];
+        Debug.Log(lastContact);
+    }
     private void OnTriggerExit(Collider collision)
     {
         if(collision.tag == "Wall" && isContacting)
         {
             isContacting = false;
-            GameManager.gm.PastToNext(this.transform.gameObject);
+            nextName = GameManager.gm.PastToNext(this.transform.gameObject);
+            fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
         }
     }
 }

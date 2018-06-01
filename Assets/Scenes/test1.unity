@@ -495,7 +495,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 5284702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 0, z: 10}
+  m_LocalPosition: {x: 4, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 2, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
@@ -816,7 +816,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fm: {fileID: 0}
-  nextGO: {fileID: 0}
 --- !u!54 &97120585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1676,7 +1675,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 283558016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 1, z: -6}
+  m_LocalPosition: {x: 0, y: 1, z: -3}
   m_LocalScale: {x: 0.4, y: 1, z: 0.4}
   m_Children:
   - {fileID: 1220478092}
@@ -1754,10 +1753,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: f190276d56ede664faa4d0a6feb8c19b, type: 2}
-  posFL: {x: 0, y: 0, z: 0}
-  posFR: {x: 0, y: 0, z: 0}
-  posBR: {x: 0, y: 0, z: 0}
-  posBL: {x: 0, y: 0, z: 0}
 --- !u!1 &286946259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,7 +2981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &587875280
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3347,13 +3342,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 587875279}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.86, y: 0, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 2, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &587875286
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6275,7 +6270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2a33e3810164548b50c2967b8e1d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fm: {fileID: 0}
 --- !u!65 &1220478094
 BoxCollider:
   m_ObjectHideFlags: 0

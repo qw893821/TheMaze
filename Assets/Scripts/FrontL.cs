@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FrontL : MonoBehaviour {
-    public FoWMask fm;
+    FoWMask fm;
     bool isContacting;
+    ContactPoint lastContact;
+    string nextName;
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
@@ -26,27 +28,30 @@ public class FrontL : MonoBehaviour {
         {
             isContacting = true;
             ContactPoint contact = collision.contacts[0];
-            Debug.Log(contact.point);
             fm.posFL =contact.point;
         }
     }
-
-   /* private void OnCollisionExit(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.tag == "Wall")
-        {
-            Debug.Log("out");
-            
-        }
+        lastContact = collision.contacts[0];
+        Debug.Log(lastContact);
     }
-    */
+    /* private void OnCollisionExit(Collision collision)
+     {
+         if(collision.gameObject.tag == "Wall")
+         {
+             Debug.Log("out");
+
+         }
+     }
+     */
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Wall" && isContacting)
         {
-            Debug.Log("Exit");
             isContacting = false;
-            GameManager.gm.PastToNext(this.transform.gameObject);
+            nextName = GameManager.gm.PastToNext(this.transform.gameObject);
+            fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
         }
     }
 }

@@ -44,7 +44,6 @@ public class FrontR : MonoBehaviour {
     {
         if(other.tag == "Wall" && isContacting)
         {
-            
             isContacting = false;
             nextName=GameManager.gm.PastToNext(this.transform.gameObject);
             fm.GetType().GetProperty("pos"+nextName).SetValue(fm,lastContact.point,null);
