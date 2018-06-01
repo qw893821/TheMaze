@@ -8,7 +8,7 @@ public class FrontL : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
-        fm.pos1 = transform.position;
+        fm.posFL = transform.position;
         isContacting = false;
 	}
 	
@@ -16,18 +16,19 @@ public class FrontL : MonoBehaviour {
 	void Update () {
         if (!isContacting)
         {
-            fm.pos1 = transform.position;
+            fm.posFL = transform.position;
         }
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Wall"&&!isContacting)
+        if (collision.gameObject.tag == "Wall")
         {
             isContacting = true;
             ContactPoint contact = collision.contacts[0];
             Debug.Log(contact.point);
-            fm.pos1 =contact.point;        }
+            fm.posFL =contact.point;
+        }
     }
 
    /* private void OnCollisionExit(Collision collision)
@@ -45,6 +46,7 @@ public class FrontL : MonoBehaviour {
         {
             Debug.Log("Exit");
             isContacting = false;
+            GameManager.gm.PastToNext(this.transform.gameObject);
         }
     }
 }

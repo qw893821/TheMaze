@@ -8,7 +8,7 @@ public class BackR : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
-        fm.pos3 = transform.position;
+        fm.posBR = transform.position;
         isContacting = false;
 	}
 	
@@ -16,17 +16,18 @@ public class BackR : MonoBehaviour {
 	void Update () {
         if (!isContacting)
         {
-            fm.pos3 = transform.position;
+            fm.posBR= transform.position;
         }
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Wall" && !isContacting)
+        if (collision.gameObject.tag == "Wall" )
         {
-            isContacting = true;
             ContactPoint contact = collision.contacts[0];
-            fm.pos3 =contact.point;        }
+            SetPoint(contact.point);
+            Debug.Log(contact.point);
+        }
     }
 
     private void OnTriggerExit(Collider collision)
@@ -34,6 +35,13 @@ public class BackR : MonoBehaviour {
         if(collision.tag == "Wall" && isContacting)
         {
             isContacting = false;
+            GameManager.gm.PastToNext(this.transform.gameObject);
         }
+    }
+
+    public void SetPoint(Vector3 point)
+    {
+        isContacting = true;
+        fm.posBR = point;
     }
 }

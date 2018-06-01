@@ -6,23 +6,25 @@ public class FoWMask : MonoBehaviour {
     Vector3 offSet;
     public Material mat;
     
-    private Vector3 _pos1, _pos2, _pos3, _pos4;
-    public Vector3 pos1
+    public Vector3 posFL, posFR, posBR, posBL;
+    /*public Vector3 posFL
     {
         get {return _pos1; }
         set { _pos1=value; } }
-    public Vector3 pos2
+    public Vector3 posFR
     {
         get { return _pos2; }
         set { _pos2 = value; } }
-    public Vector3 pos3
+    public Vector3 posBR
     {
         get { return _pos3; }
         set { _pos3 = value; } }
-    public Vector3 pos4
+    public Vector3 posBL
     {
         get { return _pos4; }
-        set { _pos4 = value; } }
+        set { _pos4 = value; }
+    }
+    */
 
     //, pos2, pos3, pos4;
     // Use this for initialization
@@ -30,10 +32,10 @@ public class FoWMask : MonoBehaviour {
         offSet = transform.position- GameManager.gm.player.transform.position ;
         //mat = this.GetComponent<Renderer>().material;
         mat.shader = Shader.Find("QuadDeformationShader");
-        _pos1 = new Vector3(0,0,0);
-        _pos2 = new Vector3(0, 0, 0);
-        _pos3 = new Vector3(0, 0, 0);
-        _pos4 = new Vector3(0, 0, 0);
+        posFL = new Vector3(0,0,0);
+        posFR = new Vector3(0, 0, 0);
+        posBR = new Vector3(0, 0, 0);
+        posBL = new Vector3(0, 0, 0);
     }
 	
 	// Update is called once per frame
@@ -52,9 +54,9 @@ public class FoWMask : MonoBehaviour {
 
     void UpdateMeshPos()
     {
-        mat.SetVector("_Position1", _pos1);
-        mat.SetVector("_Position2", _pos2);
-        mat.SetVector("_Position3", _pos3);
-        mat.SetVector("_Position4", _pos4);
+        mat.SetVector("_Position1", posFL);
+        mat.SetVector("_Position2", posFR);
+        mat.SetVector("_Position3", posBR);
+        mat.SetVector("_Position4", posBL);
     }
 }

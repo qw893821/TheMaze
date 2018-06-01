@@ -5,10 +5,11 @@ using UnityEngine;
 public class BackL : MonoBehaviour {
     public FoWMask fm;
     bool isContacting;
+    public GameObject nextGO;
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
-        fm.pos4 = transform.position;
+        fm.posBL = transform.position;
         isContacting = false;
 	}
 	
@@ -16,17 +17,18 @@ public class BackL : MonoBehaviour {
 	void Update () {
         if (!isContacting)
         {
-            fm.pos4 = transform.position;
+            fm.posBL = transform.position;
         }
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Wall" && !isContacting)
+        if (collision.gameObject.tag == "Wall")
         {
             isContacting = true;
             ContactPoint contact = collision.contacts[0];
-            fm.pos4 =contact.point;        }
+            fm.posBL =contact.point;
+        }
     }
 
     private void OnTriggerExit(Collider collision)
@@ -34,6 +36,7 @@ public class BackL : MonoBehaviour {
         if(collision.tag == "Wall" && isContacting)
         {
             isContacting = false;
+            GameManager.gm.PastToNext(this.transform.gameObject);
         }
     }
 }

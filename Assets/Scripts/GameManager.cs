@@ -78,6 +78,9 @@ public class GameManager : MonoBehaviour {
     //some button to test
     public List<GameObject> btns;
     List<string> cList;
+
+    //current player facing direction
+    string facing;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -114,6 +117,8 @@ public class GameManager : MonoBehaviour {
         //targetList = new List<GameObject>();
         cameraGO = GameObject.Find("MapCamera");
         cameraOffSet = cameraGO.transform.position - player.transform.position;
+
+        facing = "Vertical";
 	}
 	
 	// Update is called once per frame
@@ -373,5 +378,33 @@ public class GameManager : MonoBehaviour {
     public void DisableFarm()
     {
         farmBtn.GetComponent<Button>().interactable = false;
+    }
+
+    public string PastToNext(GameObject go)
+    {
+        string name;
+        char[] nameChar;
+        nameChar = go.name.ToCharArray();
+        switch (facing){
+            case "Vertical":
+                if (nameChar[0] == 'B')
+                {
+                    name = "F" + nameChar[1];
+                }
+                else { name= "B" + nameChar[1]; }
+                break;
+            case "Horizontal":
+                if (nameChar[1] == 'L')
+                {
+                    name = nameChar[0]+"B";
+
+                }
+                else { name = nameChar[0]+"L"; }
+                break;
+            default:
+                name = "player";
+                break;
+        }
+        return name;
     }
 }

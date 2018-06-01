@@ -97,10 +97,10 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Position1: {r: -4, g: 1.2, b: -3.750658, a: 0}
-    - _Position2: {r: 0, g: 1.2, b: -3.750658, a: 0}
-    - _Position3: {r: 0, g: 1.2, b: -7.750658, a: 0}
-    - _Position4: {r: -4, g: 1.2, b: -7.8601265, a: 0}
+    - _Position1: {r: -1.341383, g: 1.2, b: 10.550035, a: 0}
+    - _Position2: {r: 2.658617, g: 1.2, b: 10.550035, a: 0}
+    - _Position3: {r: 2.458617, g: 0.70000005, b: 0, a: 0}
+    - _Position4: {r: -1.341383, g: 1.2, b: 6.57428, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _TintColor: {r: 1, g: 0, b: 0, a: 0.5294118}

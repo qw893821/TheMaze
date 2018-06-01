@@ -495,7 +495,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 5284702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 10}
+  m_LocalPosition: {x: 1.8, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 2, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 97120585}
   - component: {fileID: 97120586}
   m_Layer: 11
-  m_Name: BackL
+  m_Name: BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,6 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fm: {fileID: 0}
+  nextGO: {fileID: 0}
 --- !u!54 &97120585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1675,7 +1676,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 283558016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: -6}
+  m_LocalPosition: {x: -0.2, y: 1, z: -6}
   m_LocalScale: {x: 0.4, y: 1, z: 0.4}
   m_Children:
   - {fileID: 1220478092}
@@ -1753,6 +1754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: f190276d56ede664faa4d0a6feb8c19b, type: 2}
+  posFL: {x: 0, y: 0, z: 0}
+  posFR: {x: 0, y: 0, z: 0}
+  posBR: {x: 0, y: 0, z: 0}
+  posBL: {x: 0, y: 0, z: 0}
 --- !u!1 &286946259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,7 +2986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &587875280
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3342,13 +3347,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 587875279}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0, z: 10}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.86, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 2, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &587875286
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3963,7 +3968,7 @@ GameObject:
   - component: {fileID: 822099095}
   - component: {fileID: 822099096}
   m_Layer: 11
-  m_Name: FrontR
+  m_Name: FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4006,6 +4011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fm: {fileID: 0}
+  nextName: 
 --- !u!54 &822099094
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4045,6 +4051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fm: {fileID: 0}
+  nextName: 
 --- !u!1 &840855166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4185,7 +4192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4102396258130902, guid: c99bd47327c878241b2682278b7ebbea, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.05
+      value: 11.79
       objectReference: {fileID: 0}
     - target: {fileID: 4102396258130902, guid: c99bd47327c878241b2682278b7ebbea, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4905,7 +4912,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-263792
+  m_Name: pb_Mesh12912
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6238,7 +6245,7 @@ GameObject:
   - component: {fileID: 1220478095}
   - component: {fileID: 1220478096}
   m_Layer: 0
-  m_Name: FrontL
+  m_Name: FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6673,7 +6680,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1347620722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.2, z: -6}
+  m_LocalPosition: {x: -0.2, y: 1.2, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1550324530}
@@ -7898,7 +7905,7 @@ GameObject:
   - component: {fileID: 1610337303}
   - component: {fileID: 1610337304}
   m_Layer: 11
-  m_Name: BackR
+  m_Name: BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10072,7 +10079,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-351302
+  m_Name: pb_Mesh13220
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
