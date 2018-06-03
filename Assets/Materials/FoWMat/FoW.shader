@@ -37,7 +37,7 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) *_Color;
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
-			o.Alpha = 1-c.a;
+			o.Alpha = 1-c.r;
 			//o.Alpha = c.a;
 		}
 		ENDCG

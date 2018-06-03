@@ -269,6 +269,24 @@ public class PlayerAction : MonoBehaviour {
     //test of button white
     public void ButtonNeutral()
     {
+        GameObject targetGO;
+        NPCStats ns;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        if (ns.ps == Personality.typeA)
+        {
+            ns.satisfaction += 5;
+        }
+        else if (ns.ps == Personality.typeC)
+        {
+            ns.satisfaction += 5;
+        }
+        else if (ns.ps == Personality.typeB)
+        {
+            ns.satisfaction += 10;
+        }
+        
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
     }
     //test of button yellow

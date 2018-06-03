@@ -5,7 +5,6 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class NPCStats : CharacterStats {
-    public int currentHealth;
     Animator anim;
     CapsuleCollider capCol;
     public Button chatBtn1;
@@ -31,7 +30,7 @@ public class NPCStats : CharacterStats {
     // Use this for initialization
     void Start() {
         health = 100;
-        currentHealth = health;
+        currentHealth = 100;
         resource = 100;
         rDecreaseRate = 1;
         anim = GetComponent<Animator>();
@@ -238,11 +237,11 @@ public class NPCStats : CharacterStats {
                     ps.opponentList.Add(transform.gameObject);
 
                 }
-                flashColor = new Color(1.0f, 0f, 0f, 0.5f);
+                GameManager.gm.flashColor = new Color(1.0f, 0f, 0f, 0.5f);
             }
         }
-        flashColor = Color.Lerp(flashColor, Color.clear, flashSpeed * Time.deltaTime);
-        img.color = flashColor;
+        GameManager.gm.flashColor = Color.Lerp(GameManager.gm.flashColor, Color.clear, flashSpeed * Time.deltaTime);
+        //GameManager.gm.img.color = flashColor;
 
         
     }

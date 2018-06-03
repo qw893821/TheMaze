@@ -61,7 +61,7 @@
 					o.vertex.x+=0.01f;
 					o.vertex.z-=0.01f;
 					*/
-					v.vertex.x=_Position1.x+1;
+					v.vertex.x=_Position1.x;
 					v.vertex.z=_Position1.z;
 				}
 				if(worldPos.x<_Position4.x&&worldPos.z<_Position4.z){
@@ -98,11 +98,11 @@
 					v.vertex.z+=offSetZ;
 					*/
 					v.vertex.x=_Position3.x;
-					v.vertex.z=-_Position3.z-5;
+					v.vertex.z=-_Position3.z;
 				}
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				//UNITY_TRANSFER_FOG(o,o.vertex);
+				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
 			

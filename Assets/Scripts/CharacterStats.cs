@@ -8,8 +8,8 @@ public enum Relationship
     friend,
     neutral
 }
-public class CharacterStats:MonoBehaviour {
-    protected int health;
+public class CharacterStats : MonoBehaviour {
+    protected float health;
     public bool isDead;
     public int attackPower;
     public float attackRange;
@@ -27,6 +27,10 @@ public class CharacterStats:MonoBehaviour {
     //resource realted date
     public float resource;
     protected float rDecreaseRate;
+    public float currentHealth {
+        get { return health; }
+        set { health = value; }
+    }
     private void Start()
     {
         currentInRangeList = new List<GameObject>();
@@ -119,6 +123,12 @@ public class CharacterStats:MonoBehaviour {
 
     public virtual void ResourceReduce()
     {
-        resource -= rDecreaseRate * Time.deltaTime;
+        if (resource >0) {
+            resource -= rDecreaseRate * Time.deltaTime;
+        }
+        //when there is no resource
+        else { health -= rDecreaseRate * Time.deltaTime; }
     }
+    
+
 }

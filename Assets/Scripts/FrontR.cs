@@ -9,11 +9,13 @@ public class FrontR : MonoBehaviour {
     public string nextName;
     Vector3 point;
     ContactPoint lastContact;
+    List<GameObject> collisionGOs;
 	// Use this for initialization
 	void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
         fm.posFR = transform.position;
         isContacting = false;
+        collisionGOs = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -32,21 +34,27 @@ public class FrontR : MonoBehaviour {
             ContactPoint contact = collision.contacts[0];
             point = contact.point;
             fm.posFR = point;
+            if (!collisionGOs.Contains(collision.gameObject))
+            {
+                collisionGOs.Add(collision.gameObject);
+            }
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
         lastContact = collision.contacts[0];
-        Debug.Log(lastContact);
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.tag == "Wall" && isContacting)
         {
-            isContacting = false;
-            nextName=GameManager.gm.PastToNext(this.transform.gameObject);
-            fm.GetType().GetProperty("pos"+nextName).SetValue(fm,lastContact.point,null);
+            if (collisionGOs.Count == 0)
+            {
+                isContacting = false;
+                nextName = GameManager.gm.PastToNext(this.transform.gameObject);
+                fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
+            }
         }
         
     }

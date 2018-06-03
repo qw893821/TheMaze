@@ -46,6 +46,12 @@ public class GameManager : MonoBehaviour {
     //being target warning ui
     public GameObject warningUI1;
     public GameObject warningUI2;
+    //img being attacked
+    public Image flashImg;
+    public Color flashColor {
+        get { return flashImg.color; }
+        set { flashImg.color=value; }
+    }
     //text ui animation
     public Animator textUIAnim;
     //text ui content
@@ -80,7 +86,7 @@ public class GameManager : MonoBehaviour {
     List<string> cList;
 
     //current player facing direction
-    string facing;
+    public string facing;
 	// Use this for initialization
 	void Start () {
         if (gm == null)
@@ -119,6 +125,7 @@ public class GameManager : MonoBehaviour {
         cameraOffSet = cameraGO.transform.position - player.transform.position;
 
         facing = "Vertical";
+        flashColor = Color.clear;
 	}
 	
 	// Update is called once per frame
@@ -258,7 +265,7 @@ public class GameManager : MonoBehaviour {
     }
 
     //update emoji show on the UI
-    public void UpdateEmoji(int sat,int hp)
+    public void UpdateEmoji(int sat,float hp)
     {
         if (hp >= 50) { 
             if (sat >= 70)

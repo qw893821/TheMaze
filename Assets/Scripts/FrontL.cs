@@ -34,7 +34,7 @@ public class FrontL : MonoBehaviour {
     private void OnCollisionStay(Collision collision)
     {
         lastContact = collision.contacts[0];
-        Debug.Log(lastContact);
+
     }
     /* private void OnCollisionExit(Collision collision)
      {

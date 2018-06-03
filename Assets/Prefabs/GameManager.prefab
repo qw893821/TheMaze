@@ -77,6 +77,7 @@ MonoBehaviour:
   chatUI: {fileID: 0}
   warningUI1: {fileID: 0}
   warningUI2: {fileID: 0}
+  img: {fileID: 0}
   textUIAnim: {fileID: 0}
   text: {fileID: 0}
   textContent: 
@@ -112,3 +113,4 @@ MonoBehaviour:
   - {fileID: 1369271484024982, guid: 905c01908de6298478bf702fac457bad, type: 2}
   - {fileID: 1267229010542834, guid: 136db136f0af5814b88e2613a365076f, type: 2}
   - {fileID: 1576584706253444, guid: 4d9e3147a93a7bc4ca3931421cb2fe01, type: 2}
+  facing: 

@@ -46,15 +46,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if(GameManager.gm.gs!=GameStats.attack )
         { GameManager.gm.gs = GameStats.other; }
-        /*if (GameManager.gm.gs == GameStats.turn)
-        {
-            transform.Rotate(0,90,0);
-            //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, target, 0.1f, 0.0f));
-        }*/
         if(GameManager.gm.gs == GameStats.walking)
         {
             transform.position += transform.forward * Time.deltaTime;
         }
+        if (transform.rotation.y == 0 || transform.rotation.y == -180)
+        {
+            GameManager.gm.facing = "Vertical";
+        }
+        else { GameManager.gm.facing = "Horizontal"; }
     }
 
     /*void RotatePlayer()
