@@ -28,7 +28,6 @@ public class PlayerStats: CharacterStats{
             ChangeRange();
         }
         ResourceReduce();
-        Debug.Log(currentHealth);
 	}
 
     void ChangeRange()

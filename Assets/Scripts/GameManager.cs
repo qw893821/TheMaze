@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
     //game chat ui
     public GameObject chatUI;
     GameObject waitBTNGO;
+    //trade ui
+    public GameObject tradeUI;
     //being target warning ui
     public GameObject warningUI1;
     public GameObject warningUI2;
@@ -62,12 +64,9 @@ public class GameManager : MonoBehaviour {
     //cursor texture
     public Texture2D cursorBattle;
     public Texture2D cursorChat;
-
     public Texture2D cursorFarm1;
     public Texture2D cursorFarm2;
-
     Mode currentMode;
-
     //NPCs currently target player
     public List<GameObject> cTargetList;
     //NPC Target Position list 
@@ -84,7 +83,6 @@ public class GameManager : MonoBehaviour {
     //some button to test
     public List<GameObject> btns;
     List<string> cList;
-
     //current player facing direction
     public string facing;
 	// Use this for initialization
@@ -117,6 +115,7 @@ public class GameManager : MonoBehaviour {
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
+        tradeUI.SetActive(false);
         textUIAnim = GameObject.Find("InforBox").GetComponent<Animator>();
         cList = new List<string>();
         //eList = new EmojiManager();
@@ -323,11 +322,11 @@ public class GameManager : MonoBehaviour {
         NPCStats ns;
         ns = currentTargetGO.GetComponent<NPCStats>();
         cList = ns.list;
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < cList.Count; i++)
         {
             GameObject go;
             go = GameObject.Find(cList[i]);
-            go.transform.parent = GameObject.Find("ButtonSlot"+(i).ToString()).transform;
+            go.transform.parent = GameObject.Find("ButtonSlot"+(i+1).ToString()).transform;
             go.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
         waitBTNGO.SetActive(false);
@@ -352,18 +351,7 @@ public class GameManager : MonoBehaviour {
         currentGO.transform.parent = waitBTNGO.transform;
         //should change the recttransform position to make it work properly
         currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        
-        //currentGO.SetActive(false);
-        /*List<GameObject> gos = new List<GameObject>();
-        //three btn in the waiting list
-        for (int i = 0; i < 3; i++)
-        {
-            gos.Add(GameObject.Find("WaitingButtons").transform.GetChild(i).gameObject);
-        }
-        */
-        
         GameObject newBtn;
-        //newBtn = gos[Random.Range(0, 2)].transform.gameObject;
         newBtn = GameObject.Find(ns.Shuffle(num, currentGO));
         newBtn.SetActive(true);
         //disable the waiting button ui

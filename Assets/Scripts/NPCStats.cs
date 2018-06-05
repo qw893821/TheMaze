@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class NPCStats : CharacterStats {
     Animator anim;
     CapsuleCollider capCol;
-    public Button chatBtn1;
+    /*public Button chatBtn1;
     public Button chatBtn2;
     public Button chatBtn3;
+    */
     //character following timer
     float timer;
     float ignoreTime;
@@ -54,7 +55,7 @@ public class NPCStats : CharacterStats {
         flashColor = new Color(1.0f,0f,0f,0.0f);
         flashSpeed = 10f;
         img = GameObject.Find("ScreenFlash").GetComponent<Image>();
-        selectionList = new List<string>() { "Aggressive", "Friendness","Neutral","Trade","Test1","Test2" };
+        selectionList = new List<string>() { "Aggressive", "Friendness","Neutral","Test1","Test2" };
         wSelectionList = new List<string>();
         cSelectionList = new List<string>();
         InstSelectionList();
@@ -307,7 +308,7 @@ public class NPCStats : CharacterStats {
     void InstSelectionList()
     {
         //pick three element from array
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 2; i++)
         {
             int num;
             num = Random.Range(0, selectionList.Count);
@@ -315,7 +316,6 @@ public class NPCStats : CharacterStats {
             selectionList.RemoveAt(num);
         }
         wSelectionList = selectionList;
-        Debug.Log(cSelectionList[2]);
     }
 
     public string Shuffle(int i,GameObject go)

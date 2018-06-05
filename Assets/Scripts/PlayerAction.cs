@@ -292,6 +292,7 @@ public class PlayerAction : MonoBehaviour {
     //test of button yellow
     public void ButtonTrade()
     {
+        /*
         NPCStats ns;
         GameObject targetGO;
         targetGO = GameManager.gm.currentTargetGO;
@@ -325,7 +326,8 @@ public class PlayerAction : MonoBehaviour {
             
         }
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
-        
+        */
+        GameManager.gm.tradeUI.SetActive(true);
     }
     //Mode Button image change
     void UISwitch()
