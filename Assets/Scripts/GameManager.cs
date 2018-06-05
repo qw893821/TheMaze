@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour {
     GameObject waitBTNGO;
     //trade ui
     public GameObject tradeUI;
+    private Slider _tradeSlider;
+    public float sliderValue { get { return _tradeSlider.maxValue; }
+    set { _tradeSlider.maxValue = value; }
+    }
     //being target warning ui
     public GameObject warningUI1;
     public GameObject warningUI2;
@@ -115,6 +119,8 @@ public class GameManager : MonoBehaviour {
         currentMode = pa.playerMode;
         warningUI1.SetActive(false);
         warningUI2.SetActive(false);
+        //get reference of slider before disable the tradeUI
+        _tradeSlider = tradeUI.GetComponentInChildren<Slider>();
         tradeUI.SetActive(false);
         textUIAnim = GameObject.Find("InforBox").GetComponent<Animator>();
         cList = new List<string>();

@@ -328,6 +328,7 @@ public class PlayerAction : MonoBehaviour {
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         */
         GameManager.gm.tradeUI.SetActive(true);
+        GameManager.gm.sliderValue = ps.resource;
     }
     //Mode Button image change
     void UISwitch()
