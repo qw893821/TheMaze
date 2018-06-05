@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour {
     //call this in PlayerAction to make sure it was use after the Action()
     public void ChatUIUpdate()
     {
-        if (currentTargetGO)
+        if (currentTargetGO&&currentTargetGO.tag=="Character")
         {
             //anlge of player and target
             float playerToTarget;

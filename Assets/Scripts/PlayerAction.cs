@@ -20,12 +20,14 @@ public class PlayerAction : MonoBehaviour {
     //public List<GameObject> Enemylist;
     public Mode playerMode;
     public Camera camera;
+    public float farmSpeed;
 	// Use this for initialization
 	void Start () {
         timer = 0;
         inRange = false;
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
+        farmSpeed = 10f;
     }
 	
 	// Update is called once per frame
@@ -71,7 +73,7 @@ public class PlayerAction : MonoBehaviour {
     //show chat ui, not consume time
     public void Chat()
     {
-        if (playerMode == Mode.chat && GameManager.gm.currentTargetGO)
+        if (playerMode == Mode.chat && GameManager.gm.currentTargetGO&& GameManager.gm.currentTargetGO.tag=="Character")
         {
             
             Vector3 targetPos;
@@ -104,6 +106,7 @@ public class PlayerAction : MonoBehaviour {
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit,5f,layerMask))
         {
+            
             if (hit.collider.tag == "Character")
             {
                 GameObject hitTarget;
@@ -112,6 +115,11 @@ public class PlayerAction : MonoBehaviour {
                 {
                     targetGO = hitTarget;
                 }
+            }
+            else if (hit.collider.tag == "Resource")
+            {
+                Debug.Log("reach");
+                targetGO = hit.transform.gameObject;
             }
         }
         return targetGO;
@@ -133,7 +141,7 @@ public class PlayerAction : MonoBehaviour {
             timer = timer + Time.deltaTime;
             if (timer >= ps.attackSpeed)
             {
-                if (GameManager.gm.currentTargetGO)
+                if (GameManager.gm.currentTargetGO.tag=="NPC")
                 {
                     GameObject currentGO;
                     NPCStats currentNPCs;
@@ -160,10 +168,14 @@ public class PlayerAction : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer>=1f)
             {
-                Debug.Log("farm");
-                //do farming
-                timer = 0;
-                GameManager.gm.gs = GameStats.other;
+                if (GameManager.gm.currentTargetGO.tag == "Resource")
+                {
+                    ps.resource +=farmSpeed;
+                    //do farming
+                    timer = 0;
+                    GameManager.gm.gs = GameStats.other;
+                }
+                else { Debug.Log("fail farm"); }
             }
         }
     }
@@ -300,25 +312,7 @@ public class PlayerAction : MonoBehaviour {
             ns = go.GetComponent<NPCStats>();
             if (ns.rs == Relationship.neutral || ns.rs == Relationship.friend)
             {
-                /*Vector3 dir;
-                float angle;
-                dir = go.transform.position - transform.position;
-                angle = Vector3.Angle(transform.forward, dir);
-                if (angle >= 135)
-                {
-                    transform.Rotate(0f,180f,0f);
-                }
-                else if (angle > 45 && angle < 135)
-                {
-                    float newAngle;
-                    newAngle = Vector3.Angle(transform.right, dir);
-                    if (newAngle >= 135)
-                    {
-                        transform.Rotate(0, -90f, 0);
-                    }
-                    else { transform.Rotate(0, 90f, 0); }
-                }
-                */
+                
                 CheckDir(go);
             }
         }

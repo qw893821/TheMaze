@@ -5326,6 +5326,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 589d843e22d1f354ebd3fc221cacdda3, type: 2}
+    - target: {fileID: 100000, guid: 354c1e23c5048824ea012d5cc93d31ed, type: 3}
+      propertyPath: m_TagString
+      value: Resource
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 354c1e23c5048824ea012d5cc93d31ed, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 354c1e23c5048824ea012d5cc93d31ed, type: 3}
@@ -7507,9 +7511,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1593062980}
+  - component: {fileID: 1593062981}
   m_Layer: 13
   m_Name: GOLD
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7529,6 +7534,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!135 &1593062981
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593062979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1610337299
 GameObject:
   m_ObjectHideFlags: 0
