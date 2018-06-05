@@ -13,29 +13,23 @@ public enum Mode
 public class PlayerAction : MonoBehaviour {
     
     bool inRange;
-    PlayerStats ps;
+    public PlayerStats ps;
     public float timer;
     public GameObject inRangeEnemy;
     RaycastHit hit;
     //public List<GameObject> Enemylist;
     public Mode playerMode;
     public Camera camera;
-
 	// Use this for initialization
 	void Start () {
         timer = 0;
         inRange = false;
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
-
-	}
+    }
 	
 	// Update is called once per frame
-	void Update () { 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            ChangeMode();
-        }
+	void Update () {
     }
     
     private void LateUpdate()
@@ -65,7 +59,7 @@ public class PlayerAction : MonoBehaviour {
         }
     }
     //consume time
-    void attack()
+    void Attack()
     {
         if (playerMode == Mode.attack && !GameManager.gm.overUI /*&& inRange*/)
         {
@@ -91,7 +85,7 @@ public class PlayerAction : MonoBehaviour {
     //consume time
     public void Farm()
     {
-        if (playerMode == Mode.farm /*&& GameManager.gm.currentTargetGO*/)
+        if (playerMode == Mode.farm && !GameManager.gm.overUI/*&& GameManager.gm.currentTargetGO*/)
         {
             GameManager.gm.gs = GameStats.farming;
         }
@@ -112,15 +106,12 @@ public class PlayerAction : MonoBehaviour {
         {
             if (hit.collider.tag == "Character")
             {
-                //if (playerMode == Mode.chat && inRangeEnemy)
-                //{
                 GameObject hitTarget;
                 hitTarget = hit.transform.gameObject;
                 if (GameManager.gm.currentList.Contains(hitTarget))
                 {
                     targetGO = hitTarget;
                 }
-                //}
             }
         }
         return targetGO;
@@ -133,18 +124,15 @@ public class PlayerAction : MonoBehaviour {
         if (Input.GetButtonDown("Fire1")&&!GameManager.gm.overUI)
         {
             GameManager.gm.currentTargetGO = TargetPicker();
-            attack();
+            Attack();
             Chat();
             Farm();
         }
         if (GameManager.gm.gs == GameStats.attack&& GameManager.gm.gs != GameStats.farming)
         {
             timer = timer + Time.deltaTime;
-                if (timer >= ps.attackSpeed)
-                {
-                //if (inRange && inRangeEnemy)
-                //{
-                
+            if (timer >= ps.attackSpeed)
+            {
                 if (GameManager.gm.currentTargetGO)
                 {
                     GameObject currentGO;
@@ -159,19 +147,18 @@ public class PlayerAction : MonoBehaviour {
                         {
                             currentNPCs.opponentList.Add(transform.gameObject);
                         }
-                    }
-                    //inRangeEnemy.GetComponent<NPCStats>().currentHealth -= ps.attackPower;
-                    //}
+                    }                
                 }
-                    timer = 0;
-                    GameManager.gm.gs = GameStats.other;
-                }
+                timer = 0;
+                GameManager.gm.gs = GameStats.other;
+            }
         }
-        else if (GameManager.gm.gs == GameStats.farming&& GameManager.gm.gs != GameStats.attack )
+        //some place change the gs to other. so this is not working
+        //problem is at the PlayerMovement script
+        if (GameManager.gm.gs == GameStats.farming/*&& GameManager.gm.gs != GameStats.attack*/ )
         {
-            timer =timer+ Time.deltaTime;
-            
-            if (timer>=0.5f)
+            timer += Time.deltaTime;
+            if (timer>=1f)
             {
                 Debug.Log("farm");
                 //do farming
@@ -201,18 +188,12 @@ public class PlayerAction : MonoBehaviour {
     //switch mode using button
     public void ModeAtk()
     {
-        //if (playerMode == Mode.chat)
-        //{
             playerMode = Mode.attack;
-        //}
     }
     //switch mode using button
     public void ModeChat()
     {
-        //if (playerMode == Mode.attack)
-        //{
             playerMode = Mode.chat;
-        //}
     }
     //switch mode to farm
     public void ModeFarm()
@@ -240,7 +221,7 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction += 10;
         }
-        GameManager.gm.gs=GameStats.other;
+        //GameManager.gm.gs=GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
     }
@@ -260,7 +241,7 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction -= 10;
         }
-        GameManager.gm.gs = GameStats.other;
+       // GameManager.gm.gs = GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         //next lines are for test use
         GameManager.gm.BtnShuffle();
@@ -292,41 +273,6 @@ public class PlayerAction : MonoBehaviour {
     //test of button yellow
     public void ButtonTrade()
     {
-        /*
-        NPCStats ns;
-        GameObject targetGO;
-        targetGO = GameManager.gm.currentTargetGO;
-        ns = targetGO.GetComponent<NPCStats>();
-        if (ns.satisfaction > 50)
-        {
-            //test use
-            //actual code should show trade uis
-            GameManager.gm.BtnShuffle();
-        }
-        else
-        {
-            switch (ns.ps){
-                case Personality.typeC:
-                    if (!ns.ignoredList.Contains(transform.gameObject))
-                    {
-                        ns.ignoredList.Add(transform.gameObject);
-                    }
-                    if (ns.targetGO == transform.gameObject)
-                    {
-                        ns.targetGO = null;
-                    }
-                    break;
-                case Personality.typeA:
-                    ns.satisfaction -= 10;
-                    break;
-                case Personality.typeB:
-                    //show trade ui
-                    break;
-            }
-            
-        }
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
-        */
         GameManager.gm.tradeUI.SetActive(true);
         GameManager.gm.sliderValue = ps.resource;
     }
@@ -413,5 +359,18 @@ public class PlayerAction : MonoBehaviour {
             }
             else { transform.Rotate(0, 90f, 0); }
         }
+    }
+
+    public void TradeResource()
+    {
+        ps.resource -= GameManager.gm.sliderValue;
+        GameManager.gm.Trade();
+        GameManager.gm.tradeUI.SetActive(false);
+        
+    }
+
+    public void RejectTrade()
+    {
+        GameManager.gm.tradeUI.SetActive(false);
     }
 }

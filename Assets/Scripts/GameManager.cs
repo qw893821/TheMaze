@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
     //trade ui
     public GameObject tradeUI;
     private Slider _tradeSlider;
-    public float sliderValue { get { return _tradeSlider.maxValue; }
+    public float sliderValue { get { return _tradeSlider.value; }
     set { _tradeSlider.maxValue = value; }
     }
     //being target warning ui
@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour {
         Warning();
         TextTest();
         MapCameraFollow();
+        
     }
     
 
@@ -182,6 +183,11 @@ public class GameManager : MonoBehaviour {
                 }
                 else { chatUI.SetActive(false); }
             }
+        }
+        else if (!currentTargetGO)
+        {
+            tradeUI.SetActive(false);
+            chatUI.SetActive(false);
         }
     }
     //change current curose type based on player action mode
@@ -407,5 +413,13 @@ public class GameManager : MonoBehaviour {
                 break;
         }
         return name;
+    }
+
+    public void Trade()
+    {
+        NPCStats ns;
+        ns = currentTargetGO.GetComponent<NPCStats>();
+        ns.resource += _tradeSlider.value;
+        ns.satisfaction += (int)_tradeSlider.value;
     }
 }

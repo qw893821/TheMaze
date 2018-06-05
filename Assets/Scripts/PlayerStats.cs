@@ -23,10 +23,6 @@ public class PlayerStats: CharacterStats{
 	
 	// Update is called once per frame
 	void Update () {
-        if (change)
-        {
-            ChangeRange();
-        }
         ResourceReduce();
 	}
 
