@@ -168,14 +168,15 @@ public class PlayerAction : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer>=1f)
             {
-                if (GameManager.gm.currentTargetGO.tag == "Resource")
+                if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag == "Resource")
                 {
                     ps.resource +=farmSpeed;
                     //do farming
-                    timer = 0;
-                    GameManager.gm.gs = GameStats.other;
+                    
                 }
                 else { Debug.Log("fail farm"); }
+                timer = 0;
+                GameManager.gm.gs = GameStats.other;
             }
         }
     }
