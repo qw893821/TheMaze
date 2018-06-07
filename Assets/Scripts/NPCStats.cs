@@ -72,7 +72,6 @@ public class NPCStats : CharacterStats {
         ChangeRelation();
         ChangeTarget();
         ResourceReduce();
-        Debug.Log(currentHealth);
         //LineUpdate();
     }
     private void LateUpdate()

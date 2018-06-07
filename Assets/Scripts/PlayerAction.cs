@@ -21,6 +21,8 @@ public class PlayerAction : MonoBehaviour {
     public Mode playerMode;
     public Camera camera;
     public float farmSpeed;
+
+    float healTime;
 	// Use this for initialization
 	void Start () {
         timer = 0;
@@ -28,6 +30,7 @@ public class PlayerAction : MonoBehaviour {
         ps = transform.GetComponent<PlayerStats>();
         playerMode = Mode.chat;
         farmSpeed = 10f;
+        healTime = 1f;
     }
 	
 	// Update is called once per frame
@@ -176,7 +179,7 @@ public class PlayerAction : MonoBehaviour {
                     CryStal cs;
                     cs = GameManager.gm.currentTargetGO.GetComponentInChildren<CryStal>();
                     
-                    if (cs.rValue >= 0)
+                    if (cs.rValue >= 0&&!cs.ruin)
                     {
                         cs.Farming();
                         ps.resource += farmSpeed;
@@ -185,6 +188,21 @@ public class PlayerAction : MonoBehaviour {
                     else { Debug.Log("fail farm"); }
                 }
                 else { Debug.Log("fail farm"); }
+                timer = 0;
+                GameManager.gm.gs = GameStats.other;
+            }
+        }
+        if (GameManager.gm.gs == GameStats.healing/*&& GameManager.gm.gs != GameStats.attack*/ )
+        {
+            timer += Time.deltaTime;
+            if (timer >= healTime)
+            {
+
+                ps.currentHealth += 10f;
+                if (ps.currentHealth >= 100f)
+                {
+                    ps.currentHealth = 100;
+                }
                 timer = 0;
                 GameManager.gm.gs = GameStats.other;
             }
@@ -377,5 +395,13 @@ public class PlayerAction : MonoBehaviour {
     public void RejectTrade()
     {
         GameManager.gm.tradeUI.SetActive(false);
+    }
+
+    public void Rest()
+    {
+        if (GameManager.gm.gs != GameStats.healing)
+        {
+            GameManager.gm.gs = GameStats.healing;
+        }
     }
 }

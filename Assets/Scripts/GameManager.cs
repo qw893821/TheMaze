@@ -9,6 +9,7 @@ public enum GameStats
     attack,
     turn,
     farming,
+    healing,
     other
 }
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> currentList;
     public GameObject player;
     PlayerAction pa;
+    PlayerStats ps;
     //action ui
     GameObject attackBtn;
     public Image attackBtnImg;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour {
     public Sprite chatOn;
     public Sprite chatOff;
     GameObject farmBtn;
+    GameObject healingBtn;
     //game chat ui
     public GameObject chatUI;
     GameObject waitBTNGO;
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour {
         overUI = false ;
         player = GameObject.FindGameObjectWithTag("Player");
         pa = player.GetComponent<PlayerAction>();
+        ps = player.GetComponent<PlayerStats>();
         currentList = new List<GameObject>();
         cTargetList = new List<GameObject>();
         attackBtn = GameObject.Find("Attack");
@@ -110,7 +114,8 @@ public class GameManager : MonoBehaviour {
         chatBtn = GameObject.Find("Chat");
         chatBtnImg = chatBtn.GetComponent<Image>();
         farmBtn = GameObject.Find("Farm");
-        farmBtn.GetComponent<Button>().interactable = false; 
+        farmBtn.GetComponent<Button>().interactable = false;
+        healingBtn = GameObject.Find("Rest");
         emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
         
         waitBTNGO = GameObject.Find("WaitingButtons");
@@ -137,6 +142,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         TimeController();
         ChatUIUpdate();
+        HealingBtn();
         ChangeCursor();
         Warning();
         TextTest();
@@ -158,6 +164,9 @@ public class GameManager : MonoBehaviour {
                 Time.timeScale = 1;
                 break;
             case GameStats.farming:
+                Time.timeScale = 1f;
+                break;
+            case GameStats.healing:
                 Time.timeScale = 1f;
                 break;
             default:
@@ -385,6 +394,18 @@ public class GameManager : MonoBehaviour {
     public void DisableFarm()
     {
         farmBtn.GetComponent<Button>().interactable = false;
+    }
+
+    void HealingBtn()
+    {
+        if (ps.resource <= 5f)
+        {
+            healingBtn.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            healingBtn.GetComponent<Button>().interactable = true;
+        }
     }
 
     public string PastToNext(GameObject go)

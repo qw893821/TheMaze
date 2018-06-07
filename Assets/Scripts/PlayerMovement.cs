@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-        else if(GameManager.gm.gs!=GameStats.attack &&GameManager.gm.gs!=GameStats.farming)
+        else if(GameManager.gm.gs!=GameStats.attack &&GameManager.gm.gs!=GameStats.farming&&GameManager.gm.gs!=GameStats.healing)
         { GameManager.gm.gs = GameStats.other; }
         if(GameManager.gm.gs == GameStats.walking)
         {

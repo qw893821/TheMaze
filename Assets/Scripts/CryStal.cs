@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CryStal : MonoBehaviour {
     public float rValue;
-    bool ruin;
+    public bool ruin;
     float regenTimer;
     float regenTime;
     Renderer[] renderers;
@@ -14,7 +14,7 @@ public class CryStal : MonoBehaviour {
     {
         rValue = 50f;
         ruin = false;
-        regenTime = 5f;
+        regenTime = 20f;
         regenTimer = 0f;
         renderers = transform.GetComponentsInChildren<Renderer>();
     }
@@ -62,7 +62,7 @@ public class CryStal : MonoBehaviour {
             {
                 rValue = 50f;
                 regenTimer = 0f;
-                ruin = true;
+                ruin = false;
                 Debug.Log("back");
                 foreach (Renderer rd in renderers)
                 {
