@@ -130,5 +130,8 @@ public class CharacterStats : MonoBehaviour {
         else { health -= rDecreaseRate * Time.deltaTime; }
     }
     
-
+    public virtual void Damaged(int v)
+    {
+        currentHealth -= v;
+    }
 }

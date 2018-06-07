@@ -30,7 +30,6 @@ public class NPCStats : CharacterStats {
     public List<string> list { get { return cSelectionList; } }
     // Use this for initialization
     void Start() {
-        health = 100;
         currentHealth = 100;
         resource = 100;
         rDecreaseRate = 1;
@@ -73,6 +72,7 @@ public class NPCStats : CharacterStats {
         ChangeRelation();
         ChangeTarget();
         ResourceReduce();
+        Debug.Log(currentHealth);
         //LineUpdate();
     }
     private void LateUpdate()
@@ -159,7 +159,7 @@ public class NPCStats : CharacterStats {
         //will fail to match because playre do not have ps properity
         else if (IgnoreTimer() >= ignoreTime && (targetGO.tag == "Character" || targetGO.tag == "Player") && !opponentList.Contains(targetGO))
         {
-            if (NPCMatch())
+            /*if (NPCMatch())
             {
                 timer = 0;
                 targetGO = null;
@@ -173,7 +173,7 @@ public class NPCStats : CharacterStats {
                 targetGO = null;
                 //prevTargetGO = null;
                 timer = 0;
-            }
+            }*/
         }
     }
 
@@ -201,7 +201,7 @@ public class NPCStats : CharacterStats {
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpeed)
             {
-                ns.currentHealth -= attackPower;
+                ns.Damaged(attackPower);
                 attackTimer = 0;
 
                 //add this gameobject to the target's list
@@ -226,7 +226,7 @@ public class NPCStats : CharacterStats {
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpeed)
             {
-                ps.currentHealth -= attackPower;
+                ps.Damaged(attackPower);
                 attackTimer = 0;
                 //there is no need for manipulate player opponentList. but do this for further use.
                 if (!ps.opponentList.Contains(transform.gameObject))
@@ -290,6 +290,7 @@ public class NPCStats : CharacterStats {
     //get a value based on character's personality, when the same personality, character are easy to match when close
     int Value(GameObject go)
     {
+        
             Personality targetPS;
             targetPS = go.GetComponent<NPCStats>().ps;
             if (ps == targetPS)
@@ -323,10 +324,14 @@ public class NPCStats : CharacterStats {
         Debug.Log(i);
         int num;
         num = Random.Range(0, wSelectionList.Count - 1);
-        cSelectionList[i] = wSelectionList[num];
+        cSelectionList[i-1] = wSelectionList[num];
         wSelectionList.RemoveAt(num);
         wSelectionList.Add(go.name);
-        return cSelectionList[i];
+        return cSelectionList[i-1];
     }
 
+    public override void Damaged(int v)
+    {
+        base.Damaged(v);
+    }
 }

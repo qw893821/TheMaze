@@ -49,4 +49,8 @@ public class PlayerStats: CharacterStats{
         GameManager.gm.flashColor = Color.Lerp(GameManager.gm.flashColor, Color.clear, flashspeed * Time.deltaTime);
     }
 
+    public override void Damaged(int v)
+    {
+        base.Damaged(v);
+    }
 }

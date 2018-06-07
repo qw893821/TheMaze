@@ -32,6 +32,7 @@ public class PlayerAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
     }
     
     private void LateUpdate()
@@ -100,13 +101,13 @@ public class PlayerAction : MonoBehaviour {
     {
         GameObject targetGO;
         RaycastHit hit;
-        int layerMask = (1 << 9)|(1<<12);
+        int layerMask = (1 << 9)|(1<<12)|(1<<11)|(1<<14);
         layerMask = ~layerMask;
         targetGO = null;
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit,5f,layerMask))
         {
-            
+            Debug.Log("fire");
             if (hit.collider.tag == "Character")
             {
                 GameObject hitTarget;
@@ -141,7 +142,8 @@ public class PlayerAction : MonoBehaviour {
             timer = timer + Time.deltaTime;
             if (timer >= ps.attackSpeed)
             {
-                if (GameManager.gm.currentTargetGO.tag=="NPC")
+                Debug.Log(GameManager.gm.currentTargetGO);
+                if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag=="Character")
                 {
                     GameObject currentGO;
                     NPCStats currentNPCs;
@@ -149,13 +151,14 @@ public class PlayerAction : MonoBehaviour {
                     currentNPCs = currentGO.GetComponent<NPCStats>();
                     if (currentNPCs.rs != Relationship.friend)
                     {
-                        currentNPCs.currentHealth -= ps.attackPower;
+                        currentNPCs.Damaged(ps.attackPower);
                         currentNPCs.rs = Relationship.opponent;
                         if (!currentNPCs.opponentList.Contains(transform.gameObject))
                         {
                             currentNPCs.opponentList.Add(transform.gameObject);
                         }
-                    }                
+                    }
+                    
                 }
                 timer = 0;
                 GameManager.gm.gs = GameStats.other;
@@ -170,9 +173,16 @@ public class PlayerAction : MonoBehaviour {
             {
                 if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag == "Resource")
                 {
-                    ps.resource +=farmSpeed;
-                    //do farming
+                    CryStal cs;
+                    cs = GameManager.gm.currentTargetGO.GetComponentInChildren<CryStal>();
                     
+                    if (cs.rValue >= 0)
+                    {
+                        cs.Farming();
+                        ps.resource += farmSpeed;
+                        //do farming
+                    }
+                    else { Debug.Log("fail farm"); }
                 }
                 else { Debug.Log("fail farm"); }
                 timer = 0;

@@ -427,6 +427,7 @@ MonoBehaviour:
   inRangeEnemy: {fileID: 0}
   playerMode: 0
   camera: {fileID: 20668366793108162}
+  farmSpeed: 0
 --- !u!124 &124397710093769822
 Behaviour:
   m_ObjectHideFlags: 1
