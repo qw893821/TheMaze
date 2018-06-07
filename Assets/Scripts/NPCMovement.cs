@@ -12,6 +12,10 @@ public class NPCMovement : MonoBehaviour {
     bool targeted;
     GameObject targetGO;
     public GameObject targetingGO;
+    //fixed position for npc to move;
+    //type a&c will have two different pos for walk;
+    //type b will have the same spot;
+    public GameObject pos1, pos2;
 
 	// Use this for initialization
 	void Start () {
