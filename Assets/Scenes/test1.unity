@@ -2119,6 +2119,8 @@ Transform:
   - {fileID: 5284708}
   - {fileID: 587875285}
   - {fileID: 1947425064}
+  - {fileID: 2128922464}
+  - {fileID: 1595009391}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3322,7 +3324,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100614194459640, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4100614194459640, guid: 6df63064829209249af4e55a5b2b11a9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3677,7 +3679,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13934
+  m_Name: pb_Mesh13882
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -4135,16 +4137,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114320958961777388, guid: c99bd47327c878241b2682278b7ebbea,
         type: 2}
-      propertyPath: canvGO
+      propertyPath: poss.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2128922463}
+    - target: {fileID: 114320958961777388, guid: c99bd47327c878241b2682278b7ebbea,
+        type: 2}
+      propertyPath: poss.Array.data[1]
+      value: 
+      objectReference: {fileID: 1595009390}
     - target: {fileID: 1213458883942198, guid: c99bd47327c878241b2682278b7ebbea, type: 2}
       propertyPath: m_Name
       value: Jennifer (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213458883942198, guid: c99bd47327c878241b2682278b7ebbea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c99bd47327c878241b2682278b7ebbea, type: 2}
@@ -4257,7 +4260,7 @@ MonoBehaviour:
   satisfaction: 0
   rs: 2
   targetGO: {fileID: 213111565}
-  leader: {fileID: 0}
+  poss: []
   opponentList: []
   friendList: []
   ignoredList: []
@@ -6948,7 +6951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1430075989
 Transform:
   m_ObjectHideFlags: 0
@@ -7344,6 +7347,34 @@ Transform:
   - {fileID: 927543067}
   m_Father: {fileID: 1420648254}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1595009390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1595009391}
+  m_Layer: 8
+  m_Name: Pos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595009391
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1595009390}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 454494823}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1610337299
 GameObject:
@@ -8759,7 +8790,7 @@ MonoBehaviour:
   satisfaction: 0
   rs: 2
   targetGO: {fileID: 0}
-  leader: {fileID: 0}
+  poss: []
   opponentList: []
   friendList: []
   ignoredList: []
@@ -10056,12 +10087,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2128922463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2128922464}
+  m_Layer: 8
+  m_Name: Pos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128922464
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128922463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 454494823}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2133546525
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13226
+  m_Name: pb_Mesh13218
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

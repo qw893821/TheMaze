@@ -18,7 +18,9 @@ public class CharacterStats : MonoBehaviour {
     public int satisfaction;
     public Relationship rs;
     public GameObject targetGO;
-    public GameObject leader;
+    //two position for npc to nave;
+    public GameObject[] poss;
+    //public GameObject leader;
     protected GameObject prevTargetGO;
     public List<GameObject> opponentList;
     public List<GameObject> friendList;
@@ -50,22 +52,19 @@ public class CharacterStats : MonoBehaviour {
         {
             if (!targetGO)
             {
-                targetGO = GameManager.gm.targetList[Random.Range(0, GameManager.gm.targetList.Count)];
+                LoadPointPicker();
             }
             else {
                     return;
             }
-            //return;
         }
         //when there are element in current list
         else if (currentInRangeList.Count != 0)
         {
             
             //when ignoredlist has element
-            //if (ignoredList.Count != 0)
-            //{
-                //go thought currentInRangeList and find one as target
-                for(int i=0; i < ignoredList.Count; i++)
+            //go thought currentInRangeList and find one as target
+            for(int i=0; i < ignoredList.Count; i++)
                 {
                     if (currentInRangeList.Contains(ignoredList[i]))
                     {
@@ -74,7 +73,7 @@ public class CharacterStats : MonoBehaviour {
                     }
                     else { continue; }
                 }
-                for(int i = 0; i < currentInRangeList.Count; i++)
+            for(int i = 0; i < currentInRangeList.Count; i++)
             {
                 if (opponentList.Contains(currentInRangeList[i]))
                 {
@@ -83,19 +82,25 @@ public class CharacterStats : MonoBehaviour {
                 }
             }
             //when every ignoredList is not in the currentInRangeList,find a random one as target
-            //prevTargetGO = targetGO;
             if (currentInRangeList.Count != 0)//weird err
             {
                 targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)];
             }
-            
-           // }
-            //else { targetGO = currentInRangeList[Random.Range(0, currentInRangeList.Count)]; }
-            
         }
     }
 
-   
+    public GameObject LoadPointPicker()
+    {
+        float distance1, distance2;
+        distance1 = Vector3.Distance(transform.position, poss[0].transform.position);
+        distance2 = Vector3.Distance(transform.position, poss[1].transform.position);
+        if (distance1 < distance2)
+        {
+            targetGO = poss[1];
+        }
+        else { targetGO = poss[0]; }
+        return targetGO;
+    }
 
     public virtual void FoV(GameObject go)
     {

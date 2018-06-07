@@ -1433,7 +1433,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1213458883942198}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -2.1, y: 1.2, z: -5.05}
+  m_LocalPosition: {x: -2.1, y: 1.2, z: -3.2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4045308619089836}
@@ -2710,18 +2710,14 @@ MonoBehaviour:
   satisfaction: 50
   rs: 2
   targetGO: {fileID: 0}
-  leader: {fileID: 0}
+  poss:
+  - {fileID: 0}
+  - {fileID: 0}
   opponentList: []
   friendList: []
   ignoredList: []
   currentInRangeList: []
   resource: 0
-  currentHealth: 0
-  chatBtn1: {fileID: 0}
-  chatBtn2: {fileID: 0}
-  chatBtn3: {fileID: 0}
-  canvGO: {fileID: 0}
-  canv: {fileID: 0}
   ps: 0
   img: {fileID: 0}
   wSelectionList: []

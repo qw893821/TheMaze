@@ -50,7 +50,7 @@ public class NPCStats : CharacterStats {
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f;
-        leader = null;
+        //leader = null;
         flashColor = new Color(1.0f,0f,0f,0.0f);
         flashSpeed = 10f;
         img = GameObject.Find("ScreenFlash").GetComponent<Image>();

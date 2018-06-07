@@ -15,7 +15,7 @@ public class NPCMovement : MonoBehaviour {
     //fixed position for npc to move;
     //type a&c will have two different pos for walk;
     //type b will have the same spot;
-    public GameObject pos1, pos2;
+    //public GameObject pos1, pos2;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +40,11 @@ public class NPCMovement : MonoBehaviour {
     {
         UpdateMesh();
         ChangeAnim();
+        //when npc reach target. pick another load point;
+        if (ReachTarget())
+        {
+            ns.LoadPointPicker();
+        }
     }
 
     void Movement()
@@ -157,5 +162,14 @@ public class NPCMovement : MonoBehaviour {
         }
         target = dir + transform.position;
         return target;
+    }
+
+    bool ReachTarget()
+    {   
+        if (agent.remainingDistance<=agent.stoppingDistance)
+        {
+            return true;
+        }
+        else { return false; }
     }
 }
