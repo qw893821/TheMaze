@@ -8,7 +8,7 @@ public class BackR : MonoBehaviour {
     ContactPoint lastContact;
     string nextName;
     // Use this for initialization
-    void Start () {
+    /*void Start () {
         fm = transform.parent.gameObject.GetComponent<FoWMask>();
         fm.posBR = transform.position;
         isContacting = false;
@@ -46,5 +46,6 @@ public class BackR : MonoBehaviour {
             fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
         }
     }
+    */
 
 }

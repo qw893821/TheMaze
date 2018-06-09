@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FoWMask : MonoBehaviour {
     Vector3 offSet;
-    public Material mat;
+    //public Material mat;
 
     //public Vector3 posFL, posFR, posBR, posBL;
     private Vector3 _pos1, _pos2, _pos3, _pos4;
-    public Vector3 posFL
+    /*public Vector3 posFL
     {
         get {return _pos1; }
         set { _pos1=value; } }
@@ -25,14 +25,14 @@ public class FoWMask : MonoBehaviour {
         get { return _pos4; }
         set { _pos4 = value; }
     }
-    
+    */
 
     //, pos2, pos3, pos4;
     // Use this for initialization
     void Start () {
         offSet = transform.position- GameManager.gm.player.transform.position ;
         //mat = this.GetComponent<Renderer>().material;
-        mat.shader = Shader.Find("QuadDeformationShader");
+       // mat.shader = Shader.Find("QuadDeformationShader");
         //posFL = new Vector3(0,0,0);
         //posFR = new Vector3(0, 0, 0);
         //posBR = new Vector3(0, 0, 0);
@@ -45,7 +45,7 @@ public class FoWMask : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        UpdateMeshPos();
+       // UpdateMeshPos();
     }
 
     void MaskFollow()
@@ -53,11 +53,11 @@ public class FoWMask : MonoBehaviour {
         transform.position = GameManager.gm.player.transform.position + offSet;
     }
 
-    void UpdateMeshPos()
+    /*void UpdateMeshPos()
     {
         mat.SetVector("_Position1", posFL);
         mat.SetVector("_Position2", posFR);
         mat.SetVector("_Position3", posBR);
         mat.SetVector("_Position4", posBL);
-    }
+    }*/
 }

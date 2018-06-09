@@ -21,6 +21,7 @@ public class PlayerAction : MonoBehaviour {
     public Mode playerMode;
     public Camera camera;
     public float farmSpeed;
+    Animator anim;
 
     float healTime;
 	// Use this for initialization
@@ -31,6 +32,7 @@ public class PlayerAction : MonoBehaviour {
         playerMode = Mode.chat;
         farmSpeed = 10f;
         healTime = 1f;
+        anim = GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -140,11 +142,14 @@ public class PlayerAction : MonoBehaviour {
             Chat();
             Farm();
         }
+        //player attack
         if (GameManager.gm.gs == GameStats.attack&& GameManager.gm.gs != GameStats.farming)
         {
             timer = timer + Time.deltaTime;
+            anim.SetBool("Attack", true);
             if (timer >= ps.attackSpeed)
             {
+                
                 Debug.Log(GameManager.gm.currentTargetGO);
                 if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag=="Character")
                 {
@@ -164,6 +169,7 @@ public class PlayerAction : MonoBehaviour {
                     
                 }
                 timer = 0;
+                anim.SetBool("Attack",false);
                 GameManager.gm.gs = GameStats.other;
             }
         }

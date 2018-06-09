@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackL : MonoBehaviour {
-    public FoWMask fm;
+    //public FoWMask fm;
     bool isContacting;
     string nextName;
     ContactPoint lastContact;
 	// Use this for initialization
 	void Start () {
-        fm = transform.parent.gameObject.GetComponent<FoWMask>();
-        fm.posBL = transform.position;
+       // fm = transform.parent.gameObject.GetComponent<FoWMask>();
+        //fm.posBL = transform.position;
         isContacting = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (!isContacting)
+        /*if (!isContacting)
         {
             fm.posBL = transform.position;
         }
+        */
 	}
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +29,7 @@ public class BackL : MonoBehaviour {
         {
             isContacting = true;
             ContactPoint contact = collision.contacts[0];
-            fm.posBL =contact.point;
+           // fm.posBL =contact.point;
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -42,7 +43,7 @@ public class BackL : MonoBehaviour {
         {
             isContacting = false;
             nextName = GameManager.gm.PastToNext(this.transform.gameObject);
-            fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
+            //fm.GetType().GetProperty("pos" + nextName).SetValue(fm, lastContact.point, null);
         }
     }
 }

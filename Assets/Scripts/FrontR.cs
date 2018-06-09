@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class FrontR : MonoBehaviour {
+/*public class FrontR : MonoBehaviour {
     public FoWMask fm;
     bool isContacting;
     public string nextName;
@@ -59,3 +59,4 @@ public class FrontR : MonoBehaviour {
         
     }
 }
+*/
