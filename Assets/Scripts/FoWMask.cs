@@ -29,7 +29,7 @@ public class FoWMask : MonoBehaviour {
 
     //, pos2, pos3, pos4;
     // Use this for initialization
-    void Start () {
+    void Awake () {
         offSet = transform.position- GameManager.gm.player.transform.position ;
         //mat = this.GetComponent<Renderer>().material;
        // mat.shader = Shader.Find("QuadDeformationShader");

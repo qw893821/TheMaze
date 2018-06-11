@@ -28,6 +28,11 @@ public class NPCStats : CharacterStats {
     List<string> cSelectionList;//current list
     public List<string> wSelectionList;//selection in waitlist
     public List<string> list { get { return cSelectionList; } }
+    //password of npc
+    List<string> pwPool;
+    public List<string> pwList;
+    //current slot for password
+    int cSlot;
     // Use this for initialization
     void Start() {
         currentHealth = 100;
@@ -50,15 +55,22 @@ public class NPCStats : CharacterStats {
         ignoredList = new List<GameObject>();
         currentInRangeList = new List<GameObject>();
         ignoreTime = 5.0f;
-        //leader = null;
+        
         flashColor = new Color(1.0f,0f,0f,0.0f);
         flashSpeed = 10f;
         img = GameObject.Find("ScreenFlash").GetComponent<Image>();
-        selectionList = new List<string>() { "Aggressive", "Friendness","Neutral","Test1","Test2" };
+        selectionList = new List<string>() { "Red", "Green","Blue","Black","White" };
+        //instal pwpool here;
+        pwPool = new List<string>();
+        foreach(string str in selectionList)
+        {
+            pwPool.Add(str);
+        }
         wSelectionList = new List<string>();
         cSelectionList = new List<string>();
         InstSelectionList();
-
+        PWGenerater();
+        cSlot = 0;
     }
 
     private void Awake()
@@ -319,8 +331,7 @@ public class NPCStats : CharacterStats {
     }
 
     public string Shuffle(int i,GameObject go)
-    {
-        Debug.Log(i);
+    { 
         int num;
         num = Random.Range(0, wSelectionList.Count - 1);
         cSelectionList[i-1] = wSelectionList[num];
@@ -332,5 +343,37 @@ public class NPCStats : CharacterStats {
     public override void Damaged(int v)
     {
         base.Damaged(v);
+    }
+
+    void PWGenerater()
+    {
+        if (pwPool.Count > 0)
+        {
+            int i = Random.Range(0,pwPool.Count-1);
+            pwList.Add(pwPool[i]);
+            pwPool.RemoveAt(i);
+            PWGenerater();
+            return;
+        }
+        else {
+            return; }
+    }
+
+    public bool PWMatch(GameObject go)
+    {
+        if (go.name != pwList[cSlot])
+        {
+            Debug.Log("false");
+            cSlot++;
+            
+            return false;
+        } 
+        else 
+        {
+            Debug.Log("true");
+            cSlot++;
+            
+            return true;
+        }
     }
 }

@@ -249,14 +249,14 @@ public class PlayerAction : MonoBehaviour {
     }
 
 
-    //test chat mode button red
+    //function of button red
     public void ButtonAggressive()
     {
         GameObject targetGO;
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
-        if (ns.ps == Personality.typeA)
+        /*if (ns.ps == Personality.typeA)
         {
             ns.satisfaction -= 10;
         }
@@ -267,41 +267,62 @@ public class PlayerAction : MonoBehaviour {
         else if (ns.ps == Personality.typeB)
         {
             ns.satisfaction += 10;
+        }*/
+        bool match;
+        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        if (match)
+        {
+            ns.satisfaction += 10;
+        }
+        else if (!match)
+        {
+            ns.satisfaction -= 10;
         }
         //GameManager.gm.gs=GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
     }
 
-    //test chat mode button green
+    //function of button green
     public void ButtonFriendness()
     {
         GameObject targetGO;
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
-        if (ns.ps == Personality.typeA)
+
+        /*if (ns.ps == Personality.typeA)
         {
             ns.satisfaction += 10;
         }
         else if (ns.ps == Personality.typeC)
         {
             ns.satisfaction -= 10;
+        }*/
+        bool match;
+        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        if (match)
+        {
+            ns.satisfaction += 10;
         }
-       // GameManager.gm.gs = GameStats.other;
+        else if (!match)
+        {
+            ns.satisfaction -= 10;
+        }
+        // GameManager.gm.gs = GameStats.other;
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         //next lines are for test use
         GameManager.gm.BtnShuffle();
     }
     
-    //test of button white
+    //function of button blue
     public void ButtonNeutral()
     {
         GameObject targetGO;
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
-        if (ns.ps == Personality.typeA)
+        /*if (ns.ps == Personality.typeA)
         {
             ns.satisfaction += 5;
         }
@@ -312,8 +333,18 @@ public class PlayerAction : MonoBehaviour {
         else if (ns.ps == Personality.typeB)
         {
             ns.satisfaction += 10;
+        }*/
+        bool match;
+        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        if (match)
+        {
+            ns.satisfaction += 10;
         }
-        
+        else if (!match)
+        {
+            ns.satisfaction -= 10;
+        }
+
         GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
     }
@@ -322,6 +353,47 @@ public class PlayerAction : MonoBehaviour {
     {
         GameManager.gm.tradeUI.SetActive(true);
         GameManager.gm.sliderValue = ps.resource;
+    }
+
+    //function of button white
+    public void ButtonWhite()
+    {
+        GameObject targetGO;
+        NPCStats ns;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        bool match;
+        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        if (match)
+        {
+            ns.satisfaction += 10;
+        }
+        else if (!match)
+        {
+            ns.satisfaction -= 10;
+        }
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        GameManager.gm.BtnShuffle();
+    }
+    //function of button black
+    public void ButtonBlack()
+    {
+        GameObject targetGO;
+        NPCStats ns;
+        targetGO = GameManager.gm.currentTargetGO;
+        ns = targetGO.GetComponent<NPCStats>();
+        bool match;
+        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        if (match)
+        {
+            ns.satisfaction += 10;
+        }
+        else if (!match)
+        {
+            ns.satisfaction -= 10;
+        }
+        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        GameManager.gm.BtnShuffle();
     }
     //Mode Button image change
     void UISwitch()
