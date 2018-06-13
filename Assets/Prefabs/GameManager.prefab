@@ -84,7 +84,7 @@ MonoBehaviour:
   textContent: 
   currentTargetGO: {fileID: 0}
   cursorBattle: {fileID: 2800000, guid: 9a62368a1fdaadb43948bd1382dc24ec, type: 3}
-  cursorChat: {fileID: 2800000, guid: 3c09f05951cfb3349b72e66947ead658, type: 3}
+  cursorChat: {fileID: 2800000, guid: 0c0a1004784f082439ed5f344b231299, type: 3}
   cursorFarm1: {fileID: 2800000, guid: b0fab9d0046f24941a6fed2ee4532e6b, type: 3}
   cursorFarm2: {fileID: 2800000, guid: 57534c82ee5b694428b7ffcf9ed044fc, type: 3}
   cTargetList: []
@@ -115,3 +115,5 @@ MonoBehaviour:
   - {fileID: 1267229010542834, guid: 136db136f0af5814b88e2613a365076f, type: 2}
   - {fileID: 1576584706253444, guid: 4d9e3147a93a7bc4ca3931421cb2fe01, type: 2}
   facing: 
+  healthBar: {fileID: 0}
+  resourceBar: {fileID: 0}

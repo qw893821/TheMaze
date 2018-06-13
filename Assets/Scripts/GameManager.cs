@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
     //NPCs currently target player
     public List<GameObject> cTargetList;
     //NPC Target Position list 
-    public List<GameObject> targetList;
+    //public List<GameObject> targetList;
     //NPC emotion sprite list
     //public List<Sprite> emojiList;
     public EmojiManager eList;
@@ -92,7 +92,12 @@ public class GameManager : MonoBehaviour {
     List<string> cList;
     //current player facing direction
     public string facing;
-	// Use this for initialization
+    //health and resource bar
+    public GameObject healthBar;
+    Slider healthSlider;
+    public GameObject resourceBar;
+    Text resourceText;
+
 	void Start () {
         if (gm == null)
         {
@@ -136,6 +141,8 @@ public class GameManager : MonoBehaviour {
 
         facing = "Vertical";
         flashColor = Color.clear;
+        healthSlider = healthBar.GetComponent<Slider>();
+        resourceText = resourceBar.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
@@ -147,7 +154,8 @@ public class GameManager : MonoBehaviour {
         Warning();
         TextTest();
         MapCameraFollow();
-        
+        HealthBarUpdate();
+        ResourceBarUpdate();
     }
     
 
@@ -442,5 +450,15 @@ public class GameManager : MonoBehaviour {
         ns = currentTargetGO.GetComponent<NPCStats>();
         ns.resource += _tradeSlider.value;
         ns.satisfaction += (int)_tradeSlider.value;
+    }
+
+    void HealthBarUpdate()
+    {
+        healthSlider.value = ps.currentHealth;
+    }
+
+    void ResourceBarUpdate()
+    {
+        resourceText.text = ((int)ps.resource).ToString();
     }
 }

@@ -176,11 +176,11 @@ public class NPCMovement : MonoBehaviour {
         {
             if (!agent.isStopped)
             {
-                if (targetGO.tag != "Player")
+                if (targetGO.tag != "Player"&&targetGO)
                 {
                     if (ReachTarget())
                     {
-                        if (ns.ps == Personality.typeA)
+                        if (ns.ps != Personality.typeB)
                         {
                             ns.LoadPointPicker();
                         }
