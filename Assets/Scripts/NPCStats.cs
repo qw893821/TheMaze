@@ -139,11 +139,12 @@ public class NPCStats : CharacterStats {
 
     public override void FoV(GameObject go)
     {
-        if (ps == Personality.typeA)
+        if (ps == Personality.typeA&&satisfaction<0)
         {
             base.FoV(go);
+            opponentList.Add(go);
         }
-        
+        SatificationTest(go);
     }
 
     public override void ResourceReduce()
@@ -352,7 +353,7 @@ public class NPCStats : CharacterStats {
     void PWGenerater()
     {
         if (pwPool.Count > 0)
-        {
+        { 
             int i = Random.Range(0,pwPool.Count-1);
             pwList.Add(pwPool[i]);
             pwPool.RemoveAt(i);

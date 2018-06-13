@@ -161,6 +161,7 @@ public class PlayerAction : MonoBehaviour {
                     if (currentNPCs.rs != Relationship.friend)
                     {
                         currentNPCs.Damaged(ps.attackPower);
+                        currentNPCs.satisfaction = -50;
                         currentNPCs.rs = Relationship.opponent;
                         currentNPCs.targetGO = transform.gameObject;
                         if (!currentNPCs.opponentList.Contains(transform.gameObject))

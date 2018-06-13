@@ -139,4 +139,12 @@ public class CharacterStats : MonoBehaviour {
     {
         currentHealth -= v;
     }
+
+    public virtual void SatificationTest(GameObject go)
+    {
+        if (satisfaction >= 0)
+        {
+            opponentList.Remove(go);
+        }
+    }
 }
