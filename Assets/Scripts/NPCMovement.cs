@@ -41,10 +41,7 @@ public class NPCMovement : MonoBehaviour {
         UpdateMesh();
         ChangeAnim();
         //when npc reach target. pick another load point;
-        if (ReachTarget())
-        {
-            ns.LoadPointPicker();
-        }
+        TargetPicker();
     }
 
     void Movement()
@@ -171,5 +168,36 @@ public class NPCMovement : MonoBehaviour {
             return true;
         }
         else { return false; }
+    }
+
+    void TargetPicker()
+    {
+        if (!ns.isDead)
+        {
+            if (!agent.isStopped)
+            {
+                if (targetGO.tag != "Player")
+                {
+                    if (ReachTarget())
+                    {
+                        if (ns.ps == Personality.typeA)
+                        {
+                            ns.LoadPointPicker();
+                        }
+                        else if (ns.ps == Personality.typeB)
+                        {
+                            agent.isStopped = true;
+                        }
+                    }
+                }
+            }
+            else if (agent.isStopped)
+            {
+                if (targetGO.tag == "Player")
+                {
+                    agent.isStopped = false;
+                }
+            }
+        }
     }
 }

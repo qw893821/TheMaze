@@ -8,6 +8,9 @@ public class PlayerStats: CharacterStats{
     public bool change;
     float flashspeed;
     float flashTimer;
+
+
+    PlayerAction pa;
 	// Use this for initialization
 	void Start () {
         change = false;
@@ -19,6 +22,7 @@ public class PlayerStats: CharacterStats{
         rDecreaseRate = 1f;
         flashspeed = 1f;
         flashTimer = 0;
+        pa = transform.GetComponent<PlayerAction>();
 	}
 	
 	// Update is called once per frame
@@ -53,4 +57,5 @@ public class PlayerStats: CharacterStats{
     {
         base.Damaged(v);
     }
+
 }

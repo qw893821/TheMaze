@@ -139,7 +139,11 @@ public class NPCStats : CharacterStats {
 
     public override void FoV(GameObject go)
     {
-        base.FoV(go);
+        if (ps == Personality.typeA)
+        {
+            base.FoV(go);
+        }
+        
     }
 
     public override void ResourceReduce()

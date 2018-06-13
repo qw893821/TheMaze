@@ -21,8 +21,10 @@ public class PlayerAction : MonoBehaviour {
     public Mode playerMode;
     public Camera camera;
     public float farmSpeed;
-    Animator anim;
-
+    public Animator anim;
+    //mode of chip and weapon
+    public GameObject chip;
+    public GameObject weapon;
     float healTime;
 	// Use this for initialization
 	void Start () {
@@ -32,7 +34,8 @@ public class PlayerAction : MonoBehaviour {
         playerMode = Mode.chat;
         farmSpeed = 10f;
         healTime = 1f;
-        anim = GetComponentInChildren<Animator>();
+        anim = transform.GetComponentInChildren<Animator>();
+        weapon.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -112,7 +115,7 @@ public class PlayerAction : MonoBehaviour {
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit,5f,layerMask))
         {
-            Debug.Log("fire");
+            Debug.Log(hit.transform.gameObject);
             if (hit.collider.tag == "Character")
             {
                 GameObject hitTarget;
@@ -149,8 +152,6 @@ public class PlayerAction : MonoBehaviour {
             anim.SetBool("Attack", true);
             if (timer >= ps.attackSpeed)
             {
-                
-                Debug.Log(GameManager.gm.currentTargetGO);
                 if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag=="Character")
                 {
                     GameObject currentGO;
@@ -161,6 +162,7 @@ public class PlayerAction : MonoBehaviour {
                     {
                         currentNPCs.Damaged(ps.attackPower);
                         currentNPCs.rs = Relationship.opponent;
+                        currentNPCs.targetGO = transform.gameObject;
                         if (!currentNPCs.opponentList.Contains(transform.gameObject))
                         {
                             currentNPCs.opponentList.Add(transform.gameObject);
@@ -230,17 +232,20 @@ public class PlayerAction : MonoBehaviour {
                 playerMode = Mode.chat;
         }
         //}
+        ModelChange();
     }
 
     //switch mode using button
     public void ModeAtk()
     {
             playerMode = Mode.attack;
+        ModelChange();
     }
     //switch mode using button
     public void ModeChat()
     {
             playerMode = Mode.chat;
+        ModelChange();
     }
     //switch mode to farm
     public void ModeFarm()
@@ -480,6 +485,20 @@ public class PlayerAction : MonoBehaviour {
         if (GameManager.gm.gs != GameStats.healing)
         {
             GameManager.gm.gs = GameStats.healing;
+        }
+    }
+
+    void ModelChange()
+    {
+        if (playerMode == Mode.attack)
+        {
+            weapon.SetActive(true);
+            chip.SetActive(false);
+        }
+        else if (playerMode == Mode.chat)
+        {
+            weapon.SetActive(false);
+            chip.SetActive(true);
         }
     }
 }

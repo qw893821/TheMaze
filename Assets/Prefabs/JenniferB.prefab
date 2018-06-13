@@ -2286,8 +2286,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1141687678941180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.39, y: 1.2, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -4.62, y: 1.2, z: 1.73}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4019709204645580}
@@ -2706,9 +2706,10 @@ MonoBehaviour:
   ignoredList: []
   currentInRangeList: []
   resource: 0
-  ps: 0
+  ps: 1
   img: {fileID: 0}
   wSelectionList: []
+  pwList: []
 --- !u!114 &114401908354065604
 MonoBehaviour:
   m_ObjectHideFlags: 1
