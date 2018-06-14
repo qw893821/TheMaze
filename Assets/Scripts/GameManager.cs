@@ -473,21 +473,21 @@ public class GameManager : MonoBehaviour {
 
     void ResourceBarUpdate()
     {
-        List<int> digitals;
-        digitals = new List<int>();
+        int[] digitals=new int[3];
         int originalInt;
         originalInt = (int)ps.resource;
         SpliteNum(originalInt, digitals);
-        for(int i = 0; i < digitals.Count; i++)
+        for(int i = 0; i < digitals.Length; i++)
         {
             
             resourceBar.transform.GetChild(i+1).GetComponent<Image>().sprite = sprites[digitals[i]];
         }
     }
 
-    void SpliteNum(int num,List<int> nums)
+    void SpliteNum(int num, int[] nums)
     {
-        if (num >= 10)
+        //this method may have problem.
+        /*if (num >= 10)
         {
             nums.Add(num % 10);
             num = (num - num % 10) / 10;
@@ -496,7 +496,10 @@ public class GameManager : MonoBehaviour {
         else { nums.Add(num);
             return;
         }
-        
+        */
+        nums[0] = num % 10;
+        nums[1] = ((num - nums[0]) / 10) % 10;
+        nums[2]=((num - nums[0]) / 10-nums[1])/10% 10;
     }
 
 }

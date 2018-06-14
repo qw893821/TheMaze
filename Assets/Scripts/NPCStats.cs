@@ -149,7 +149,7 @@ public class NPCStats : CharacterStats {
             base.FoV(go);
             opponentList.Add(go);
         }
-        SatificationTest(go);
+        
     }
 
     public override void ResourceReduce()
@@ -172,12 +172,14 @@ public class NPCStats : CharacterStats {
     {
         base.ChangeTarget();
         float distance;
+        SatificationTest(GameManager.gm.player);
         distance = Vector3.Distance(transform.position, targetGO.transform.position);
         if (opponentList.Contains(targetGO) && distance <= attackRange)
         {
             Attack(targetGO);
             anim.SetBool("inRange", true);
         }
+        
     }
 
     void LineUpdate()
@@ -367,4 +369,6 @@ public class NPCStats : CharacterStats {
         }
 
     }
+
+    
 }
