@@ -8,7 +8,8 @@ public class CryStal : MonoBehaviour {
     float regenTimer;
     float regenTime;
     Renderer[] renderers;
-    
+    public GameObject guardian;
+    NPCStats ns;
             
     private void Start()
     {
@@ -17,6 +18,10 @@ public class CryStal : MonoBehaviour {
         regenTime = 20f;
         regenTimer = 0f;
         renderers = transform.GetComponentsInChildren<Renderer>();
+        if (guardian)
+        {
+            ns = guardian.GetComponent<NPCStats>();
+        }
     }
 
     private void Update()
@@ -41,6 +46,17 @@ public class CryStal : MonoBehaviour {
     public void Farming()
     {
         rValue -= 10f;
+        if (ns.satisfaction < 0)
+        {
+            if (ns)
+            {
+                ns.opponentList.Add(GameManager.gm.player);
+                Debug.Log("added");
+                //force the player in typeb range
+                ns.currentInRangeList.Add(GameManager.gm.player);
+            }
+
+        }
     }
 
     void SelfAction()

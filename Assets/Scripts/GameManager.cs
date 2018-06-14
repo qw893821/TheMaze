@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour {
     public GameObject resourceBar;
     Text resourceText;
 
+    //number sprite
+    public Sprite[] sprites;
+
 	void Start () {
         if (gm == null)
         {
@@ -320,28 +323,31 @@ public class GameManager : MonoBehaviour {
     //this function shif btn ui
     public void BtnShuffle()
     {
-        waitBTNGO.SetActive(true);
-        NPCStats ns;
-        ns = currentTargetGO.GetComponent<NPCStats>();
-        GameObject currentGO;
-        Transform parentTrans;
-        int num;
-        currentGO = EventSystem.current.currentSelectedGameObject;
-        parentTrans = currentGO.transform.parent;
-        char[] c = parentTrans.name.ToCharArray();
-        //should convert char value to a numeric value to make it work
-        num = (int)char.GetNumericValue(c[c.Length - 1]);
-        //currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
-        currentGO.transform.parent = waitBTNGO.transform;
-        //should change the recttransform position to make it work properly
-        currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        GameObject newBtn;
-        newBtn = GameObject.Find(ns.Shuffle(num, currentGO));
-        newBtn.SetActive(true);
-        //disable the waiting button ui
-        waitBTNGO.SetActive(false);
-        newBtn.transform.parent = parentTrans;
-        newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        if (GameManager.gm.chatUI.activeSelf)
+        {
+            waitBTNGO.SetActive(true);
+            NPCStats ns;
+            ns = currentTargetGO.GetComponent<NPCStats>();
+            GameObject currentGO;
+            Transform parentTrans;
+            int num;
+            currentGO = EventSystem.current.currentSelectedGameObject;
+            parentTrans = currentGO.transform.parent;
+            char[] c = parentTrans.name.ToCharArray();
+            //should convert char value to a numeric value to make it work
+            num = (int)char.GetNumericValue(c[c.Length - 1]);
+            //currentGO.transform.parent = GameObject.Find("WaitingButtons").transform;
+            currentGO.transform.parent = waitBTNGO.transform;
+            //should change the recttransform position to make it work properly
+            currentGO.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            GameObject newBtn;
+            newBtn = GameObject.Find(ns.Shuffle(num, currentGO));
+            newBtn.SetActive(true);
+            //disable the waiting button ui
+            waitBTNGO.SetActive(false);
+            newBtn.transform.parent = parentTrans;
+            newBtn.transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
     }
 
     void MapCameraFollow()
@@ -467,11 +473,30 @@ public class GameManager : MonoBehaviour {
 
     void ResourceBarUpdate()
     {
-        resourceText.text = ((int)ps.resource).ToString();
+        List<int> digitals;
+        digitals = new List<int>();
+        int originalInt;
+        originalInt = (int)ps.resource;
+        SpliteNum(originalInt, digitals);
+        for(int i = 0; i < digitals.Count; i++)
+        {
+            
+            resourceBar.transform.GetChild(i+1).GetComponent<Image>().sprite = sprites[digitals[i]];
+        }
     }
 
-    void PWUIUpdate()
+    void SpliteNum(int num,List<int> nums)
     {
+        if (num >= 10)
+        {
+            nums.Add(num % 10);
+            num = (num - num % 10) / 10;
+            SpliteNum(num,nums);
+        }
+        else { nums.Add(num);
+            return;
+        }
         
     }
+
 }

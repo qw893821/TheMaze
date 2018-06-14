@@ -2695,7 +2695,7 @@ MonoBehaviour:
   attackRange: 0
   attackSpeed: 0
   attackTimer: 0
-  satisfaction: 0
+  satisfaction: -20
   rs: 2
   targetGO: {fileID: 0}
   poss:

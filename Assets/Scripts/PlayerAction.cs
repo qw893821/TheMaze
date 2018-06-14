@@ -145,7 +145,7 @@ public class PlayerAction : MonoBehaviour {
             Attack();
             Chat();
             Farm();
-            if (GameManager.gm.currentTargetGO.tag == "Character")
+            if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag == "Character")
             {
                 GameManager.gm.ShowPW(GameManager.gm.currentTargetGO.GetComponent<NPCStats>());
             }

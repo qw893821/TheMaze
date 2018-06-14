@@ -39,7 +39,7 @@ public class NPCStats : CharacterStats {
     }
     // Use this for initialization
     void Start() {
-        currentHealth = 100;
+        currentHealth = 50;
         resource = 100;
         rDecreaseRate = 1;
         anim = GetComponent<Animator>();
@@ -134,7 +134,8 @@ public class NPCStats : CharacterStats {
     //when a character enters the trigger, add character to a list
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Character")
+        //only triggered by player 
+        if (other.tag == "Player" )
         {
             //inRange = true;
             FoV(other.transform.gameObject);
@@ -156,7 +157,7 @@ public class NPCStats : CharacterStats {
         base.ResourceReduce();
     }
 
-    private float IgnoreTimer()
+    /*private float IgnoreTimer()
     {
         if (ignoredList.Contains(targetGO) || (targetGO.tag != "Character" && targetGO.tag != "Player"))
         {
@@ -164,7 +165,8 @@ public class NPCStats : CharacterStats {
         }
         return timer += Time.deltaTime;
 
-    }
+    }*/
+
 
     public override void ChangeTarget()
     {
@@ -175,25 +177,6 @@ public class NPCStats : CharacterStats {
         {
             Attack(targetGO);
             anim.SetBool("inRange", true);
-        }
-        //will fail to match because playre do not have ps properity
-        else if (IgnoreTimer() >= ignoreTime && (targetGO.tag == "Character" || targetGO.tag == "Player") && !opponentList.Contains(targetGO))
-        {
-            /*if (NPCMatch())
-            {
-                timer = 0;
-                targetGO = null;
-            }
-            else if (!NPCMatch())
-            {
-                anim.SetBool("inRange", false);
-                ignoredList.Add(targetGO);
-                //ChangeTarget();
-                //for test use. hard to find a place hold prevTargetoGO, use null to avoid err
-                targetGO = null;
-                //prevTargetGO = null;
-                timer = 0;
-            }*/
         }
     }
 
@@ -269,14 +252,7 @@ public class NPCStats : CharacterStats {
 
     void Attack(GameObject go)
     {
-        if (go.tag == "Character")
-        {
-            AttackOpponent(go);
-        }
-        else if (go.tag == "Player")
-        {
-            AttackPlayer(go);
-        }
+        AttackPlayer(go);
     }
 
     bool NPCMatch()
@@ -370,6 +346,11 @@ public class NPCStats : CharacterStats {
 
     public bool PWMatch(GameObject go)
     {
+        //if have entered 5 pw, then end enter
+        if (cSlot == 4)
+        {
+            GameManager.gm.chatUI.SetActive(false);
+        }
         if (go.name != pwList[cSlot])
         {
             Debug.Log("false");
@@ -384,5 +365,6 @@ public class NPCStats : CharacterStats {
             
             return true;
         }
+
     }
 }
