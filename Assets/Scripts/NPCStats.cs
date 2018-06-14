@@ -172,7 +172,10 @@ public class NPCStats : CharacterStats {
     {
         base.ChangeTarget();
         float distance;
-        SatificationTest(GameManager.gm.player);
+        if (ps == Personality.typeA)
+        {
+            SatificationTest(GameManager.gm.player);
+        }
         distance = Vector3.Distance(transform.position, targetGO.transform.position);
         if (opponentList.Contains(targetGO) && distance <= attackRange)
         {
@@ -229,6 +232,7 @@ public class NPCStats : CharacterStats {
             PlayerStats ps;
             ps = go.GetComponent<PlayerStats>();
             attackTimer += Time.deltaTime;
+            
             if (attackTimer >= attackSpeed)
             {
                 ps.Damaged(attackPower);
