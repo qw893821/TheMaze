@@ -89,6 +89,7 @@ public class PlayerAction : MonoBehaviour {
             targetPos = Camera.main.WorldToScreenPoint(new Vector3(GameManager.gm.currentTargetGO.transform.position.x, GameManager.gm.currentTargetGO.transform.position.y+1.2f,GameManager.gm.currentTargetGO.transform.position.z));
             GameManager.gm.chatUI.SetActive(true);
             GameManager.gm.chatUI.transform.position = targetPos;
+            Debug.Log("open ui");
             //called this when ui is enabled
             GameManager.gm.InstBTN();
         }       
@@ -144,6 +145,10 @@ public class PlayerAction : MonoBehaviour {
             Attack();
             Chat();
             Farm();
+            if (GameManager.gm.currentTargetGO.tag == "Character")
+            {
+                GameManager.gm.ShowPW(GameManager.gm.currentTargetGO.GetComponent<NPCStats>());
+            }
         }
         //player attack
         if (GameManager.gm.gs == GameStats.attack&& GameManager.gm.gs != GameStats.farming)
@@ -262,20 +267,10 @@ public class PlayerAction : MonoBehaviour {
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
-        /*if (ns.ps == Personality.typeA)
-        {
-            ns.satisfaction -= 10;
-        }
-        else if (ns.ps == Personality.typeC)
-        {
-            ns.opponentList.Add(transform.gameObject);
-        }
-        else if (ns.ps == Personality.typeB)
-        {
-            ns.satisfaction += 10;
-        }*/
+        EventSystem  c;
+        c = EventSystem.current;
         bool match;
-        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        match = ns.PWMatch(c.currentSelectedGameObject);
         if (match)
         {
             ns.satisfaction += 10;
@@ -284,9 +279,8 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction -= 10;
         }
-        //GameManager.gm.gs=GameStats.other;
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
+        GameManager.gm.EnterPW(c.currentSelectedGameObject.name,ns);
     }
 
     //function of button green
@@ -305,8 +299,10 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction -= 10;
         }*/
+        EventSystem c;
+        c = EventSystem.current;
         bool match;
-        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        match = ns.PWMatch(c.currentSelectedGameObject);
         if (match)
         {
             ns.satisfaction += 10;
@@ -316,9 +312,10 @@ public class PlayerAction : MonoBehaviour {
             ns.satisfaction -= 10;
         }
         // GameManager.gm.gs = GameStats.other;
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        //GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         //next lines are for test use
         GameManager.gm.BtnShuffle();
+        GameManager.gm.EnterPW(c.currentSelectedGameObject.name,ns);
     }
     
     //function of button blue
@@ -340,8 +337,10 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction += 10;
         }*/
+        EventSystem c;
+        c = EventSystem.current;
         bool match;
-        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        match = ns.PWMatch(c.currentSelectedGameObject);
         if (match)
         {
             ns.satisfaction += 10;
@@ -351,8 +350,9 @@ public class PlayerAction : MonoBehaviour {
             ns.satisfaction -= 10;
         }
 
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        //GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
+        GameManager.gm.EnterPW(c.currentSelectedGameObject.name,ns);
     }
     //test of button yellow
     public void ButtonTrade()
@@ -368,8 +368,10 @@ public class PlayerAction : MonoBehaviour {
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
+        EventSystem c;
+        c = EventSystem.current;
         bool match;
-        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        match = ns.PWMatch(c.currentSelectedGameObject);
         if (match)
         {
             ns.satisfaction += 10;
@@ -378,8 +380,9 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction -= 10;
         }
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+        //GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
+        GameManager.gm.EnterPW(c.currentSelectedGameObject.name,ns);
     }
     //function of button black
     public void ButtonBlack()
@@ -388,8 +391,10 @@ public class PlayerAction : MonoBehaviour {
         NPCStats ns;
         targetGO = GameManager.gm.currentTargetGO;
         ns = targetGO.GetComponent<NPCStats>();
+        EventSystem c;
+        c = EventSystem.current;
         bool match;
-        match = ns.PWMatch(EventSystem.current.currentSelectedGameObject);
+        match = ns.PWMatch(c.currentSelectedGameObject);
         if (match)
         {
             ns.satisfaction += 10;
@@ -398,8 +403,9 @@ public class PlayerAction : MonoBehaviour {
         {
             ns.satisfaction -= 10;
         }
-        GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
+       // GameManager.gm.UpdateEmoji(targetGO.GetComponent<NPCStats>().satisfaction, targetGO.GetComponent<NPCStats>().currentHealth);
         GameManager.gm.BtnShuffle();
+        GameManager.gm.EnterPW(c.currentSelectedGameObject.name,ns);
     }
     //Mode Button image change
     void UISwitch()
@@ -502,4 +508,6 @@ public class PlayerAction : MonoBehaviour {
             chip.SetActive(true);
         }
     }
+
+    
 }

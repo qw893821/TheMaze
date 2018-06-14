@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour {
     //game chat ui
     public GameObject chatUI;
     GameObject waitBTNGO;
+    //password ui
+    public GameObject pwUI;
+    public GameObject pwInput;
+    public List<Sprite> pwImgs;//sequence:  rgbbw
     //trade ui
     public GameObject tradeUI;
     private Slider _tradeSlider;
@@ -82,7 +86,8 @@ public class GameManager : MonoBehaviour {
     //public List<Sprite> emojiList;
     public EmojiManager eList;
     //emoji UI sprite
-    public Image emojiImg;
+
+    //public Image emojiImg;
 
     //map camera
     GameObject cameraGO;
@@ -121,7 +126,7 @@ public class GameManager : MonoBehaviour {
         farmBtn = GameObject.Find("Farm");
         farmBtn.GetComponent<Button>().interactable = false;
         healingBtn = GameObject.Find("Rest");
-        emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
+        //emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
         
         waitBTNGO = GameObject.Find("WaitingButtons");
         waitBTNGO.SetActive(false);
@@ -143,6 +148,7 @@ public class GameManager : MonoBehaviour {
         flashColor = Color.clear;
         healthSlider = healthBar.GetComponent<Slider>();
         resourceText = resourceBar.GetComponentInChildren<Text>();
+        
 	}
 	
 	// Update is called once per frame
@@ -269,13 +275,13 @@ public class GameManager : MonoBehaviour {
     {
         textUIAnim.SetBool("open",true);
         textUIAnim.SetBool("close", false);
-        emojiImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        //emojiImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
     public void CloseText()
     {
         textUIAnim.SetBool("open", false);
         textUIAnim.SetBool("close", true);
-        emojiImg.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        //emojiImg.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void TextTest()
@@ -293,58 +299,7 @@ public class GameManager : MonoBehaviour {
     }
 
     //update emoji show on the UI
-    public void UpdateEmoji(int sat,float hp)
-    {
-        if (hp >= 50) { 
-            if (sat >= 70)
-            {
-                emojiImg.sprite = eList.emojiHappy[0];
-            }
-            else if (sat >= 60 && sat < 70)
-            {
-                emojiImg.sprite = eList.emojiHappy[0];
-            }
-            else if (sat <= 40 && sat >= 30)
-            {
-                emojiImg.sprite = eList.emojiConfusing[0];
-            }
-            else if (sat < 30&&sat>=20)
-            {
-                emojiImg.sprite = eList.emojiAngry[0];
-            }
-        /*else if (sat <= 10)
-        {
-            emojiImg.sprite = emojiList[4];
-        }*/
-            else { emojiImg.sprite = eList.emojiNeutral[0]; }
-        
-            }
-        else if (hp < 50)
-        {
-            if (sat >= 70)
-            {
-                emojiImg.sprite = eList.emojiHappy[1];
-            }
-            else if (sat >= 60 && sat < 70)
-            {
-                emojiImg.sprite = eList.emojiHappy[1];
-            }
-            else if (sat <= 40 && sat >= 30)
-            {
-                emojiImg.sprite = eList.emojiConfusing[1];
-            }
-            else if (sat < 30 && sat >= 20)
-            {
-                emojiImg.sprite = eList.emojiAngry[1];
-            }
-            /*else if (sat <= 10)
-            {
-                emojiImg.sprite = emojiList[4];
-            }*/
-            else { emojiImg.sprite = eList.emojiNeutral[1]; }
-        }   
-    }
-
+   
     public void InstBTN()
     {
         waitBTNGO.SetActive(true);
@@ -444,6 +399,59 @@ public class GameManager : MonoBehaviour {
         return name;
     }
 
+    public void ShowPW(NPCStats ns)
+    {
+        //5 is current pw length
+        for(int i = 0; i < 5; i++)
+        {
+            if (ns.pwList[i] == "Red")
+            {
+                pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[0];
+            }
+            else if (ns.pwList[i] == "Green")
+            {
+                pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[1];
+            }
+            else if (ns.pwList[i] == "Blue")
+            {
+                pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[2];
+            }
+            else if (ns.pwList[i] == "Black")
+            {
+                pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[3];
+            }
+            else if (ns.pwList[i] == "White")
+            {
+                pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[4];
+            }
+        }
+    }
+
+    //player enter pw by click btn
+    public void EnterPW(string str,NPCStats ns)
+    {
+        //-1, because the program running sequence
+            if (str == "Red")
+            {
+                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[0];
+            }
+            else if (str == "Green")
+            {
+                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[1];
+            }
+            else if (str == "Blue")
+            {
+                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[2];
+            }
+            else if (str == "Black")
+            {
+                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[3];
+            }
+            else if (str == "White")
+            {
+                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[4];
+            }
+    }
     public void Trade()
     {
         NPCStats ns;
@@ -460,5 +468,10 @@ public class GameManager : MonoBehaviour {
     void ResourceBarUpdate()
     {
         resourceText.text = ((int)ps.resource).ToString();
+    }
+
+    void PWUIUpdate()
+    {
+        
     }
 }

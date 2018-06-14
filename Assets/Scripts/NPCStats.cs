@@ -33,6 +33,10 @@ public class NPCStats : CharacterStats {
     public List<string> pwList;
     //current slot for password
     int cSlot;
+    public int slotNum
+    {
+        get { return cSlot; }
+    }
     // Use this for initialization
     void Start() {
         currentHealth = 100;

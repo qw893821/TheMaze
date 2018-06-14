@@ -176,7 +176,7 @@ public class NPCMovement : MonoBehaviour {
         {
             if (!agent.isStopped)
             {
-                if (targetGO.tag != "Player"&&targetGO)
+                if (targetGO&&targetGO.tag != "Player")
                 {
                     if (ReachTarget())
                     {
