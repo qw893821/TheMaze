@@ -771,8 +771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4781749637647844}
   - component: {fileID: 95230505207966508}
-  - component: {fileID: 114411213814626016}
-  - component: {fileID: 195814247520114646}
+  - component: {fileID: 114364342158925172}
   m_Layer: 10
   m_Name: JenniferTitle
   m_TagString: Character
@@ -2557,7 +2556,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114411213814626016
+--- !u!114 &114364342158925172
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2565,29 +2564,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1563262924804258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f73383d4c5bc746ad73d097f78e358, type: 3}
+  m_Script: {fileID: 11500000, guid: 81a93f2736c56214cac802e965b886f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
-  attackPower: 0
-  attackRange: 0
-  attackSpeed: 0
-  attackTimer: 0
-  satisfaction: -20
-  rs: 2
-  targetGO: {fileID: 0}
-  poss:
-  - {fileID: 0}
-  - {fileID: 0}
-  opponentList: []
-  friendList: []
-  ignoredList: []
-  currentInRangeList: []
-  resource: 0
-  ps: 0
-  img: {fileID: 0}
-  wSelectionList: []
-  pwList: []
 --- !u!137 &137049692867499976
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2677,24 +2656,3 @@ SkinnedMeshRenderer:
     m_Center: {x: 16.85785, y: -7.1872406, z: -0.24464417}
     m_Extent: {x: 95.18416, y: 220.84657, z: 50}
   m_DirtyAABB: 0
---- !u!195 &195814247520114646
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1563262924804258}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4

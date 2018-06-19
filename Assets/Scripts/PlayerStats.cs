@@ -18,7 +18,7 @@ public class PlayerStats: CharacterStats{
         attackRange = 1.5f;
         attackSpeed = 1f;
         currentHealth = 100;
-        resource = 100;
+        //resource = 100;
         rDecreaseRate = 1f;
         flashspeed = 1f;
         flashTimer = 0;

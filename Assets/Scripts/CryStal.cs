@@ -46,7 +46,7 @@ public class CryStal : MonoBehaviour {
     public void Farming()
     {
         rValue -= 10f;
-        if (ns.satisfaction < 0)
+        if (guardian&&ns.satisfaction < 0)
         {
             if (ns)
             {
