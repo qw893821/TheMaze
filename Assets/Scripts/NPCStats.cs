@@ -14,9 +14,7 @@ public class NPCStats : CharacterStats {
     //character following timer
     float timer;
     float ignoreTime;
-    //properity of line
-    LineRenderer line;
-    int width;
+    
     public Personality ps;
     //flash screen color
     public Image img;
@@ -44,8 +42,7 @@ public class NPCStats : CharacterStats {
         rDecreaseRate = 1;
         anim = GetComponent<Animator>();
         isDead = false;
-        line = transform.Find("TargetLine").GetComponent<LineRenderer>();
-        width = 1;
+        
         attackRange = 3f;
         attackPower = 10;
         attackSpeed = 1f;
@@ -87,13 +84,11 @@ public class NPCStats : CharacterStats {
         Die();
         ChangeRelation();
         ChangeTarget();
-        ResourceReduce();
+        //npc now have no resource limition
+        //ResourceReduce();
         //LineUpdate();
     }
-    private void LateUpdate()
-    {
-        LineUpdate();
-    }
+    
     void Die()
     {
         if (currentHealth <= 0)
@@ -185,20 +180,7 @@ public class NPCStats : CharacterStats {
         
     }
 
-    void LineUpdate()
-    {
-        if (targetGO)
-        {
-            if (targetGO.tag == "Character" || targetGO.tag == "Player")
-            {
-                line.enabled = true;
-                Vector3 target;
-                target = targetGO.transform.position - transform.position;
-                line.SetPosition(1, -target);
-            }
-            else { line.enabled = false; }
-        }
-    }
+    
 
     void AttackOpponent(GameObject go)
     {

@@ -502,4 +502,6 @@ public class GameManager : MonoBehaviour {
         nums[2]=((num - nums[0]) / 10-nums[1])/10% 10;
     }
 
+
+    
 }

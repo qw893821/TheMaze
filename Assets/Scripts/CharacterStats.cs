@@ -128,11 +128,12 @@ public class CharacterStats : MonoBehaviour {
 
     public virtual void ResourceReduce()
     {
-        if (resource >0) {
+        if (resource > 0)
+        {
             resource -= rDecreaseRate * Time.deltaTime;
         }
         //when there is no resource
-        else { health -= rDecreaseRate * Time.deltaTime; }
+        
     }
     
     public virtual void Damaged(int v)

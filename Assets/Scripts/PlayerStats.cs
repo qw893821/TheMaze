@@ -42,15 +42,8 @@ public class PlayerStats: CharacterStats{
         if (resource <= 0)
         {
             resource = 0;
-            flashTimer += Time.deltaTime;
-            if (flashTimer >= 1.0f)
-            {
-                GameManager.gm.flashColor = new Color(1.0f,0.0f,0.0f);
-                flashTimer = 0;
-            }
-            
+            currentHealth -= 3f * Time.deltaTime;
         }
-        GameManager.gm.flashColor = Color.Lerp(GameManager.gm.flashColor, Color.clear, flashspeed * Time.deltaTime);
     }
 
     public override void Damaged(int v)

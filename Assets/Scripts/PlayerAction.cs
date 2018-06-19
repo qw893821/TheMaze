@@ -25,6 +25,7 @@ public class PlayerAction : MonoBehaviour {
     //mode of chip and weapon
     public GameObject chip;
     public GameObject weapon;
+    public GameObject pickaxe;
     float healTime;
 	// Use this for initialization
 	void Start () {
@@ -40,7 +41,7 @@ public class PlayerAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        ModelChange();
     }
     
     private void LateUpdate()
@@ -186,6 +187,7 @@ public class PlayerAction : MonoBehaviour {
         if (GameManager.gm.gs == GameStats.farming/*&& GameManager.gm.gs != GameStats.attack*/ )
         {
             timer += Time.deltaTime;
+            GameObject.Find("pickaxe").GetComponent<Animator>().SetBool("Farming",true);
             if (timer>=1f)
             {
                 if (GameManager.gm.currentTargetGO&&GameManager.gm.currentTargetGO.tag == "Resource")
@@ -204,6 +206,7 @@ public class PlayerAction : MonoBehaviour {
                 else { Debug.Log("fail farm"); }
                 timer = 0;
                 GameManager.gm.gs = GameStats.other;
+                GameObject.Find("pickaxe").GetComponent<Animator>().SetBool("Farming",false);
             }
         }
         if (GameManager.gm.gs == GameStats.healing/*&& GameManager.gm.gs != GameStats.attack*/ )
@@ -223,35 +226,17 @@ public class PlayerAction : MonoBehaviour {
         }
     }
     //switch between chat/attack mode using right click
-    public void ChangeMode()
-    {
-        //if (Input.GetButtonDown("Fire2"))
-        //{
-            if (playerMode == Mode.chat)
-            {
-                playerMode = Mode.attack;
-                
-                
-            }
-            else if (playerMode == Mode.attack)
-            {
-                playerMode = Mode.chat;
-        }
-        //}
-        ModelChange();
-    }
+    
 
     //switch mode using button
     public void ModeAtk()
     {
             playerMode = Mode.attack;
-        ModelChange();
     }
     //switch mode using button
     public void ModeChat()
     {
             playerMode = Mode.chat;
-        ModelChange();
     }
     //switch mode to farm
     public void ModeFarm()
@@ -501,11 +486,19 @@ public class PlayerAction : MonoBehaviour {
         {
             weapon.SetActive(true);
             chip.SetActive(false);
+            pickaxe.SetActive(false);
         }
         else if (playerMode == Mode.chat)
         {
             weapon.SetActive(false);
             chip.SetActive(true);
+            pickaxe.SetActive(false);
+        }
+        else if(playerMode==Mode.farm)
+        {
+            weapon.SetActive(false);
+            chip.SetActive(false);
+            pickaxe.SetActive(true);
         }
     }
 
