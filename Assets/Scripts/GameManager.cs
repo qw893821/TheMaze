@@ -67,9 +67,7 @@ public class GameManager : MonoBehaviour {
     }
     //text ui animation
     public Animator textUIAnim;
-    //text ui content
-    public Text text;
-    public string textContent;
+
     //current select target gameobject;
     public GameObject currentTargetGO;
     //cursor texture
@@ -161,7 +159,6 @@ public class GameManager : MonoBehaviour {
         HealingBtn();
         ChangeCursor();
         Warning();
-        TextTest();
         MapCameraFollow();
         HealthBarUpdate();
         ResourceBarUpdate();
@@ -286,15 +283,8 @@ public class GameManager : MonoBehaviour {
         textUIAnim.SetBool("close", true);
         //emojiImg.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
-
-    public void TextTest()
-    {
-        if (currentTargetGO) {
-            text.text = currentTargetGO.name;
-            textContent = text.text;
-            text.text = textContent + "\n" + "test";
-        }
-    }
+    
+    
 
     public string PersonalityMatch()
     {
@@ -407,7 +397,7 @@ public class GameManager : MonoBehaviour {
 
     public void ShowPW(NPCStats ns)
     {
-        //5 is current pw length
+        //5 is current pw length, 6 is blank icon
         for(int i = 0; i < 5; i++)
         {
             if (ns.pwList[i] == "Red")

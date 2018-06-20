@@ -83,6 +83,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a49fc46472ddc084582382e3911d76fb, type: 3}
   - {fileID: 21300000, guid: 65baaecbfd5d49b479c99ea409f92e8c, type: 3}
   - {fileID: 21300000, guid: 60561bf19d2346d40a7acba23b2613c8, type: 3}
+  - {fileID: 21300000, guid: e0c435347d7c21542a2a66f07786b46d, type: 3}
   tradeUI: {fileID: 0}
   warningUI1: {fileID: 0}
   warningUI2: {fileID: 0}
@@ -109,7 +110,6 @@ MonoBehaviour:
     emojiConfusing:
     - {fileID: 21300000, guid: 1aaa726b9a09f1042a9ba1b1dfc3217a, type: 3}
     - {fileID: 21300000, guid: 9061e98e13db87244bcf59e0fd41e43f, type: 3}
-  emojiImg: {fileID: 0}
   btns:
   - {fileID: 1768308410020296, guid: c537beeac66f4ef428a90202f371528e, type: 2}
   - {fileID: 1912830492640680, guid: cdc75a93111ff164283b2834c8d090f7, type: 2}
@@ -120,3 +120,14 @@ MonoBehaviour:
   facing: 
   healthBar: {fileID: 0}
   resourceBar: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300002, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300004, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300006, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300008, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300010, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300012, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300014, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300016, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  - {fileID: 21300018, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
