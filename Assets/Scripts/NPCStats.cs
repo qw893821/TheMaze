@@ -33,6 +33,9 @@ public class NPCStats : CharacterStats {
     public List<string> insertedList;
     //current slot for password
     int cSlot;
+    //set these to inacitve to stop the enemy from blocking player;
+    Rigidbody rb;
+    Collider[] cols;
     public int slotNum
     {
         get { return cSlot; }
@@ -74,6 +77,8 @@ public class NPCStats : CharacterStats {
         InstSelectionList();
         PWGenerater();
         cSlot = 0;
+        rb = transform.GetComponent<Rigidbody>();
+        cols = transform.GetComponents<Collider>();
     }
 
     private void Awake()
@@ -104,6 +109,12 @@ public class NPCStats : CharacterStats {
                 anim.SetBool("walking", false);
                 anim.SetBool("inCombat", false);
                 Destroy(this.gameObject, 3.0f);
+                //disable the collision detection when npc is dead;
+                rb.detectCollisions = false;
+                foreach(Collider col in cols)
+                {
+                    col.enabled = false;
+                }
             }
             transform.tag = "Dead";
             GameManager.gm.cTargetList.Remove(this.transform.gameObject);

@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour {
     public Sprite chatOn;
     public Sprite chatOff;
     GameObject farmBtn;
+    public Image farmBtnImg;
+    public Sprite farmOn;
+    public Sprite farmOff;
     GameObject healingBtn;
     //game chat ui
     public GameObject chatUI;
@@ -125,6 +128,7 @@ public class GameManager : MonoBehaviour {
         chatBtn = GameObject.Find("Chat");
         chatBtnImg = chatBtn.GetComponent<Image>();
         farmBtn = GameObject.Find("Farm");
+        farmBtnImg = farmBtn.GetComponent<Image>();
         farmBtn.GetComponent<Button>().interactable = false;
         healingBtn = GameObject.Find("Rest");
         //emojiImg = GameObject.Find("Emoji").GetComponent<Image>();

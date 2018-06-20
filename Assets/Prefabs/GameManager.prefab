@@ -74,6 +74,9 @@ MonoBehaviour:
   chatBtnImg: {fileID: 0}
   chatOn: {fileID: 21300000, guid: bdd93a8538a694f4fb6f38493870a441, type: 3}
   chatOff: {fileID: 21300000, guid: 5bc4005c15cfe0946a43964dec9c9938, type: 3}
+  farmBtnImg: {fileID: 0}
+  farmOn: {fileID: 21300000, guid: 8b7fbd4f07294a642adb319fa1398eb3, type: 3}
+  farmOff: {fileID: 21300000, guid: f0a2c3c31323c9543ad9217d5ba68b88, type: 3}
   chatUI: {fileID: 0}
   pwUI: {fileID: 0}
   pwInput: {fileID: 0}
@@ -89,8 +92,6 @@ MonoBehaviour:
   warningUI2: {fileID: 0}
   flashImg: {fileID: 0}
   textUIAnim: {fileID: 0}
-  text: {fileID: 0}
-  textContent: 
   currentTargetGO: {fileID: 0}
   cursorBattle: {fileID: 2800000, guid: 9a62368a1fdaadb43948bd1382dc24ec, type: 3}
   cursorChat: {fileID: 2800000, guid: 0c0a1004784f082439ed5f344b231299, type: 3}

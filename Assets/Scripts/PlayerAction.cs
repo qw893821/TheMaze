@@ -111,8 +111,18 @@ public class PlayerAction : MonoBehaviour {
     {
         GameObject targetGO;
         RaycastHit hit;
-        int layerMask = (1 << 9)|(1<<12)|(1<<11)|(1<<14);
+        int layerMask;
+        if (playerMode == Mode.attack)
+        {
+            layerMask = (1 << 9) | (1 << 12) | (1 << 11) | (1 << 14) | (1 << 13);
+        }
+        else if (playerMode == Mode.farm)
+        {
+            layerMask = (1 << 9) | (1 << 12) | (1 << 11) | (1 << 14) | (1 <<10);
+        }
+        else { layerMask = (1 << 9) | (1 << 12) | (1 << 11) | (1 << 14); }
         layerMask = ~layerMask;
+
         targetGO = null;
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit,5f,layerMask))
@@ -400,10 +410,17 @@ public class PlayerAction : MonoBehaviour {
             case Mode.attack:
                 GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOn;
                 GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOff;
+                GameManager.gm.farmBtnImg.sprite =GameManager.gm.farmOff;
                 break;
             case Mode.chat:
                 GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOff;
                 GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOn;
+                GameManager.gm.farmBtnImg.sprite = GameManager.gm.farmOff;
+                break;
+            case Mode.farm:
+                GameManager.gm.attackBtnImg.sprite = GameManager.gm.attOff;
+                GameManager.gm.chatBtnImg.sprite = GameManager.gm.chatOff;
+                GameManager.gm.farmBtnImg.sprite = GameManager.gm.farmOn;
                 break;
         }
     }
