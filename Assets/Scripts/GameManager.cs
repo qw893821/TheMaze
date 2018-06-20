@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour {
         MapCameraFollow();
         HealthBarUpdate();
         ResourceBarUpdate();
+        PWUIUpdate();
     }
     
 
@@ -270,29 +271,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    //change the scale to make the emoji disappera. disable it may cause other reference issue
-    public void OpenText()
-    {
-        textUIAnim.SetBool("open",true);
-        textUIAnim.SetBool("close", false);
-        //emojiImg.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-    }
-    public void CloseText()
-    {
-        textUIAnim.SetBool("open", false);
-        textUIAnim.SetBool("close", true);
-        //emojiImg.gameObject.transform.localScale = new Vector3(0, 0, 0);
-    }
-    
-    
-
-    public string PersonalityMatch()
-    {
-        return "test";
-    }
-
     //update emoji show on the UI
-   
     public void InstBTN()
     {
         waitBTNGO.SetActive(true);
@@ -420,6 +399,28 @@ public class GameManager : MonoBehaviour {
             {
                 pwUI.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[4];
             }
+            //inserted pw list
+            if (ns.insertedList[i] == "Red")
+            {
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[0];
+            }
+            else if (ns.insertedList[i] == "Green")
+            {
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[1];
+            }
+            else if (ns.insertedList[i] == "Blue")
+            {
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[2];
+            }
+            else if (ns.insertedList[i] == "Black")
+            {
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[3];
+            }
+            else if (ns.insertedList[i] == "White")
+            {
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[4];
+            }
+            else { pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[5]; }
         }
     }
 
@@ -427,26 +428,33 @@ public class GameManager : MonoBehaviour {
     public void EnterPW(string str,NPCStats ns)
     {
         //-1, because the program running sequence
+        int i;
+        i = ns.slotNum - 1;
             if (str == "Red")
             {
-                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[0];
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[0];
+            ns.insertedList[i]="Red";
             }
             else if (str == "Green")
             {
-                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[1];
-            }
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[1];
+            ns.insertedList[i] = "Green";
+        }
             else if (str == "Blue")
             {
-                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[2];
-            }
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[2];
+            ns.insertedList[i] = "Blue";
+        }
             else if (str == "Black")
             {
-                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[3];
-            }
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[3];
+            ns.insertedList[i] = "Black";
+        }
             else if (str == "White")
             {
-                pwInput.transform.GetChild(ns.slotNum-1).GetComponent<Image>().sprite = pwImgs[4];
-            }
+                pwInput.transform.GetChild(i).GetComponent<Image>().sprite = pwImgs[4];
+            ns.insertedList[i] = "White";
+        }
     }
     public void Trade()
     {
@@ -493,5 +501,21 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    
+    void PWUIUpdate()
+    {
+        if (!currentTargetGO||currentTargetGO.tag != "Character")
+        {
+            foreach(Transform trans in pwUI.transform)
+            {
+                trans.GetComponent<Image>().sprite = pwImgs[5];
+            }
+        }
+        if (!currentTargetGO || currentTargetGO.tag != "Character")
+        {
+            foreach(Transform trans in pwInput.transform)
+            {
+                trans.GetComponent<Image>().sprite = pwImgs[5];
+            }
+        }
+    }
 }

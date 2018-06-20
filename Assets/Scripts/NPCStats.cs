@@ -29,6 +29,8 @@ public class NPCStats : CharacterStats {
     //password of npc
     List<string> pwPool;
     public List<string> pwList;
+    //current inserted pw
+    public List<string> insertedList;
     //current slot for password
     int cSlot;
     public int slotNum
