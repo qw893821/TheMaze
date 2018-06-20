@@ -15,7 +15,7 @@ public class CryStal : MonoBehaviour {
     {
         rValue = 50f;
         ruin = false;
-        regenTime = 20f;
+        regenTime = 30f;
         regenTimer = 0f;
         renderers = transform.GetComponentsInChildren<Renderer>();
         if (guardian)
@@ -87,6 +87,4 @@ public class CryStal : MonoBehaviour {
             }
         }
     }
-
-    
 }

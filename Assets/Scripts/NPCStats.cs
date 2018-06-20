@@ -36,6 +36,9 @@ public class NPCStats : CharacterStats {
     //set these to inacitve to stop the enemy from blocking player;
     Rigidbody rb;
     Collider[] cols;
+
+    //npc health bar ui
+    GameObject healthBar;
     public int slotNum
     {
         get { return cSlot; }
@@ -79,6 +82,7 @@ public class NPCStats : CharacterStats {
         cSlot = 0;
         rb = transform.GetComponent<Rigidbody>();
         cols = transform.GetComponents<Collider>();
+        healthBar = transform.Find("LocalCanvas").gameObject;
     }
 
     private void Awake()
@@ -115,6 +119,7 @@ public class NPCStats : CharacterStats {
                 {
                     col.enabled = false;
                 }
+                healthBar.SetActive(false);
             }
             transform.tag = "Dead";
             GameManager.gm.cTargetList.Remove(this.transform.gameObject);
@@ -165,17 +170,6 @@ public class NPCStats : CharacterStats {
         base.ResourceReduce();
     }
 
-    /*private float IgnoreTimer()
-    {
-        if (ignoredList.Contains(targetGO) || (targetGO.tag != "Character" && targetGO.tag != "Player"))
-        {
-            return timer = 0;
-        }
-        return timer += Time.deltaTime;
-
-    }*/
-
-
     public override void ChangeTarget()
     {
         base.ChangeTarget();
@@ -190,7 +184,6 @@ public class NPCStats : CharacterStats {
             Attack(targetGO);
             anim.SetBool("inRange", true);
         }
-        
     }
 
     
@@ -206,7 +199,6 @@ public class NPCStats : CharacterStats {
             {
                 ns.Damaged(attackPower);
                 attackTimer = 0;
-
                 //add this gameobject to the target's list
                 if (!ns.opponentList.Contains(transform.gameObject))
                 {
@@ -216,7 +208,6 @@ public class NPCStats : CharacterStats {
                     }
                     ns.opponentList.Add(transform.gameObject);
                 }
-
             }
         }
     }
@@ -227,7 +218,6 @@ public class NPCStats : CharacterStats {
             PlayerStats ps;
             ps = go.GetComponent<PlayerStats>();
             attackTimer += Time.deltaTime;
-            
             if (attackTimer >= attackSpeed)
             {
                 ps.Damaged(attackPower);
@@ -240,68 +230,18 @@ public class NPCStats : CharacterStats {
                         ps.opponentList.Remove(transform.gameObject);
                     }
                     ps.opponentList.Add(transform.gameObject);
-
                 }
                 GameManager.gm.flashColor = new Color(1.0f, 0f, 0f, 0.5f);
             }
         }
         GameManager.gm.flashColor = Color.Lerp(GameManager.gm.flashColor, Color.clear, flashSpeed * Time.deltaTime);
         //GameManager.gm.img.color = flashColor;
-
-        
     }
 
     void Attack(GameObject go)
     {
         AttackPlayer(go);
     }
-
-    bool NPCMatch()
-    {
-        int randomValue;
-        randomValue=Random.Range(0,100);
-        //positive match. add to friend list
-        if (randomValue < Value(targetGO))
-        {
-            if (!friendList.Contains(targetGO))
-            {
-                friendList.Add(targetGO);
-            }
-            return true;
-        }
-        else {
-            Debug.Log("fail match");
-            randomValue = Random.Range(0,100);
-            //this is a negtive match. add to opponentList
-            if (randomValue < 50)
-            {
-                if (!opponentList.Contains(targetGO))
-                {
-                    opponentList.Add(targetGO);
-                }
-                return true;
-            }
-            return false;
-        }
-    }
-    //get a value based on character's personality, when the same personality, character are easy to match when close
-    int Value(GameObject go)
-    {
-        
-            Personality targetPS;
-            targetPS = go.GetComponent<NPCStats>().ps;
-            if (ps == targetPS)
-            {
-                return 80;
-            }
-            else if (Mathf.Abs((int)ps - (int)targetPS) == 1)
-            {
-                return 50;
-            }
-            else { return 20; }
-    }
-
-    
 
     void InstSelectionList()
     {
@@ -366,8 +306,5 @@ public class NPCStats : CharacterStats {
             
             return true;
         }
-
     }
-
-    
 }

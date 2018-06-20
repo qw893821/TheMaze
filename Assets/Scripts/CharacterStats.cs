@@ -145,8 +145,12 @@ public class CharacterStats : MonoBehaviour {
     {
         if (satisfaction >= 0)
         {
-            opponentList.Remove(go);
-            targetGO = poss[Random.Range(0, 1)];
+            if (opponentList.Contains(go))
+            {
+                opponentList.Remove(go);
+                targetGO = poss[Random.Range(0, 1)];
+                ignoredList.Add(go);
+            }
         }
     }
 }

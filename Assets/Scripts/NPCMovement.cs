@@ -165,7 +165,9 @@ public class NPCMovement : MonoBehaviour {
     {   
         if (agent.remainingDistance<=agent.stoppingDistance)
         {
+            Debug.Log("reach");
             return true;
+            
         }
         else { return false; }
     }
