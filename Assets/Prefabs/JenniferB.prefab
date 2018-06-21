@@ -811,6 +811,7 @@ GameObject:
   - component: {fileID: 224233577022639890}
   - component: {fileID: 222626930720832572}
   - component: {fileID: 114632767844346276}
+  - component: {fileID: 114933141606340072}
   m_Layer: 5
   m_Name: FIll
   m_TagString: Untagged
@@ -2801,7 +2802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2828,7 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2842,6 +2843,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114933141606340072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1553739411732242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bc18757e42c5c4797ebc5d37613c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136555955774355086
 CapsuleCollider:
   m_ObjectHideFlags: 1

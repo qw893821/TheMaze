@@ -132,3 +132,5 @@ MonoBehaviour:
   - {fileID: 21300014, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
   - {fileID: 21300016, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
   - {fileID: 21300018, guid: 7bebd10783b58ea449ecb0cbf3e0ca87, type: 3}
+  endScreen: {fileID: 0}
+  fowMask: {fileID: 0}

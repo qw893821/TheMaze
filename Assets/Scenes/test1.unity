@@ -711,22 +711,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &372093450 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1553739411732242, guid: d82a908fd23a7fc4e8db5c9b5e1e249f,
-    type: 2}
-  m_PrefabInternal: {fileID: 483047857}
---- !u!114 &372093454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 372093450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bc18757e42c5c4797ebc5d37613c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &383156621 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1599311984592442, guid: 173cc0b871e04064cac1f79713d2f00d,
@@ -937,16 +921,6 @@ Prefab:
       propertyPath: poss.Array.data[1]
       value: 
       objectReference: {fileID: 1849739769}
-    - target: {fileID: 114868134915190508, guid: d82a908fd23a7fc4e8db5c9b5e1e249f,
-        type: 2}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114632767844346276, guid: d82a908fd23a7fc4e8db5c9b5e1e249f,
-        type: 2}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d82a908fd23a7fc4e8db5c9b5e1e249f, type: 2}
   m_IsPrefabParent: 0
@@ -2031,6 +2005,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1141687678941180, guid: d82a908fd23a7fc4e8db5c9b5e1e249f, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224233577022639890, guid: d82a908fd23a7fc4e8db5c9b5e1e249f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         //enable fowmask by force
-        fowMask.enabled = true;
+        
     }
     // Update is called once per frame
     void Update () {
@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour {
         HealthBarUpdate();
         ResourceBarUpdate();
         PWUIUpdate();
+        fowMask.enabled = true;
     }
     
 

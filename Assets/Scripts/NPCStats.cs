@@ -95,9 +95,7 @@ public class NPCStats : CharacterStats {
         Die();
         ChangeRelation();
         ChangeTarget();
-        //npc now have no resource limition
-        //ResourceReduce();
-        //LineUpdate();
+        
     }
     
     void Die()
