@@ -90,7 +90,6 @@ public class PlayerAction : MonoBehaviour {
             targetPos = Camera.main.WorldToScreenPoint(new Vector3(GameManager.gm.currentTargetGO.transform.position.x, GameManager.gm.currentTargetGO.transform.position.y+1.2f,GameManager.gm.currentTargetGO.transform.position.z));
             GameManager.gm.chatUI.SetActive(true);
             GameManager.gm.chatUI.transform.position = targetPos;
-            Debug.Log("open ui");
             //called this when ui is enabled
             GameManager.gm.InstBTN();
         }       

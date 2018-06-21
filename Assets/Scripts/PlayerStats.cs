@@ -8,6 +8,7 @@ public class PlayerStats: CharacterStats{
     public bool change;
     float flashspeed;
     float flashTimer;
+    bool end;
 
 
     PlayerAction pa;
@@ -23,11 +24,13 @@ public class PlayerStats: CharacterStats{
         flashspeed = 1f;
         flashTimer = 0;
         pa = transform.GetComponent<PlayerAction>();
+        end = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         ResourceReduce();
+        Die();
 	}
 
     void ChangeRange()
@@ -51,4 +54,12 @@ public class PlayerStats: CharacterStats{
         base.Damaged(v);
     }
 
+    void Die()
+    {
+        if (currentHealth <= 0&&!end)
+        {
+            end = true;
+            GameManager.gm.SendMessage("LoseScreen");
+        }
+    }
 }

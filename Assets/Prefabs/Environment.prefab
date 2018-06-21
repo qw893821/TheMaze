@@ -1192,6 +1192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722840838175660}
   - component: {fileID: 135548495549662238}
+  - component: {fileID: 65525716851382704}
   m_Layer: 13
   m_Name: GOLD
   m_TagString: Resource
@@ -1777,7 +1778,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518519614872992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.05, y: 1.2, z: 13.02}
+  m_LocalPosition: {x: -8.67, y: 1.2, z: 13.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4185980495145676}
@@ -6316,6 +6317,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300110, guid: e2bbf3b0da50cf448b7ea73bc3859003, type: 3}
+--- !u!65 &65525716851382704
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724287704418780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.32, y: 2.96, z: 3.82}
+  m_Center: {x: -3.82, y: 0, z: 0}
 --- !u!95 &95127796428175140
 Animator:
   serializedVersion: 3
@@ -6356,7 +6369,7 @@ SphereCollider:
   m_GameObject: {fileID: 1724287704418780}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 3.5
   m_Center: {x: 0, y: 0, z: 0}

@@ -106,7 +106,9 @@ public class GameManager : MonoBehaviour {
 
     //number sprite
     public Sprite[] sprites;
-
+    //game end 
+    public GameObject endScreen;
+    Animator endAnim;
 	void Start () {
         if (gm == null)
         {
@@ -153,7 +155,7 @@ public class GameManager : MonoBehaviour {
         flashColor = Color.clear;
         healthSlider = healthBar.GetComponent<Slider>();
         resourceText = resourceBar.GetComponentInChildren<Text>();
-        
+        endAnim = endScreen.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -282,12 +284,21 @@ public class GameManager : MonoBehaviour {
         NPCStats ns;
         ns = currentTargetGO.GetComponent<NPCStats>();
         cList = ns.list;
+        
         for(int i = 0; i < cList.Count; i++)
         {
             GameObject go;
             go = GameObject.Find(cList[i]);
             go.transform.parent = GameObject.Find("ButtonSlot"+(i+1).ToString()).transform;
             go.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
+        if (ns.slotNum > 4)
+        {
+            chatUI.transform.Find("ButtonSlot1").GetComponentInChildren<Button>().interactable = false;
+            chatUI.transform.Find("ButtonSlot2").GetComponentInChildren<Button>().interactable = false;
+        }
+        else { chatUI.transform.Find("ButtonSlot1").GetComponentInChildren<Button>().interactable = true;
+            chatUI.transform.Find("ButtonSlot2").GetComponentInChildren<Button>().interactable = true;
         }
         waitBTNGO.SetActive(false);
     }
@@ -521,5 +532,16 @@ public class GameManager : MonoBehaviour {
                 trans.GetComponent<Image>().sprite = pwImgs[5];
             }
         }
+    }
+
+    void WinScreen()
+    {
+        endAnim.SetTrigger("win");
+
+    }
+    
+    void LoseScreen()
+    {
+        endAnim.SetTrigger("lose");
     }
 }
