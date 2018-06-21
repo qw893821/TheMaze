@@ -1080,6 +1080,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1141687678941180, guid: d82a908fd23a7fc4e8db5c9b5e1e249f,
     type: 2}
   m_PrefabInternal: {fileID: 566562016}
+--- !u!1 &576699160 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1365342180687420, guid: e79bb07bb494cbd46bbd13ec0f5ececa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1679614608}
+--- !u!114 &576699161 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114423320127287872, guid: e79bb07bb494cbd46bbd13ec0f5ececa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1679614608}
+  m_Script: {fileID: 11500000, guid: f749ecfdcf57c8e41b1dc9c2a08c8656, type: 3}
 --- !u!1 &611221111 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1154697191087640, guid: 18a87eddc48c5c94fb074d2f7c56a6fd,
@@ -1892,6 +1903,16 @@ Prefab:
       propertyPath: endScreen
       value: 
       objectReference: {fileID: 831090992}
+    - target: {fileID: 114640523268471692, guid: 907180f8aff6e0440adce0112ba1da2d,
+        type: 2}
+      propertyPath: fow
+      value: 
+      objectReference: {fileID: 576699160}
+    - target: {fileID: 114640523268471692, guid: 907180f8aff6e0440adce0112ba1da2d,
+        type: 2}
+      propertyPath: fowMask
+      value: 
+      objectReference: {fileID: 576699161}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 907180f8aff6e0440adce0112ba1da2d, type: 2}
   m_IsPrefabParent: 0
@@ -2212,7 +2233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1430075989
 Transform:
   m_ObjectHideFlags: 0

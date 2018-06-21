@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour {
     //game end 
     public GameObject endScreen;
     Animator endAnim;
+    //fow related
+    public FoWMask fowMask;
 	void Start () {
         if (gm == null)
         {
@@ -156,10 +158,16 @@ public class GameManager : MonoBehaviour {
         healthSlider = healthBar.GetComponent<Slider>();
         resourceText = resourceBar.GetComponentInChildren<Text>();
         endAnim = endScreen.GetComponent<Animator>();
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        //enable fowmask by force
+        fowMask.enabled = true;
+    }
+    // Update is called once per frame
+    void Update () {
         TimeController();
         ChatUIUpdate();
         HealingBtn();
