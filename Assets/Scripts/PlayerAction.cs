@@ -126,7 +126,6 @@ public class PlayerAction : MonoBehaviour {
         Ray camRay = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(camRay, out hit,5f,layerMask))
         {
-            Debug.Log(hit.transform.gameObject);
             if (hit.collider.tag == "Character")
             {
                 GameObject hitTarget;

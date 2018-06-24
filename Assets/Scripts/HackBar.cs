@@ -24,8 +24,7 @@ public class HackBar : MonoBehaviour {
             rt.sizeDelta = new Vector2(1,0.1f);
         }
         else if (ns.satisfaction < -50)
-        {
-            Debug.Log("-50");
+        { 
             rt.sizeDelta = new Vector2(0,0.1f);
         }
         else

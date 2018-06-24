@@ -292,16 +292,12 @@ public class NPCStats : CharacterStats {
         }
         if (go.name != pwList[cSlot])
         {
-            Debug.Log("false");
             cSlot++;
-            
             return false;
         } 
         else 
         {
-            Debug.Log("true");
             cSlot++;
-            
             return true;
         }
     }

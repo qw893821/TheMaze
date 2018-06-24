@@ -306,8 +306,13 @@ public class GameManager : MonoBehaviour {
             chatUI.transform.Find("ButtonSlot1").GetComponentInChildren<Button>().interactable = false;
             chatUI.transform.Find("ButtonSlot2").GetComponentInChildren<Button>().interactable = false;
         }
-        else { chatUI.transform.Find("ButtonSlot1").GetComponentInChildren<Button>().interactable = true;
-            chatUI.transform.Find("ButtonSlot2").GetComponentInChildren<Button>().interactable = true;
+        else {
+            foreach(Transform tran in chatUI.transform)
+            {
+                tran.gameObject.GetComponentInChildren<Button>().interactable = true;
+            }
+            /*chatUI.transform.Find("ButtonSlot1").GetComponentInChildren<Button>().interactable = true;
+            chatUI.transform.Find("ButtonSlot2").GetComponentInChildren<Button>().interactable = true;*/
         }
         waitBTNGO.SetActive(false);
     }
