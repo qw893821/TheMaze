@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 public enum GameStats
 {
     walking,
@@ -85,11 +86,6 @@ public class GameManager : MonoBehaviour {
     //public List<GameObject> targetList;
     //NPC emotion sprite list
     //public List<Sprite> emojiList;
-    public EmojiManager eList;
-    //emoji UI sprite
-
-    //public Image emojiImg;
-
     //map camera
     GameObject cameraGO;
     Vector3 cameraOffSet;
@@ -122,7 +118,7 @@ public class GameManager : MonoBehaviour {
         }
         gs = GameStats.other;
         overUI = false ;
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Player");
         pa = player.GetComponent<PlayerAction>();
         ps = player.GetComponent<PlayerStats>();
         currentList = new List<GameObject>();
@@ -135,9 +131,8 @@ public class GameManager : MonoBehaviour {
         farmBtnImg = farmBtn.GetComponent<Image>();
         farmBtn.GetComponent<Button>().interactable = false;
         healingBtn = GameObject.Find("Rest");
-        //emojiImg = GameObject.Find("Emoji").GetComponent<Image>();
-        
         waitBTNGO = GameObject.Find("WaitingButtons");
+        Debug.Log(waitBTNGO);
         waitBTNGO.SetActive(false);
         chatUI.SetActive(false);
         currentMode = pa.playerMode;
@@ -152,7 +147,6 @@ public class GameManager : MonoBehaviour {
         //targetList = new List<GameObject>();
         cameraGO = GameObject.Find("MapCamera");
         cameraOffSet = cameraGO.transform.position - player.transform.position;
-
         facing = "Vertical";
         flashColor = Color.clear;
         healthSlider = healthBar.GetComponent<Slider>();
@@ -557,5 +551,15 @@ public class GameManager : MonoBehaviour {
     void LoseScreen()
     {
         endAnim.SetTrigger("lose");
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
     }
 }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FoWMask : MonoBehaviour {
     Vector3 offSet;
+    GameObject player;
     // Use this for initialization
-    void Awake () {
+    void Start () {
+        player = GameObject.Find("Player");
         offSet = transform.position-GameManager.gm.player.transform.position;
-        
     }
 	
 	void Update () {

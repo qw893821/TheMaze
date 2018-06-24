@@ -262,6 +262,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4939563425345448}
+  - component: {fileID: 95063489807625044}
   m_Layer: 0
   m_Name: pickaxe
   m_TagString: Untagged
@@ -545,7 +546,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118596245296542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 1.2, z: -2}
+  m_LocalPosition: {x: -2, y: 1.2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4766187442807282}
@@ -953,7 +954,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2097,6 +2098,24 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1674209093362898}
   m_Enabled: 1
+--- !u!95 &95063489807625044
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464534833796154}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7954d581f0b121543898af5f0a014479, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95449541784115126
 Animator:
   serializedVersion: 3
@@ -2168,7 +2187,7 @@ MonoBehaviour:
   friendList: []
   ignoredList: []
   currentInRangeList: []
-  resource: 0
+  resource: 100
   box: {fileID: 65013497949531798}
   change: 0
 --- !u!114 &114547507467015428
