@@ -1,6 +1,6 @@
 # Overview
 
-**This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions. Turning around and hack NPC will not effect game time. Any other action will effect the time. Moving is real time. Ohter actions will consume 1 second.**
+**This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions. Turning around and hack NPC will not effect game time. Any other action will effect the time. Moving is real time. Ohter actions will consume 1 second. Player must reach the end before resources are running out.**
 
 # Story
 
@@ -8,10 +8,10 @@
 
 ## Game Control
 
-> Press "W" to move forward
-> Press "A" to turn left and "D" to turn right
-> Press "S" to turn back
-> When something is important enough, you do it even if the odds are not in your favor.
+> Press "W" to move forward<br>
+> Press "A" to turn left and "D" to turn right<br>
+> Press "S" to turn back<br>
+> Use cursor to choose your action type(Hack, attack, Mining, Healing).
 
 ## Header 3
 
