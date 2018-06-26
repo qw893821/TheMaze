@@ -20,7 +20,7 @@ Firefox are preferred to player this demo.
 [Demo](./Assets/builds/webBuild/index.html)
 
 ## Download
-[Mac](https://1drv.ms/u/s!AtE6V3XX7jT-uzKi9-GkiZyOsKe2)
+[Mac](https://1drv.ms/u/s!AtE6V3XX7jT-uzKi9-GkiZyOsKe2) <br>
 [PC](https://1drv.ms/u/s!AtE6V3XX7jT-uzNOh0aoZRcbytdD)
 
 ## Gameplaye
