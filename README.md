@@ -4,15 +4,13 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Link to another page](./another-page.html).
-
 There should be whitespace between paragraphs.
 
 There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
 # Story
 
-This is a thesis project called Ms. Jennifer. Those NPC are Robot with code name Jennifer, they are designed to project the lab.<br> Play is also the same type of robot but form self conscious. She muse try her best to escape from the lab with the Master Chip and Light Blade.<br>
+**This is a thesis project called Ms. Jennifer. Those NPC are Robot with code name Jennifer, they are designed to project the lab.<br> Play is also the same type of robot but form self conscious. She muse try her best to escape from the lab with the Master Chip and Light Blade.<br>**
 ## Header 2
 
 > This is a blockquote following a header.
