@@ -19,7 +19,6 @@ At the very early stage, I want to make different NPCs with different apperance(
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
 >
 
-[game](./index.html)
 #### Header 4
 
 *   This is an unordered list following a header.
