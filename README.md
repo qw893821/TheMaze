@@ -30,4 +30,4 @@ Firefox are preferred to player this demo.<br>
 >Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the npc have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer attack initiatively attack player. 
 >Hack is the tricky part in this game. Each npc will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. <br>
 ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
->Fortuately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer. Match the input will increase the hacking process. Miss match will decrease it. 
+>Fortunately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer. Match the input will increase the hacking process. Miss match will decrease it. 
