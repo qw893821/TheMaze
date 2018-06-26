@@ -26,8 +26,10 @@ Firefox are preferred to player this demo.<br>
 
 ## Gameplay
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
->![Life](./WebImages/npc_ui_life.png)<br>
+> ![Life](./WebImages/npc_ui_life.png)<br>
 >Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the npc have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer attack initiatively attack player. 
->Hack is the tricky part in this game. Each npc will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. <br>
-![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
->Fortunately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer. Match the input will increase the hacking process. Miss match will decrease it. 
+> Hack is the tricky part in this game. Each npc will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. <br>
+> ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
+> Fortunately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer.<br>
+> ![PW](./WebImages/player_ui_input.png)<br>
+> Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
