@@ -15,6 +15,7 @@ At the very early stage, I want to make different NPCs with different apperance(
 > Press "S" to turn back.<br>
 > Use cursor to choose your action type(Hack, attack, Mining, Healing).<br>
 
+./Assets/builds/webBuild
 ## Gameplaye
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
 >
