@@ -25,4 +25,5 @@ Firefox are preferred to player this demo.<br>
 
 ## Gameplaye
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
->
+>![Life](./WebImages/npc_ui_life.png)<br>
+>Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the npc have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer attack initiatively attack player. 
