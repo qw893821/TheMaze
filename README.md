@@ -8,27 +8,14 @@
 
 ## Game Control
 
-> Press "W" to move forward<br>
-> Press "A" to turn left and "D" to turn right<br>
-> Press "S" to turn back<br>
-> Use cursor to choose your action type(Hack, attack, Mining, Healing).
+> Press "W" to move forward.<br>
+> Press "A" to turn left and "D" to turn right.<br>
+> Press "S" to turn back.<br>
+> Use cursor to choose your action type(Hack, attack, Mining, Healing).<br>
 
-## Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+## Gameplaye
+> There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
+>
 
 #### Header 4
 
