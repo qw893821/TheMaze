@@ -2,6 +2,8 @@
 
 **This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions. Turning around and hack NPC will not effect game time. Any other action will effect the time. Moving is real time. Ohter actions will consume 1 second. Player must reach the end before resources are running out.**
 
+At the very early stage, I want to make different NPCs with different apperance(texture) but with same animation. But later on, I found the some concept(like communication) does not work well and I may run out of time if I keep working on the personify the NPCs. As the first NPC model, Jeniffer, have robot like animation, so I decide to change my design to make NPCs become the Robot Jeniffer and change the game title to -Ms. Jeniffer-.
+
 # Story
 
 **Those NPC are Robot with code name Jennifer, they are designed to project the lab.<br> Play is also the same type of robot but form self conscious. She muse try her best to escape from the lab with the Master Chip and Light Blade.<br>**
