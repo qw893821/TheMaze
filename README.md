@@ -13,7 +13,8 @@ At the very early stage, I want to make different NPCs with different apperance(
 > ![W](./WebImages/keyboard_w.jpg) Press "W" to move forward.<br>
 > ![A](./WebImages/keyboard_a.jpg) ![D](./WebImages/keyboard_d.jpg)Press "A" to turn left and "D" to turn right.(Rotate 90 degrees.)<br>
 > ![S](./WebImages/keyboard_s.jpg) Press "S" to turn back.(Rotate 180 degrees)<br>
-> Use cursor to choose your action type(Hack, attack, Mining, Healing).<br>
+> ![buttons](./WebImages/player_ui_button.png)
+> Use cursor to choose your action type(Hack, Mining, Attack, Healing). Mining is not interactable unless player get close to a crystal and healing is not interactablt when player do not have low resources. _Attack, Mining and Healing_ will consume time no matter player have a target or not.<br>
 
 ## Demo
 Firefox are preferred to player this demo.<br>
