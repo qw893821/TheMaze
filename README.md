@@ -1,6 +1,6 @@
 # Overview
 
-**This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions. **
+**This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions.**
 
 # Story
 
