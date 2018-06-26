@@ -10,7 +10,7 @@ At the very early stage, I want to make different NPCs with different apperance(
 
 ## Game Control
 
-![W](./WebImages/keyboard_w.jpg) Press "W" to move forward.<br>
+>![W](./WebImages/keyboard_w.jpg) Press "W" to move forward.<br>
 > Press "A" to turn left and "D" to turn right.<br>
 > Press "S" to turn back.<br>
 > Use cursor to choose your action type(Hack, attack, Mining, Healing).<br>
