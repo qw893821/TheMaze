@@ -2,7 +2,7 @@
 
 **This is a thesis project called Ms. Jeniffer. In this game, game time will not work until player make actions. Turning around and hack NPC will not effect game time. Any other action will effect the time. Moving is real time. Ohter actions will consume 1 second. Player must reach the end before resources are running out.**
 
-At the very early stage, I want to make different NPCs with different apperance(texture) but with same animation. But later on, I found the some concept(like communication) does not work well and I may run out of time if I keep working on the personify the NPCs. As the first NPC model, Jeniffer, have robot like animation, so I decide to change my design to make NPCs become the Robot Jeniffer and change the game title to -Ms. Jeniffer-.
+At the very early stage, I want to make different NPCs with different apperance(texture) but with same animation. But later on, I found the some concept(like communication) does not work well and I may run out of time if I keep working on the personify the NPCs. As the first NPC model, Jeniffer, have robot like animation, so I decide to change my design to make NPCs become the Robot Jeniffer and change the game title to _Ms. Jeniffer_.
 
 # Story
 
