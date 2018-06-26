@@ -32,4 +32,4 @@ Firefox are preferred to player this demo.<br>
 > ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
 > Fortunately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer.<br>
 > ![PW](./WebImages/player_ui_input.png)<br>
-> Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
+> Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
