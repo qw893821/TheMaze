@@ -19,6 +19,9 @@ At the very early stage, I want to make different NPCs with different apperance(
 Firefox are preferred to player this demo.
 [Demo](./Assets/builds/webBuild/index.html)
 
+## Download
+[Mac] (https://1drv.ms/u/s!AtE6V3XX7jT-uzKi9-GkiZyOsKe2)
+
 ## Gameplaye
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
 >
