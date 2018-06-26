@@ -16,7 +16,7 @@ At the very early stage, I want to make different NPCs with different apperance(
 > Use cursor to choose your action type(Hack, attack, Mining, Healing).<br>
 
 ## Demo
-Firefox are preferred to player this demo.
+Firefox are preferred to player this demo.<br>
 [Demo](./Assets/builds/webBuild/index.html)
 
 ## Download
