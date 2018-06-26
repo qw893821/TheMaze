@@ -24,7 +24,8 @@ Firefox are preferred to player this demo.<br>
 [Mac](https://1drv.ms/u/s!AtE6V3XX7jT-uzKi9-GkiZyOsKe2) <br>
 [PC](https://1drv.ms/u/s!AtE6V3XX7jT-uzNOh0aoZRcbytdD)
 
-## Gameplaye
+## Gameplay
 > There are three types of NPC(Jeniffer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
 >![Life](./WebImages/npc_ui_life.png)<br>
 >Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the npc have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer attack initiatively attack player. 
+>Hack is the tricky part in this game. Each npc will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. 
