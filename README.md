@@ -34,7 +34,8 @@ Firefox are preferred to player this demo.<br>
 > ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
 > Fortunately, player owns the _Mater Chip_ of Jennifer, so player could see the PW of each Jennifer.<br>
 > ![PW](./WebImages/player_ui_input.png)<br>
-> Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
+> Player will have two selection of password each time they hack. Selected one will be changed by the other password which is shown right now. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack.
+> Player can use laser blade to attack other Jennifers. Each NPC can hold 5 times of attack. Once player attacked the Jennifer, Jennifer's will wipe all control process and become also impossible to hack. Choose wisely.
 > When player's health point goes "0", game end. Player will keep losing health when resource goes zero.
 
 ## Known issue
