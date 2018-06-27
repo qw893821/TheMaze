@@ -38,3 +38,4 @@ Firefox are preferred to player this demo.<br>
 ## Know issue
 > _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not covered by FoW but the discovered place will covered by FoW. Mac version do not showing FoW at all. As FoW uses _Render Texture_ in unity to creat a real time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but can not show the player's path.
 ## Walkthrough
+[Video]
