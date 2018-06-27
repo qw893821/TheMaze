@@ -33,3 +33,8 @@ Firefox are preferred to player this demo.<br>
 > Fortunately, player owns te _Mater Chip_ of Jeniffer, so player could see the PW of each Jeniffer.<br>
 > ![PW](./WebImages/player_ui_input.png)<br>
 > Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
+> When player's health point goes "0", game end. Player will keep losing health when resource goes zero.
+
+## Know issue
+> _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not covered by FoW but the discovered place will covered by FoW. Mac version do not showing FoW at all. As FoW uses _Render Texture_ in unity to creat a real time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but can not show the player's path.
+## Walkthrough
