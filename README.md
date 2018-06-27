@@ -30,12 +30,12 @@ Firefox are preferred to player this demo.<br>
 >Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the NPC have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer initiatively attack player. If player attacks fully hacked NPC, the NPC will fight back. Player do not need to match every single piece of the password. The goal is full fill the hack bar. Further miss hack will also have negative impact to the hacking process.
 > Hack is the tricky part in this game. Each NPC will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. <br>
 > ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
-> Fortunately, player owns te _Mater Chip_ of Jennifer, so player could see the PW of each Jennifer.<br>
+> Fortunately, player owns the _Mater Chip_ of Jennifer, so player could see the PW of each Jennifer.<br>
 > ![PW](./WebImages/player_ui_input.png)<br>
 > Player will have two selection of password each time they hack. Selected one will be changed by another one. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack. 
 > When player's health point goes "0", game end. Player will keep losing health when resource goes zero.
 
 ## Known issue
-> _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not covered by FoW but the discovered place will covered by FoW. Mac version do not showing FoW at all. As FoW uses _Render Texture_ in unity to creat a real time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but can not show the player's path.
+> _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not be covered by FoW but the discovered place will be covered by FoW. Mac version do not show FoW at all. As FoW uses _Render Texture_ in unity to create a real-time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but cannot show the player's path.
 ## Walkthrough
 [Video]
