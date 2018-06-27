@@ -4,6 +4,8 @@
 
 At the very early stage, I want to make different NPCs with different appearance(texture) but with same animation. But later on, I found some concept (like communication) does not work well and I may run out of time if I keep working on the personify the NPCs. As the first NPC model, Jennifer, have robot like animation, so I decide to change my design to make NPCs become the Robot Jennifer and change the game title to _Ms. Jenniffer_.
 
+There are three version of this game. The demo is the WebGL version could be play online on this page. Game will run at 1920 X 1080 and require 512 MB Ram to run the game. This game also includes both Mac and PC version and both could be download at this page.
+
 # Story
 
 **Those NPC are Robot with code name Jennifer, they are designed to project the lab.<br> Play is also the same type of robot but form self-conscious. She must try her best to escape from the lab with the Master Chip and Light Blade.<br>**
