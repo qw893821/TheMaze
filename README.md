@@ -29,29 +29,29 @@ Firefox are preferred to player this demo.<br>
 ## Gameplay
 > There are three types of NPC(Jennifer), one is Guardian which will protect the Crystal(resource), one will attack player no matter what, the last one will not attack player unless player attack them.<br>
 > ![Life](./WebImages/npc_ui_life.png)<br>
->Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the NPC have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer initiatively attack player. If player attacks fully hacked NPC, the NPC will fight back. Player do not need to match every single piece of the password. The goal is full fill the hack bar. Further miss hack will also have negative impact to the hacking process.
+>Each NPC will have their own life bar and hack bar. Life bar(green one) show the current health point the NPC have. The hack bar(purple one) show the hacking process. When the hack bar is full, the NPC is hacked and will no longer initiatively attack player. If player attacks fully hacked NPC, the NPC will fight back. Player do not need to match every single piece of the password. The goal is full fill the hack bar. Further miss hack will also have negative impact to the hacking process.<br>
 > Hack is the tricky part in this game. Each NPC will have their password sequence and they are randomly generalized in this game. Player should match the sequences to achieve the hacking. <br>
 > ![Panel](./WebImages/player_ui_panel.png) ![Panel2](./WebImages/player_ui_panel2.png)<br>
 > Fortunately, player owns the _Mater Chip_ of Jennifer, so player could see the PW of each Jennifer.<br>
 > ![PW](./WebImages/player_ui_input.png)<br>
 > Player will have two selection of password each time they hack. Selected one will be changed by the other password which is shown right now. Match the input will increase the hacking process. Miss match will decrease it. Play could sacrifice(yellow button) crystal(resource) to exchange hacking process. 10 units of crystal equals to one successful hack.
-> Player can use laser blade to attack other Jennifers. Each NPC can hold 5 times of attack. Once player attacked the Jennifer, Jennifer's will wipe all control process and become also impossible to hack. Choose wisely.
-> When player's health point goes "0", game end. Player will keep losing health when resource goes zero.
+> Player can use laser blade to attack other Jennifers. Each NPC can hold 5 times of attack. Once player attacked the Jennifer, Jennifer's will wipe all control process and become also impossible to hack. Choose wisely.<br>
+> When player's health point goes "0", game end. Player will keep losing health when resource goes zero.<br>
 > This NPC Health bar have a World Space Reneder Mode, as a result, this UI could be attach to a Unity 3D model and follows the object.  
 
 
 ## Multi-cameras 
-> I used multi-cameras in this game.  
+> I used multi-cameras in this game.  <br>
 > One, for sure, player's first-person view in game. This camera renders the most of game layers so player could see what they should see in the game. This camera is attached to player so it will always follow player without any additional script.  <br>
 > The second one is the one renders the mini map. This camera only have a depth of 1 which will show above the main camera (with depth of -1). But this camera is placed at the top right by changing the Viewport Rect. In addition, this camera only renders the simple attach to the player and NPCs so these models are not rendered twice.  <br>
 > ![Camera](./WebImages/player_camera.png)<br>
 > Both camera show shows in the game.  
-> The last type of camera is used to render a texture in game. This texture will change based on the view this camera current has. This technique could be used to render the mini map in game. In this game, I use this technique to render the fog of war texture.  
+> The last type of camera is used to render a texture in game. This texture will change based on the view this camera current has. This technique could be used to render the mini map in game. In this game, I use this technique to render the fog of war texture.  <br>
 
 ## Animation 
-> I used two methods to create animation in this game.  
+> I used two methods to create animation in this game.  <br>
 > First one is created in Maya along with the game model. As I created all the animation in one clip in Maya, I have to cut them into different clip in unity. It is important to make note how anime is set in Maya and the framerate setting may be 24 rather than 60 which is the default setting in Unity. <br>
-> The second method is animate in Unity. This is easy to use when doing simple animation. This method works for other elements, like UI, too.  
+> The second method is animate in Unity. This is easy to use when doing simple animation. This method works for other elements, like UI, too.  <br>
 
 ## Time 
 > Time is an important game mechanic of this game. There is a state machine keeps tracking what player is doing. Unlike normal design which player move the character, what I am doing in this game is changing the state to Moving which makes the player move and it works perfect for this game because play could only move forward in this game.  <br>
@@ -63,7 +63,7 @@ Firefox are preferred to player this demo.<br>
 >Another place uses the eventsystem is when player attack meets the UI event. As both action rely on mouse click, the player action (attack, farm, etc.) will happen only when mouse is not over the UI (button, for especially).  <br>
 
 ## Known issue
-> _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not be covered by FoW but the discovered place will be covered by FoW. Mac version do not show FoW at all. As FoW uses _Render Texture_ in unity to create a real-time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but cannot show the player's path.
+> _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not be covered by FoW but the discovered place will be covered by FoW. Mac version do not show FoW at all. As FoW uses _Render Texture_ in unity to create a real-time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but cannot show the player's path.<br>
 
 ## Walkthrough
 [Video]
