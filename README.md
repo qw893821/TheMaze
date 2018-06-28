@@ -54,7 +54,7 @@ Firefox are preferred to player this demo.<br>
 ## Time 
 > Time is an important game mechanic of this game. There is a state machine keeps tracking what player is doing. Unlike normal design which player move the character, what I am doing in this game is changing the state to Moving which makes the player move and it works perfect for this game because play could only move forward in this game.  
 > I control the game time by changing the time scale in Unity. As a result, things which rely on Time, like animation, will not work. Thus, some changes must be made to make this work. Changing the Update Mode to Unscaled Time could solve this problem. 
-
+> ![Time](./WebImages/player_time.png)<br>
 ## Known issue
 > _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not be covered by FoW but the discovered place will be covered by FoW. Mac version do not show FoW at all. As FoW uses _Render Texture_ in unity to create a real-time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but cannot show the player's path.
 
