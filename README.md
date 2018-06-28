@@ -40,15 +40,15 @@ Firefox are preferred to player this demo.<br>
 
 ## Multi-cameras 
 > I used multi-cameras in this game.  
-> One, for sure, player's first-person view in game. This camera renders the most of game layers so player could see what they should see in the game. This camera is attached to player so it will always follow player without any additional script.  
-> The second one is the one renders the mini map. This camera only have a depth of 1 which will show above the main camera (with depth of -1). But this camera is placed at the top right by changing the Viewport Rect. In addition, this camera only renders the simple attach to the player and NPCs so these models are not rendered twice.  
+> One, for sure, player's first-person view in game. This camera renders the most of game layers so player could see what they should see in the game. This camera is attached to player so it will always follow player without any additional script.  <br>
+> The second one is the one renders the mini map. This camera only have a depth of 1 which will show above the main camera (with depth of -1). But this camera is placed at the top right by changing the Viewport Rect. In addition, this camera only renders the simple attach to the player and NPCs so these models are not rendered twice.  <br>
 > ![Camera](./WebImages/player_camera.png)<br>
 > Both camera show shows in the game.  
 > The last type of camera is used to render a texture in game. This texture will change based on the view this camera current has. This technique could be used to render the mini map in game. In this game, I use this technique to render the fog of war texture.  
 
 ## Animation 
 > I used two methods to create animation in this game.  
-> First one is created in Maya along with the game model. As I created all the animation in one clip in Maya, I have to cut them into different clip in unity. It is important to make note how anime is set in Maya and the framerate setting may be 24 rather than 60 which is the default setting in Unity. 
+> First one is created in Maya along with the game model. As I created all the animation in one clip in Maya, I have to cut them into different clip in unity. It is important to make note how anime is set in Maya and the framerate setting may be 24 rather than 60 which is the default setting in Unity. <br>
 > The second method is animate in Unity. This is easy to use when doing simple animation. This method works for other elements, like UI, too.  
 
 ## Time 
