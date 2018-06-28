@@ -38,6 +38,14 @@ Firefox are preferred to player this demo.<br>
 > Player can use laser blade to attack other Jennifers. Each NPC can hold 5 times of attack. Once player attacked the Jennifer, Jennifer's will wipe all control process and become also impossible to hack. Choose wisely.
 > When player's health point goes "0", game end. Player will keep losing health when resource goes zero.
 
+Multi-cameras 
+> I used multi-cameras in this game.  
+> One, for sure, player's first-person view in game. This camera renders the most of game layers so player could see what they should see in the game. This camera is attached to player so it will always follow player without any additional script.  
+> The second one is the one renders the mini map. This camera only have a depth of 1 which will show above the main camera (with depth of -1). But this camera is placed at the top right by changing the Viewport Rect. In addition, this camera only renders the simple attach to the player and NPCs so these models are not rendered twice.  
+> ![Camera](./WebImages/player_camera.png)<br>
+> Both camera show shows in the game.  
+> The last type of camera is used to render a texture in game. This texture will change based on the view this camera current has. This technique could be used to render the mini map in game. In this game, I use this technique to render the fog of war texture.  
+
 ## Known issue
 > _Fog of War_ Only works properly on Windows version. WebGl version shows the opposite result, where the undiscovered position will not be covered by FoW but the discovered place will be covered by FoW. Mac version do not show FoW at all. As FoW uses _Render Texture_ in unity to create a real-time texture in game to show the FoW, I think this would be the issue. I have try to change the AA setting to make it work. Changing the AA setting would show the FoW on Mac but cannot show the player's path.
 
